@@ -2,15 +2,19 @@ package model;
 
 import java.util.Objects;
 
+
 public abstract class Usuario {
     private String nombre;
-    private String usuario;
+    private String nombreUsuario;
     private String email;
     private String password;
 
+
+    public Usuario() {}
+
     public Usuario(String nombre, String usuario, String email, String password) {
         this.nombre = nombre;
-        this.usuario = usuario;
+        this.nombreUsuario = usuario;
         this.email = email;
         this.password = password;
     }
@@ -23,12 +27,12 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {
@@ -51,12 +55,12 @@ public abstract class Usuario {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario1 = (Usuario) o;
-        return Objects.equals(usuario, usuario1.usuario) && Objects.equals(email, usuario1.email);
+        return Objects.equals(nombreUsuario, usuario1.nombreUsuario) && Objects.equals(email, usuario1.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usuario, email);
+        return Objects.hash(nombreUsuario, email);
     }
 
  public abstract String cifrarPassword();
