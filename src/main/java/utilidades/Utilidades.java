@@ -1,8 +1,11 @@
 package utilidades;
 
+import model.Usuario;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class Utilidades {
     static final String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
@@ -25,5 +28,16 @@ public class Utilidades {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error al cifrar la contraseña", e);
         }
+    }
+
+    public static boolean existeUsuario(Usuario usuario) {
+        boolean existe = false;
+        List<Usuario> usuarios = PersistenciaXML.cargarUsuarios();
+        for (Usuario usuarioAux : usuarios) {
+            if (usuarioAux.getNombreUsuario().equals(usuario.getNombreUsuario()) || usuarioAux.getEmail().equals(usuario.getEmail())) {
+                existe = true;
+            }
+        }
+        return existe;
     }
 }

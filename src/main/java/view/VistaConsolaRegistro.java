@@ -1,5 +1,6 @@
 package view;
 
+import controller.UsuarioController;
 import exceptions.EmailInvalidoException;
 import model.Usuario;
 import model.UsuarioCreador;
@@ -15,27 +16,22 @@ public class VistaConsolaRegistro {
     public static Usuario solicitarDatosRegistro() {
         Usuario usuario = null;
 
-        System.out.println("Ingrese su nombre: ");
+        mostrarMensaje("Ingrese su nombre: ");
         String nombre = sc.nextLine();
-
-        System.out.println("Ingrese el nombre de usuario que desea registrar: ");
-        String NombreUsuario = sc.nextLine();
-
+        mostrarMensaje("Ingrese su nombre de usuario: ");
+        String nombreUsuario = sc.nextLine();
         String email = pideEmail();
-
+        mostrarMensaje("Ingrese su contraseña");
         String pass = sc.nextLine();
-
-        //Pedir ONG si el usuario es creador si dice no queda como cadena vacia
-        System.out.println("¿Es un usuario creador? (S/N): ");
-        String respuesta = sc.nextLine().trim().toUpperCase();
-
-        String ong = "";
-        if (respuesta.equals("S")) {
-            System.out.println("Ingrese el nombre de la ONG: ");
-            ong = sc.nextLine();
-            usuario = new UsuarioCreador(nombre, NombreUsuario, email, pass, ong);
-        } else if (respuesta.equals("N")) {
-            usuario = new UsuarioVoluntario(nombre, NombreUsuario, email, pass);
+        String passCifrada = Utilidades.cifrarSHA256(pass);
+        mostrarMensaje("Ingrese su ROL");
+        String rol = sc.nextLine();
+        if (rol.equals("Creador")) {
+            mostrarMensaje("Ingrese el nombre de la ONG: ");
+            String nombreONG = sc.nextLine();
+            usuario = new UsuarioCreador(nombre, nombreUsuario, email, passCifrada, nombreONG);
+        } else if (rol.equals("Voluntario")) {
+            usuario = new UsuarioVoluntario(nombre, nombreUsuario, email, passCifrada);
         }
         return usuario;
     }
@@ -49,9 +45,9 @@ public class VistaConsolaRegistro {
             email = sc.nextLine();
             try {
                 if (!Utilidades.validarEmail(email)) {
-                    throw new EmailInvalidoException("Formato de mail incorrecto, prueba de nuevo.");
+                    throw new EmailInvalidoException("Formato de correo incorrecto, prueba de nuevo.");
                 }
-                valida = true;  // Si no hay excepción, la matrícula es válida
+                valida = true;
             } catch (EmailInvalidoException e) {
                 System.out.println(e.getMessage());
             }
@@ -60,4 +56,11 @@ public class VistaConsolaRegistro {
         return email;
     }
 
+    public static void mostrarMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
+
+
 }
+
+

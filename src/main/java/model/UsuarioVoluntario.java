@@ -1,5 +1,8 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class UsuarioVoluntario extends Usuario {
     private int puntos;
 
@@ -8,8 +11,7 @@ public class UsuarioVoluntario extends Usuario {
         this.puntos = 0;
     }
 
-    @Override
-    public String cifrarPassword() {
-        return "";
+    public UsuarioVoluntario() {
     }
+
 }

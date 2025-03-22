@@ -1,8 +1,12 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Objects;
 
-
+@XmlTransient
+@XmlSeeAlso({UsuarioCreador.class, UsuarioVoluntario.class, UsuarioAdministrador.class})
 public abstract class Usuario {
     private String nombre;
     private String nombreUsuario;
@@ -62,7 +66,5 @@ public abstract class Usuario {
     public int hashCode() {
         return Objects.hash(nombreUsuario, email);
     }
-
- public abstract String cifrarPassword();
 
 }

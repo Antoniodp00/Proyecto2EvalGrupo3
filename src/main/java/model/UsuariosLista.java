@@ -8,7 +8,9 @@ import java.util.List;
 public class UsuariosLista {
     private List<Usuario> usuarios;
 
-    @XmlElement(name = "usuario")
+    public UsuariosLista() {} //Constructor vacío requerido por JAXB
+
+    @XmlElement(name = "usuario")  //Indica que cada elemento en XML será un <usuario>
     public List<Usuario> getUsuarios() {
         return usuarios;
     }

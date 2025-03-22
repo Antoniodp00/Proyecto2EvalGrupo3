@@ -1,5 +1,8 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class UsuarioCreador extends Usuario {
     private String ONG;
 
@@ -7,9 +10,13 @@ public class UsuarioCreador extends Usuario {
         super(nombre, usuario, email, password);
         this.ONG = ONG;
     }
+public UsuarioCreador() {}
 
-    @Override
-    public String cifrarPassword() {
-        return "";
+    public String getONG() {
+        return ONG;
+    }
+
+    public void setONG(String ONG) {
+        this.ONG = ONG;
     }
 }
