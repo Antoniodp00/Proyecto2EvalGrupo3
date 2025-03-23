@@ -85,7 +85,7 @@ public class UsuarioController {
 
     private static boolean verificarSesionActiva() {
         if (Sesion.haySesionActiva()) {
-            VistaConsola.mostrarMensaje("Ya hay un usuario en sesión. Cierra sesión primero.");
+            VistaConsola.mostrarMensaje("Ya hay una sesion activa. Cierra sesión primero.");
             return true;
         }
         return false;
