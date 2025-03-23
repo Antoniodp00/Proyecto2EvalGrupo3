@@ -16,18 +16,18 @@ public class VistaConsolaRegistro {
     public static Usuario solicitarDatosRegistro() {
         Usuario usuario = null;
 
-        mostrarMensaje("Ingrese su nombre: ");
+        VistaConsola.mostrarMensaje("Ingrese su nombre: ");
         String nombre = sc.nextLine();
-        mostrarMensaje("Ingrese su nombre de usuario: ");
+        VistaConsola.mostrarMensaje("Ingrese su nombre de usuario: ");
         String nombreUsuario = sc.nextLine();
         String email = pideEmail();
-        mostrarMensaje("Ingrese su contraseña");
+        VistaConsola.mostrarMensaje("Ingrese su contraseña");
         String pass = sc.nextLine();
         String passCifrada = Utilidades.cifrarSHA256(pass);
-        mostrarMensaje("Ingrese su ROL");
+        VistaConsola.mostrarMensaje("Ingrese su ROL");
         String rol = sc.nextLine();
         if (rol.equals("Creador")) {
-            mostrarMensaje("Ingrese el nombre de la ONG: ");
+            VistaConsola.mostrarMensaje("Ingrese el nombre de la ONG: ");
             String nombreONG = sc.nextLine();
             usuario = new UsuarioCreador(nombre, nombreUsuario, email, passCifrada, nombreONG);
         } else if (rol.equals("Voluntario")) {
@@ -56,9 +56,7 @@ public class VistaConsolaRegistro {
         return email;
     }
 
-    public static void mostrarMensaje(String mensaje) {
-        System.out.println(mensaje);
-    }
+
 
 
 }
