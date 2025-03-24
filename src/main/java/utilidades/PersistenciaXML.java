@@ -1,48 +1,44 @@
 package utilidades;
 
-import model.Usuario;
-import model.UsuariosLista;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PersistenciaXML {
-    private static final String ARCHIVO_XML = "usuarios.xml";
 
-    public static List<Usuario> cargarUsuarios() {
+    public static <T> boolean guardar(T objeto, String fileName) {
         try {
-            File file = new File(ARCHIVO_XML);
-            if (!file.exists()) return new ArrayList<>();
+            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 
-            JAXBContext context = JAXBContext.newInstance(UsuariosLista.class); //Usamos UsuariosLista
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            UsuariosLista lista = (UsuariosLista) unmarshaller.unmarshal(file);
-
-            return lista.getUsuarios() != null ? lista.getUsuarios() : new ArrayList<>(); //Retorna lista vacía si es null
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            marshaller.marshal(objeto, new File(fileName));
+            return true;
+        } catch (JAXBException e) {
+            throw new RuntimeException("Error al escribir el archivo XML: " + fileName, e);
         }
     }
 
-    public static void guardarUsuarios(List<Usuario> usuarios) {
+    public static <T> T cargar(String fileName, Class<T> clazz) {
+        File file = new File(fileName);
+
+        if (!file.exists() || file.length() == 0) {
+            try {
+                T nuevoObjeto = clazz.getDeclaredConstructor().newInstance();
+                guardar(nuevoObjeto, fileName);
+                return nuevoObjeto;
+            } catch (Exception e) {
+                throw new RuntimeException("Error al crear nueva instancia de " + clazz.getName(), e);
+            }
+        }
+
         try {
-            JAXBContext context = JAXBContext.newInstance(UsuariosLista.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            UsuariosLista lista = new UsuariosLista();
-            lista.setUsuarios(usuarios);
-
-            marshaller.marshal(lista, new File(ARCHIVO_XML));
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            JAXBContext context = JAXBContext.newInstance(clazz);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            return clazz.cast(unmarshaller.unmarshal(file));
+        } catch (JAXBException e) {
+            throw new RuntimeException("Error al leer el archivo XML: " + fileName, e);
         }
     }
 }
+

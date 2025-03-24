@@ -1,12 +1,11 @@
 package model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
-@XmlTransient
-@XmlSeeAlso({UsuarioCreador.class, UsuarioVoluntario.class, UsuarioAdministrador.class})
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({UsuarioVoluntario.class, UsuarioCreador.class, UsuarioAdministrador.class})
 public abstract class Usuario {
     private String nombre;
     private String nombreUsuario;
