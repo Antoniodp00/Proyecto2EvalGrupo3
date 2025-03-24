@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.*;
 
 @XmlRootElement(name = "usuarios")
-public class ListaUsuarios implements SCRUD<Usuario>, Serializable {
+public class ListaUsuarios implements SCRUD<Usuario>{
     private Set<Usuario> usuarios = new HashSet<>();
 
     @XmlElementWrapper(name = "listaUsuarios") //JAXB serializa correctamente el conjunto
