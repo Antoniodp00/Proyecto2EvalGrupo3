@@ -13,4 +13,11 @@
         <nombreUsuario>pedri</nombreUsuario>
         <password>a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3</password>
     </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>mdf@gmail.com</email>
+        <nombre>Miguel Torres Villalba</nombre>
+        <nombreUsuario>mtorr</nombreUsuario>
+        <ONG>pepecalvo</ONG>
+        <password>03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4</password>
+    </usuario>
 </usuariosLista>

@@ -14,4 +14,13 @@ public class UsuarioVoluntario extends Usuario {
     public UsuarioVoluntario() {
     }
 
+    public boolean canjearPremio(Premio premio) {
+        boolean canjearPremio = false;
+        if (this.puntos>=premio.getCosto()){
+            this.puntos -= premio.getCosto();
+            canjearPremio = true;
+        }
+        return canjearPremio;
+    }
+
 }
