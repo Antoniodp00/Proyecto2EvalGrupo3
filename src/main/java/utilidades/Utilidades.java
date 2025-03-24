@@ -1,6 +1,7 @@
 package utilidades;
 
 import model.Usuario;
+import model.ListaUsuarios;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -33,8 +34,8 @@ public class Utilidades {
 
     public static boolean existeUsuarioRegistro(Usuario usuario) {
         boolean existe = false;
-        List<Usuario> usuarios = PersistenciaXML.cargarUsuarios();
-        for (Usuario usuarioAux : usuarios) {
+        ListaUsuarios listaUsuarios = PersistenciaXML.cargar("usuarios.xml", ListaUsuarios.class);
+        for (Usuario usuarioAux : listaUsuarios.getUsuarios()) {
             if (usuarioAux.getNombreUsuario().equals(usuario.getNombreUsuario()) || usuarioAux.getEmail().equals(usuario.getEmail())) {
                 existe = true;
             }
@@ -44,11 +45,11 @@ public class Utilidades {
 
     public static boolean existeUsuarioLogin(HashMap<String, String> usuario) {
         boolean existe = false;
-        List<Usuario> usuarios = PersistenciaXML.cargarUsuarios();
+        ListaUsuarios listaUsuarios = PersistenciaXML.cargar("usuarios.xml", ListaUsuarios.class);
         String usuarioIngresado = usuario.get("usuario");
         String passwordIngresado = Utilidades.cifrarSHA256(usuario.get("password"));
 
-        for (Usuario usuarioAux : usuarios) {
+        for (Usuario usuarioAux : listaUsuarios.getUsuarios()) {
             if (usuarioAux.getNombreUsuario().equals(usuarioIngresado) && usuarioAux.getPassword().equals(passwordIngresado)) {
                 existe = true;
             }

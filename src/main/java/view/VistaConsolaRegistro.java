@@ -56,9 +56,6 @@ public class VistaConsolaRegistro {
         return email;
     }
 
-
-
-
 }
 
 
