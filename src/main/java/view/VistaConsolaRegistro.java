@@ -5,6 +5,7 @@ import exceptions.EmailInvalidoException;
 import model.Usuario;
 import model.UsuarioCreador;
 import model.UsuarioVoluntario;
+import utilidades.HashUtil;
 import utilidades.Utilidades;
 
 
@@ -23,7 +24,7 @@ public class VistaConsolaRegistro {
         String email = pideEmail();
         VistaConsola.mostrarMensaje("Ingrese su contraseña");
         String pass = sc.nextLine();
-        String passCifrada = Utilidades.cifrarSHA256(pass);
+        String passCifrada = HashUtil.hashPassword(pass);
         VistaConsola.mostrarMensaje("Ingrese su ROL");
         String rol = sc.nextLine();
         if (rol.equals("Creador")) {

@@ -3,6 +3,7 @@ package controller;
 import model.Sesion;
 import model.Usuario;
 import model.ListaUsuarios;
+import utilidades.HashUtil;
 import utilidades.PersistenciaXML;
 import utilidades.Utilidades;
 import view.VistaConsola;
@@ -21,7 +22,7 @@ public class UsuarioController {
 
         ListaUsuarios listaUsuarios = PersistenciaXML.cargar("usuarios.xml", ListaUsuarios.class);
         if (listaUsuarios == null) {
-            listaUsuarios = new ListaUsuarios(); // 🔹 Si está vacío, se inicializa
+            listaUsuarios = new ListaUsuarios(); //Si está vacío, se inicializa
         }
 
         Usuario usuario = VistaConsolaRegistro.solicitarDatosRegistro();
@@ -66,10 +67,10 @@ public class UsuarioController {
 
     private static Usuario validarCredenciales(HashMap<String, String> datosLogin, Set<Usuario> usuarios) {
         String usuarioIngresado = datosLogin.get("usuario");
-        String passwordIngresada = Utilidades.cifrarSHA256(datosLogin.get("password"));
+        String passwordIngresada = HashUtil.hashPassword(datosLogin.get("password"));
         Usuario usuario = null;
         for (Usuario u : usuarios) {
-            if (u.getNombreUsuario().equals(usuarioIngresado) && u.getPassword().equals(passwordIngresada)) {
+            if (u.getNombreUsuario().equals(usuarioIngresado) && HashUtil.verificarPassword(passwordIngresada, u.getPassword())) {
                usuario = u;
             }
         }
