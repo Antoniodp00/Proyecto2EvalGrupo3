@@ -1,15 +1,14 @@
 package controller;
 
-import model.Sesion;
-import model.Usuario;
-import model.ListaUsuarios;
+import model.*;
 import utilidades.HashUtil;
-import utilidades.PersistenciaXML;
-import utilidades.Utilidades;
+import utilidades.XMLManager;
+import view.Menus;
 import view.VistaConsola;
 import view.VistaConsolaLogin;
 import view.VistaConsolaRegistro;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,61 +18,102 @@ public class UsuarioController {
 
     public static boolean registrarUsuario() {
         boolean registrado = false;
+        int tipo = Menus.menuSelectTipoUsuarioRegistro();
+        Usuario usuario = VistaConsolaRegistro.solicitarDatosRegistro(tipo);
+        String archivo = determinarArchivoXML(usuario);
 
-        ListaUsuarios listaUsuarios = PersistenciaXML.cargar("usuarios.xml", ListaUsuarios.class);
-        if (listaUsuarios == null) {
-            listaUsuarios = new ListaUsuarios(); //Si está vacío, se inicializa
-        }
+        Set<Usuario> usuarios = cargarUsuarios(archivo);
 
-        Usuario usuario = VistaConsolaRegistro.solicitarDatosRegistro();
-
-        if (listaUsuarios.agregarUsuario(usuario)) {
-            PersistenciaXML.guardar(listaUsuarios, "usuarios.xml");
-            VistaConsola.mostrarMensaje("✅ Registro guardado con éxito.");
+        if (usuarios.add(usuario)) {
+            XMLManager.writeXML(usuario, archivo);
+            VistaConsola.mostrarMensaje("Registro guardado con éxito en " + archivo);
             registrado = true;
         } else {
-            VistaConsola.mostrarMensaje("❌ El usuario ya existe.");
+            VistaConsola.mostrarMensaje("El usuario ya existe en " + archivo);
         }
 
         return registrado;
     }
 
+    private static Set<Usuario> cargarUsuarios(String archivo) {
+        Set<Usuario> usuarios = new HashSet<>();
+        File file = new File(archivo);
 
+        if (file.exists() && file.length() > 0) {
+            usuarios = XMLManager.readXML(usuarios,archivo);
+        }
+
+        return usuarios;
+    }
+
+    private static String determinarArchivoXML(Usuario usuario) {
+        String archivo = "";
+        if (usuario instanceof UsuarioVoluntario) {
+            archivo = "voluntarios.xml";
+        }
+        if (usuario instanceof UsuarioCreador) {
+            archivo = "creadores.xml";
+        }
+        if (usuario instanceof UsuarioAdministrador) {
+            archivo = "administradores.xml";
+        }
+        return archivo;
+    }
 
     public static Usuario iniciarSesion() {
         Usuario usuarioLogueado = null;
 
         if (Sesion.haySesionActiva()) {
-            VistaConsola.mostrarMensaje("❌ Ya hay una sesión activa. Cierra sesión primero.");
+            VistaConsola.mostrarMensaje("Ya hay una sesión activa. Cierra sesión primero.");
         } else {
-            ListaUsuarios listaUsuarios = PersistenciaXML.cargar("usuarios.xml", ListaUsuarios.class);
+            int tipo = Menus.menuIniciarSesion();
+            HashMap<String, String> datosLogin = VistaConsolaLogin.solicitarDatosLogin();
+            usuarioLogueado = buscarUsuarioPorRol(datosLogin, tipo);
 
-            if (listaUsuarios != null && !listaUsuarios.getUsuarios().isEmpty()) {
-                HashMap<String, String> datosLogin = VistaConsolaLogin.solicitarDatosLogin();
-                usuarioLogueado = validarCredenciales(datosLogin, listaUsuarios.getUsuarios());
-
-                if (usuarioLogueado != null) {
-                    Sesion.iniciarSesion(usuarioLogueado);
-                    VistaConsola.mostrarMensaje("✅ Sesión iniciada para " + usuarioLogueado.getNombreUsuario());
-                } else {
-                    VistaConsola.mostrarMensaje("❌ Usuario o contraseña incorrectos.");
-                }
+            if (usuarioLogueado != null) {
+                Sesion.iniciarSesion(usuarioLogueado);
+                VistaConsolaLogin.mostrarMensajeBienvenida(usuarioLogueado);
+            } else {
+                VistaConsola.mostrarMensaje("Usuario o contraseña incorrectoss.");
             }
         }
 
         return usuarioLogueado;
     }
 
-
-    private static Usuario validarCredenciales(HashMap<String, String> datosLogin, Set<Usuario> usuarios) {
-        String usuarioIngresado = datosLogin.get("usuario");
-        String passwordIngresada = HashUtil.hashPassword(datosLogin.get("password"));
+    private static Usuario buscarUsuarioPorRol(HashMap<String, String> datosLogin, int opcion) {
         Usuario usuario = null;
-        for (Usuario u : usuarios) {
-            if (u.getNombreUsuario().equals(usuarioIngresado) && HashUtil.verificarPassword(passwordIngresada, u.getPassword())) {
-               usuario = u;
-            }
+
+        switch (opcion) {
+            case 1:
+                usuario = buscarEnArchivo(datosLogin, "creadores.xml");
+                break;
+            case 2:
+                usuario = buscarEnArchivo(datosLogin, "voluntarios.xml");
+                break;
+            case 3:
+                usuario = buscarEnArchivo(datosLogin, "administradores.xml");
+                break;
+            default:
+                VistaConsola.mostrarMensaje("Opcion incorrecta");
+                break;
         }
         return usuario;
     }
+
+    private static Usuario buscarEnArchivo(HashMap<String, String> datosLogin, String archivo) {
+        Usuario usuarioEncontrado = null;
+        Set<Usuario> usuarios = cargarUsuarios(archivo);
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombreUsuario().equals(datosLogin.get("usuario")) &&
+                    HashUtil.verificarPassword(usuario.getPassword(), datosLogin.get("password"))) {
+                usuarioEncontrado = usuario;
+            }
+        }
+
+        return usuarioEncontrado;
+    }
+
+
 }

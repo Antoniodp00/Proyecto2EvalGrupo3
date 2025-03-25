@@ -1,11 +1,25 @@
 package view;
 
-public class Menus {
-    public static void MenuIniciarSesion() {
-        System.out.println("===== INICIO DE SESIÓN =====");
-        System.out.print("1. Usuario Creador ");
-        System.out.print("2. Usuario Voluntario ");
+import utilidades.Utilidades;
 
+public class Menus {
+    public static int menuIniciarSesion() {
+        System.out.println("===== INICIO DE SESIÓN =====");
+        System.out.println("1. Usuario Creador ");
+        System.out.println("2. Usuario Voluntario ");
+        System.out.println("3. Usuario Administrador ");
+        int opcion = Utilidades.leeEntero("Elige Opcion: ");
+        return opcion;
+
+    }
+    public static int menuSelectTipoUsuarioRegistro() {
+        System.out.println("===== REGISTRO =====");
+        System.out.println("Seleccione un tipo de usuario para registrar: ");
+        System.out.println("1. Usuario Creador ");
+        System.out.println("2. Usuario Voluntario ");
+        System.out.println("3. Usuario Administrador ");
+        int opcion = Utilidades.leeEntero("Elige Opcion: ");
+        return opcion;
     }
     public static void MenuCreador() {
         System.out.println("===== MENÚ PRINCIPAL =====");
