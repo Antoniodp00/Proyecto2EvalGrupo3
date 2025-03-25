@@ -40,7 +40,7 @@ public class Premio {
     public String toString() {
         return "Premio{" +
                 "nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
+                ", descripcioon='" + descripcion + '\'' +
                 ", costo=" + costo +
                 '}';
     }
