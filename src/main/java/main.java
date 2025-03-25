@@ -1,10 +1,17 @@
 import controller.UsuarioController;
+import model.ListaUsuarios;
+import model.Usuario;
+import model.UsuarioVoluntario;
+import utilidades.PersistenciaXML;
+import utilidades.Utilidades;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
-        UsuarioController usuario = new UsuarioController();
-usuario.registrarUsuario();
-        usuario.iniciarSesion();
-        usuario.iniciarSesion();
+
+        UsuarioController.registrarUsuario();
+        UsuarioController.iniciarSesion();
+
+
     }
 }
+

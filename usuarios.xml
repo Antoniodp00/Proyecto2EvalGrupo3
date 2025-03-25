@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<usuariosLista>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>antonio@gmail.com</email>
-        <nombre>antonio</nombre>
-        <nombreUsuario>antoniodp</nombreUsuario>
-        <ONG>Unicef</ONG>
-        <password>8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92</password>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
-        <email>pedri@gmail.com</email>
-        <nombre>pedro jimenez</nombre>
-        <nombreUsuario>pedri</nombreUsuario>
-        <password>a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3</password>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>mdf@gmail.com</email>
-        <nombre>Miguel Torres Villalba</nombre>
-        <nombreUsuario>mtorr</nombreUsuario>
-        <ONG>pepecalvo</ONG>
-        <password>03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4</password>
-    </usuario>
-</usuariosLista>
+<usuarios>
+    <listaUsuarios>
+        <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+            <nombre>Juan</nombre>
+            <nombreUsuario>juanp</nombreUsuario>
+            <email>juanp@gmail.com</email>
+            <password>$2a$12$mYJv5NuB5Iuo4Z6k7fpnv.iupSfGZzlMiQLsZ64xVgJi7mSUWG89S</password>
+            <puntos>0</puntos>
+        </usuario>
+        <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+            <nombre>Mari</nombre>
+            <nombreUsuario>mari</nombreUsuario>
+            <email>m@gm.com</email>
+            <password>$2a$12$Bp14G0dg7R6Z0kcB1LyPOO0OYMCnrAlNCQIsbgdsa3vbFMLMQ5F0.</password>
+            <puntos>0</puntos>
+        </usuario>
+        <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+            <nombre>Antonio</nombre>
+            <nombreUsuario>antoniodp</nombreUsuario>
+            <email>antonio@gmail.com</email>
+            <password>a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3</password>
+            <puntos>0</puntos>
+        </usuario>
+        <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+            <nombre>Pedro</nombre>
+            <nombreUsuario>pedri</nombreUsuario>
+            <email>pedri@gmail.com</email>
+            <password>$2a$12$6enmen7nWcQ7WvptGtxya.oQRInd4Cts9dOVCbLg.n1zbj59CnQiC</password>
+            <ONG>Unicef</ONG>
+        </usuario>
+        <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+            <nombre>Antonio</nombre>
+            <nombreUsuario>asdf</nombreUsuario>
+            <email>qwer@gmail.com</email>
+            <password>$2a$12$aIMRwSP1QaAASHyqdAgxjuriFr..kS.6xGiz3bJnHuF32qcaZFwIm</password>
+            <puntos>0</puntos>
+        </usuario>
+    </listaUsuarios>
+</usuarios>
