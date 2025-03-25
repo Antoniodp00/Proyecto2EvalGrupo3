@@ -3,6 +3,7 @@ package view;
 import controller.UsuarioController;
 import exceptions.EmailInvalidoException;
 import model.Usuario;
+import model.UsuarioAdministrador;
 import model.UsuarioCreador;
 import model.UsuarioVoluntario;
 import utilidades.HashUtil;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class VistaConsolaRegistro {
     static Scanner sc = new Scanner(System.in);
 
-    public static Usuario solicitarDatosRegistro() {
+    public static Usuario solicitarDatosRegistro(int tipo) {
         Usuario usuario = null;
 
         VistaConsola.mostrarMensaje("Ingrese su nombre: ");
@@ -25,14 +26,22 @@ public class VistaConsolaRegistro {
         VistaConsola.mostrarMensaje("Ingrese su contraseña");
         String pass = sc.nextLine();
         String passCifrada = HashUtil.hashPassword(pass);
-        VistaConsola.mostrarMensaje("Ingrese su ROL");
-        String rol = sc.nextLine();
-        if (rol.equals("Creador")) {
-            VistaConsola.mostrarMensaje("Ingrese el nombre de la ONG: ");
-            String nombreONG = sc.nextLine();
-            usuario = new UsuarioCreador(nombre, nombreUsuario, email, passCifrada, nombreONG);
-        } else if (rol.equals("Voluntario")) {
-            usuario = new UsuarioVoluntario(nombre, nombreUsuario, email, passCifrada);
+
+        switch (tipo) {
+            case 1:
+                VistaConsola.mostrarMensaje("Ingrese su ONG: ");
+                String ONG = sc.nextLine();
+                usuario = new UsuarioCreador(nombre, nombreUsuario, email, passCifrada, ONG);
+                break;
+            case 2:
+                usuario = new UsuarioVoluntario(nombre, nombreUsuario, email, passCifrada);
+                break;
+            case 3:
+                usuario = new UsuarioAdministrador(nombre, nombreUsuario, email, passCifrada);
+                break;
+            default:
+                VistaConsola.mostrarMensaje("Ingrese una opcion valida: ");
+                break;
         }
         return usuario;
     }

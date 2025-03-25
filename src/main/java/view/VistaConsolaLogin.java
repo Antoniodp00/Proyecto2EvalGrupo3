@@ -1,6 +1,9 @@
 package view;
 
 import model.Usuario;
+import model.UsuarioAdministrador;
+import model.UsuarioCreador;
+import model.UsuarioVoluntario;
 import utilidades.Utilidades;
 
 import java.util.HashMap;
@@ -23,6 +26,14 @@ public class VistaConsolaLogin {
         return datosLogin;
     }
 
-
+    public static void mostrarMensajeBienvenida(Usuario usuario) {
+        if (usuario instanceof UsuarioVoluntario) {
+            VistaConsola.mostrarMensaje("👤 Bienvenido Voluntario: " + usuario.getNombreUsuario());
+        } else if (usuario instanceof UsuarioCreador) {
+            VistaConsola.mostrarMensaje("🏗️ Bienvenido Creador: " + usuario.getNombreUsuario());
+        } else if (usuario instanceof UsuarioAdministrador) {
+            VistaConsola.mostrarMensaje("🛠️ Bienvenido Administrador: " + usuario.getNombreUsuario());
+        }
+    }
 
 }
