@@ -74,7 +74,7 @@ public class UsuarioController {
                 Sesion.iniciarSesion(usuarioLogueado);
                 VistaConsolaLogin.mostrarMensajeBienvenida(usuarioLogueado);
             } else {
-                VistaConsola.mostrarMensaje("Usuario o contraseña incorrectos.");
+                VistaConsola.mostrarMensaje("Usuario o contraseña incorrectoss.");
             }
         }
 
