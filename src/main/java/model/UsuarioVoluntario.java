@@ -23,4 +23,11 @@ public class UsuarioVoluntario extends Usuario {
         return canjearPremio;
     }
 
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
 }
