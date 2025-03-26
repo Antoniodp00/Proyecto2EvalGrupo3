@@ -23,16 +23,16 @@ public class UsuarioController {
         String archivo = determinarArchivoXML(usuario);
 
         // Cargar usuarios desde el archivo XML
-        UsuariosWrapper wrapper = XMLManager.readXML(archivo, UsuariosWrapper.class);
+        ListaUsuarios listado = XMLManager.readXML(new ListaUsuarios(),archivo);
 
-        if (wrapper == null) {  // Si el archivo no existe o está vacío, crear nuevo wrapper
-            wrapper = new UsuariosWrapper();
+        if (listado == null) {  // Si el archivo no existe o está vacío, crear nuevo listado
+            listado = new ListaUsuarios();
         }
 
         // Verificar si el usuario ya existe
-        if (!wrapper.getUsuarios().contains(usuario)) {
-            wrapper.getUsuarios().add(usuario); // Agregar usuario al Set
-            XMLManager.writeXML(wrapper, archivo); // Guardar en XML
+        if (!listado.getUsuarios().contains(usuario)) {
+            listado.agregar(usuario); // Agregar usuario al Set
+            XMLManager.writeXML(listado, archivo); // Guardar en XML
             VistaConsola.mostrarMensaje("Registro guardado con éxito en " + archivo);
             registrado = true;
         } else {
@@ -47,7 +47,7 @@ public class UsuarioController {
         File file = new File(archivo);
 
         if (file.exists() && file.length() > 0) {
-            UsuariosWrapper wrapper = XMLManager.readXML(archivo, UsuariosWrapper.class);
+            ListaUsuarios wrapper = XMLManager.readXML(new ListaUsuarios(),archivo);
             if (wrapper != null) {
                 usuarios = wrapper.getUsuarios();
             }

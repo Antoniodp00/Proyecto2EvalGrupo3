@@ -1,18 +1,21 @@
 package model;
 
+import controller.CreadorController;
 import utilidades.SCRUD;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
 @XmlRootElement(name = "usuarioCreador")
-public class UsuarioCreador extends Usuario implements SCRUD<Iniciativa> {
+public class UsuarioCreador extends Usuario{
 
     private String ONG;  // Propiedad adicional para el tipo UsuarioCreador
-    private Set<Iniciativa> iniciativas;
+    private Set<Iniciativa> iniciativas = CreadorController.cargarIniciativasPorUsuario(nombreUsuario);
 
     public UsuarioCreador() {
     }
@@ -20,6 +23,7 @@ public class UsuarioCreador extends Usuario implements SCRUD<Iniciativa> {
     public UsuarioCreador(String nombre, String nombreUsuario, String email, String password, String ONG) {
         super(nombre, nombreUsuario, email, password);
         this.ONG = ONG;
+        this.iniciativas = iniciativas;
     }
 
     @XmlElement(name = "ONG")
@@ -36,35 +40,8 @@ public class UsuarioCreador extends Usuario implements SCRUD<Iniciativa> {
         return iniciativas;
     }
 
-    public void setIniciativas(Set<Iniciativa> iniciativa) {
+    public void setIniciativas(List<Iniciativa> iniciativa) {
         this.iniciativas = iniciativas;
-    }
-
-    public boolean estaVacio(Iniciativa iniciativa) {
-        return iniciativas.isEmpty();
-    }
-    @Override
-    public boolean agregar(Iniciativa iniciativa) {
-        return iniciativas.add(iniciativa);
-    }
-
-    @Override
-    public boolean eliminar(Iniciativa iniciativa) {
-        return iniciativas.remove(iniciativa);
-    }
-
-    @Override
-    public Iniciativa buscar(Iniciativa iniciativa) {
-        Iniciativa iniciativaAux = null;
-        if (iniciativas.contains(iniciativa)) {
-            iniciativaAux = iniciativa;
-        }
-        return iniciativaAux;
-    }
-
-    @Override
-    public Set<Iniciativa> listar() {
-        return new HashSet<>(iniciativas);
     }
 
 }

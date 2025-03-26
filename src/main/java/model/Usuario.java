@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Usuario {
 
     private String nombre;
-    private String nombreUsuario;
+    protected String nombreUsuario;
     private String email;
     private String password;
 

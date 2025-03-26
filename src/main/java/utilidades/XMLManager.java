@@ -1,7 +1,5 @@
 package utilidades;
 
-import model.UsuariosWrapper;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -10,48 +8,42 @@ import java.io.File;
 import java.io.IOException;
 
 public class XMLManager {
-
-    // Método para escribir cualquier objeto en XML
     public static <T> boolean writeXML(T objeto, String fileName) {
+        boolean result = false;
         try {
+            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
             JAXBContext context = JAXBContext.newInstance(objeto.getClass());
+
+            //Paso 2: proceso Marshalling: convertir objeto en XML
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.marshal(objeto, new File(fileName));
-            return true;
+            marshaller.marshal(objeto,new File(fileName));
+            result = true;
+
         } catch (JAXBException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException(e);
         }
+
+        return result;
     }
 
-    // Método genérico para leer cualquier XML
-    public static <T> T readXML(String archivo, Class<T> clazz) {
-        File file = new File(archivo);
-
-        // Si el archivo no existe o está vacío, lo creamos o devolvemos un objeto vacío
-        if (!file.exists() || file.length() == 0) {
-            try {
-                file.createNewFile();  // Crea el archivo vacío
-                System.out.println("Archivo " + archivo + " creado.");
-
-                // Crear un objeto vacío dependiendo de la clase
-                T obj = clazz.getDeclaredConstructor().newInstance();
-                return obj; // Retorna un objeto vacío de la clase proporcionada
-            } catch (IOException | ReflectiveOperationException e) {
-                throw new RuntimeException("Error al crear el archivo o el objeto vacío: " + archivo, e);
-            }
-        }
-
-        // Si el archivo tiene contenido, podemos leerlo
+    public static <T> T readXML(T objeto, String fileName) {
+        T result = null;
         try {
-            JAXBContext context = JAXBContext.newInstance(clazz);
+
+            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
+            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
+
+            //Paso 2: Unmarshaling: leer XML y convertirlo a un objeto
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (T) unmarshaller.unmarshal(file);
+            result = (T) unmarshaller.unmarshal(new File(fileName));
+
+
         } catch (JAXBException e) {
-            throw new RuntimeException("Error al leer el XML: " + archivo, e);
+            throw new RuntimeException(e);
         }
+
+        return result;
     }
 }
-
