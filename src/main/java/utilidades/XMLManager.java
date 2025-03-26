@@ -1,10 +1,13 @@
 package utilidades;
 
+import model.UsuariosWrapper;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 
 public class XMLManager {
 
@@ -24,14 +27,30 @@ public class XMLManager {
     }
 
     // Método genérico para leer cualquier XML
-    public static <T> T readXML(String fileName, Class<T> clazz) {
+    public static <T> T readXML(String archivo, Class<T> clazz) {
+        File file = new File(archivo);
+
+        // Si el archivo no existe o está vacío, lo creamos o devolvemos un objeto vacío
+        if (!file.exists() || file.length() == 0) {
+            try {
+                file.createNewFile();  // Crea el archivo vacío
+                System.out.println("Archivo " + archivo + " creado.");
+
+                // Crear un objeto vacío dependiendo de la clase
+                T obj = clazz.getDeclaredConstructor().newInstance();
+                return obj; // Retorna un objeto vacío de la clase proporcionada
+            } catch (IOException | ReflectiveOperationException e) {
+                throw new RuntimeException("Error al crear el archivo o el objeto vacío: " + archivo, e);
+            }
+        }
+
+        // Si el archivo tiene contenido, podemos leerlo
         try {
             JAXBContext context = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (T) unmarshaller.unmarshal(new File(fileName));
+            return (T) unmarshaller.unmarshal(file);
         } catch (JAXBException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al leer el XML: " + e.getMessage(), e);
+            throw new RuntimeException("Error al leer el XML: " + archivo, e);
         }
     }
 }

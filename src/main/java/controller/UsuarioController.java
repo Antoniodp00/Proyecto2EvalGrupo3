@@ -84,7 +84,7 @@ public class UsuarioController {
                 Sesion.iniciarSesion(usuarioLogueado);
                 VistaConsolaLogin.mostrarMensajeBienvenida(usuarioLogueado);
             } else {
-                VistaConsola.mostrarMensaje("Usuario o contraseña incorrectoss.");
+                VistaConsola.mostrarMensaje("Usuario no encontrado.");
             }
         }
 
@@ -117,13 +117,12 @@ public class UsuarioController {
 
         for (Usuario usuario : usuarios) {
             if (usuario.getNombreUsuario().equals(datosLogin.get("usuario")) &&
-                    HashUtil.verificarPassword(usuario.getPassword(), datosLogin.get("password"))) {
-                usuarioEncontrado = usuario;
+                    HashUtil.verificarPassword(datosLogin.get("password"), usuario.getPassword())) {
+                usuarioEncontrado = usuario;  // Si coincide, el usuario es encontrado
             }
         }
 
         return usuarioEncontrado;
+
     }
-
-
 }
