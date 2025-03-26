@@ -19,9 +19,9 @@ public class Iniciativa {
     }
 
 
-    public void agregarColaborador(UsuarioVoluntario voluntario) {
+    /*public void agregarColaborador(UsuarioVoluntario voluntario) {
         System.out.println("El voluntario " + voluntario.getNombre() + " ha sido agregado a la iniciativa.");
-    }
+    }*/
 
 
     public String getNombre() { return nombre; }
