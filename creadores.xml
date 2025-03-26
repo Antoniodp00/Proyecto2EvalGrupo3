@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<usuarios>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>antonio@gmail.com</email>
+        <nombre>Antoni</nombre>
+        <nombreUsuario>antoniodp</nombreUsuario>
+        <password>$2a$12$KG62stKhvRDrQYXOr.g6Ke9UKMf8auqZK.5pFD2GNdR9BUGlTazMC</password>
+        <ONG>unicef</ONG>
+    </usuario>
+</usuarios>
