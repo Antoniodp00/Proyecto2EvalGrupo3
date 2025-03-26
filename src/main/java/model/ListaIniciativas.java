@@ -9,43 +9,47 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ListaIniciativas {public class ListaUsuarios implements SCRUD<Usuario> {
-    private Set<Usuario> usuarios = new HashSet<>();
+public class ListaIniciativas {public class ListaUsuarios implements SCRUD<Iniciativa> {
+    private Set<Iniciativa> iniciativas = new HashSet<>();
 
 
-    public Set<Usuario> getIniciativas() {
-        return usuarios;
+    public Set<Iniciativa> getIniciativas() {
+        return iniciativas;
     }
 
     public void setIniciativas(Set<Iniciativa> iniciativa ) {
-        this.Iniciativa = iniciativa;
+        this.iniciativas = iniciativas;
     }
 
     public boolean agregariniciativa(Iniciativa iniciativa) {
-        return Iniciativa.add(iniciativa); //Retorna `false` si el usuario ya existe
+        return iniciativas.add(iniciativa); //Retorna `false` si el usuario ya existe
     }
 
-    public boolean estaVacio(Iniciativa iniciativa) {return iniciativa.isEmpty();
+    public boolean estaVacio(Iniciativa iniciativa) {return iniciativas.isEmpty();
     }
 
     @Override
     public boolean agregar(Iniciativa iniciativa) {
-        return iniciativa.add(iniciativa);
+        return iniciativas.add(iniciativa);
     }
 
     @Override
     public boolean eliminar(Iniciativa iniciativa) {
-        return iniciativa.remove(iniciativa);
+        return iniciativas.remove(iniciativa);
     }
 
     @Override
-    public Usuario buscar(Iniciativa iniciativa) {
-        return usuarios.contains(iniciativa) ? iniciativa : null; //Más eficiente con `contains()`
+    public Iniciativa buscar(Iniciativa iniciativa) {
+        Iniciativa iniciativaAux = null;
+        if (iniciativas.contains(iniciativa)) {
+            iniciativaAux = iniciativa;
+        }
+        return iniciativaAux;
     }
 
     @Override
-    public List<Iniciativa> listar() {
-        return new ArrayList<>(Iniciativa);
+    public Set<Iniciativa> listar() {
+        return new HashSet<>(iniciativas);
     }
 }
 }
