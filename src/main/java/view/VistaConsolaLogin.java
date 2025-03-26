@@ -4,6 +4,7 @@ import model.Usuario;
 import model.UsuarioAdministrador;
 import model.UsuarioCreador;
 import model.UsuarioVoluntario;
+import utilidades.HashUtil;
 import utilidades.Utilidades;
 
 import java.util.HashMap;
@@ -19,7 +20,6 @@ public class VistaConsolaLogin {
         String usuario = sc.nextLine();
         VistaConsola.mostrarMensaje("Ingrese su password: ");
         String password = sc.nextLine();
-
         datosLogin.put("usuario", usuario);
         datosLogin.put("password", password);
 

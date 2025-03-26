@@ -1,49 +1,57 @@
 package utilidades;
 
-
+import model.UsuariosWrapper;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 
 public class XMLManager {
-    public static <T> boolean writeXML(T objeto, String fileName) {
-        boolean result = false;
-        try {
-            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
-            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
 
-            //Paso 2: proceso Marshalling: convertir objeto en XML
+    // Método para escribir cualquier objeto en XML
+    public static <T> boolean writeXML(T objeto, String fileName) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.marshal(objeto,new File(fileName));
-            result = true;
-
+            marshaller.marshal(objeto, new File(fileName));
+            return true;
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
-
-        return result;
     }
 
-    public static <T> T readXML(T objeto, String fileName) {
-        T result = null;
-        try {
-            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
-            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
+    // Método genérico para leer cualquier XML
+    public static <T> T readXML(String archivo, Class<T> clazz) {
+        File file = new File(archivo);
 
-            //Paso 2: Unmarshaling: leer XML y convertirlo a un objeto
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            result = (T) unmarshaller.unmarshal(new File(fileName));
+        // Si el archivo no existe o está vacío, lo creamos o devolvemos un objeto vacío
+        if (!file.exists() || file.length() == 0) {
+            try {
+                file.createNewFile();  // Crea el archivo vacío
+                System.out.println("Archivo " + archivo + " creado.");
 
-
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
+                // Crear un objeto vacío dependiendo de la clase
+                T obj = clazz.getDeclaredConstructor().newInstance();
+                return obj; // Retorna un objeto vacío de la clase proporcionada
+            } catch (IOException | ReflectiveOperationException e) {
+                throw new RuntimeException("Error al crear el archivo o el objeto vacío: " + archivo, e);
+            }
         }
 
-        return result;
+        // Si el archivo tiene contenido, podemos leerlo
+        try {
+            JAXBContext context = JAXBContext.newInstance(clazz);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            return (T) unmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            throw new RuntimeException("Error al leer el XML: " + archivo, e);
+        }
     }
 }
+

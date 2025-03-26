@@ -1,7 +1,7 @@
 package utilidades;
 
 import model.Usuario;
-import model.ListaUsuarios;
+import model.UsuariosWrapper;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
