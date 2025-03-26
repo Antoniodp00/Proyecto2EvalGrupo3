@@ -1,10 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.time.*;
 import java.time.format.*;
 
-//todo: métodos crearActividad, agregarComentario, validarFechas, agregarActividades, borrarActividades;
 
 public class Actividad {
     private String nombre;
@@ -26,6 +28,9 @@ public class Actividad {
         this.fechaFin = fechaFin;
         this.voluntarioAsignado = null;
     }
+    // Lista estática para almacenar las actividades
+    private static List<Actividad> actividades = new ArrayList<>();
+    private static int nextId = 1;  // Generador de IDs
 
     public Actividad(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Usuario voluntario) {
     }
@@ -90,6 +95,7 @@ public class Actividad {
         return voluntarioAsignado;
     }
 
+
     public void setVoluntarioAsignado(Usuario voluntarioAsignado) {
         this.voluntarioAsignado = voluntarioAsignado;
     }
@@ -102,11 +108,70 @@ public class Actividad {
 
     public void cambiarEstado(String nuevoEstado) {
         try{
-            Estado estadoConvertido = Estado.valueOf(nuevoEstado);
-            this.estado = estadoConvertido;
-            System.out.println("Cambiar estado a: " +this.estado);
+            this.estado = Estado.valueOf(nuevoEstado);
+            System.out.println("Cambiar estado a: ");
         }catch (IllegalArgumentException e){
             System.out.println("ERROR: El estado '" + nuevoEstado + "' no es válido.");
         }
+    }
+
+    public void agregarComentario(String comentario){
+        this.comentarios.add(comentario); // Añadir el nuevo comentario a la lista
+        System.out.println("Comentario agregado: " + comentario);
+    }
+
+    public boolean validarFechas() {
+        // Compara año, mes y día de la fechaInicio y fechaFin
+        if (fechaInicio.getYear() < fechaFin.getYear()) {
+            return true;
+        } else if (fechaInicio.getYear() > fechaFin.getYear()) {
+            return false;
+        } else { // Si los años son iguales, comparamos los meses
+            if (fechaInicio.getMonthValue() < fechaFin.getMonthValue()) {
+                return true;
+            } else if (fechaInicio.getMonthValue() > fechaFin.getMonthValue()) {
+                return false;
+            } else { // Si el año y mes son iguales, comparamos los días
+                return fechaInicio.getDayOfMonth() <= fechaFin.getDayOfMonth();
+            }
+        }
+    }
+
+    public static void agregarActividad(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Usuario voluntarioAsignado) {
+        Actividad nuevaActividad = new Actividad(nombre, descripcion, fechaInicio, fechaFin, voluntarioAsignado);
+        actividades.add(nuevaActividad);
+        System.out.println("Actividad agregada: " + nuevaActividad);
+    }
+
+    // Método para eliminar una actividad por ID
+    public static void eliminarActividad(int id) {
+        boolean encontrado = false;
+        for (Actividad actividad : actividades) {
+            if (actividad.getId() == id) {
+                actividades.remove(actividad);
+                System.out.println("Actividad eliminada: " + actividad);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontró una actividad con el ID: " + id);
+        }
+    }
+
+    public static void mostrarActividades() {
+        if (actividades.isEmpty()) {
+            System.out.println("No hay actividades disponibles.");
+        } else {
+            for (Actividad actividad : actividades) {
+                System.out.println(actividad);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Actividad{id=" + id + ", nombre='" + nombre + "'}";
     }
 }
