@@ -1,7 +1,5 @@
 package utilidades;
 
-
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -9,41 +7,32 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class XMLManager {
-    public static <T> boolean writeXML(T objeto, String fileName) {
-        boolean result = false;
-        try {
-            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
-            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
 
-            //Paso 2: proceso Marshalling: convertir objeto en XML
+    // Método para escribir cualquier objeto en XML
+    public static <T> boolean writeXML(T objeto, String fileName) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.marshal(objeto,new File(fileName));
-            result = true;
-
+            marshaller.marshal(objeto, new File(fileName));
+            return true;
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
-
-        return result;
     }
 
-    public static <T> T readXML(T objeto, String fileName) {
-        T result = null;
+    // Método genérico para leer cualquier XML
+    public static <T> T readXML(String fileName, Class<T> clazz) {
         try {
-            //Paso 1: Crear el contexto de JaxB para la clase que queremos serializar
-            JAXBContext context = JAXBContext.newInstance(objeto.getClass());
-
-            //Paso 2: Unmarshaling: leer XML y convertirlo a un objeto
+            JAXBContext context = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            result = (T) unmarshaller.unmarshal(new File(fileName));
-
-
+            return (T) unmarshaller.unmarshal(new File(fileName));
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new RuntimeException("Error al leer el XML: " + e.getMessage(), e);
         }
-
-        return result;
     }
 }
+

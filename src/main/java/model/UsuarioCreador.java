@@ -1,10 +1,15 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Set;
 
-@XmlRootElement
+@XmlRootElement(name = "usuarioCreador")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class UsuarioCreador extends Usuario {
+    @XmlElement(name = "ONG")
     private String ONG;
 
 

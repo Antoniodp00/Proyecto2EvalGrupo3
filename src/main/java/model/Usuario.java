@@ -3,48 +3,27 @@ package model;
 import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
-@XmlRootElement
+
 @XmlSeeAlso({UsuarioVoluntario.class, UsuarioCreador.class, UsuarioAdministrador.class})
-public abstract class Usuario {
+@XmlRootElement(name = "usuario")  // Define el elemento raíz en XML
+public class Usuario {
+
+    private String email;
     private String nombre;
     private String nombreUsuario;
-    private String email;
     private String password;
 
-
+    // Constructor vacío requerido por JAXB
     public Usuario() {}
 
-    public Usuario(String nombre, String usuario, String email, String password) {
-        this.nombre = nombre;
-        this.nombreUsuario = usuario;
+    public Usuario(String email, String nombre, String nombreUsuario, String password) {
         this.email = email;
-        this.password = password;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 
+    @XmlElement(name = "email")  // Anotación para JAXB
     public String getEmail() {
         return email;
     }
@@ -53,6 +32,32 @@ public abstract class Usuario {
         this.email = email;
     }
 
+    @XmlElement(name = "nombre")
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @XmlElement(name = "nombreUsuario")
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    @XmlElement(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
