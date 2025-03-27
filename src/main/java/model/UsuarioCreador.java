@@ -1,21 +1,17 @@
 package model;
 
 import controller.CreadorController;
-import utilidades.SCRUD;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @XmlRootElement(name = "usuarioCreador")
 public class UsuarioCreador extends Usuario{
 
     private String ONG;  // Propiedad adicional para el tipo UsuarioCreador
-    private Set<Iniciativa> iniciativas = CreadorController.cargarIniciativasPorUsuario(nombreUsuario);
+    private ListaIniciativas iniciativas = CreadorController.cargarIniciativasPorUsuario(nombreUsuario);
 
     public UsuarioCreador() {
     }
@@ -36,7 +32,7 @@ public class UsuarioCreador extends Usuario{
     }
 
 
-    public Set<Iniciativa> getIniciativas() {
+    public ListaIniciativas getIniciativas() {
         return iniciativas;
     }
 

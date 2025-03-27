@@ -1,8 +1,7 @@
 package model;
 
-
 import utilidades.SCRUD;
-
+import utilidades.XMLManager;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
@@ -28,18 +27,34 @@ public class ListaUsuarios implements SCRUD<Usuario> {
 
     @Override
     public boolean eliminar(Usuario elemento) {
-
         return usuarios.remove(elemento);
     }
 
     @Override
-    public Usuario buscar(Usuario elemento) {
-        Usuario aux = null;
-        if (usuarios.contains(elemento)) {
-            aux = elemento;
+    public Usuario buscar(String nombreUsuario) {
+        Usuario usuario = null;
+        for (Usuario u : usuarios) {
+            if (u.getNombreUsuario().equals(nombreUsuario)) {
+                usuario = u;
+            }
         }
-        return aux;
+        return usuario;
     }
 
+    public boolean guardarXML(String archivo) {
+        return XMLManager.writeXML(this, archivo);
+    }
+
+
+    public static ListaUsuarios cargarDesdeXML(String archivo) {
+        ListaUsuarios lista = XMLManager.readXML(new ListaUsuarios(), archivo);
+
+        if (lista == null) {
+            lista = new ListaUsuarios(); // Si no hay datos, devuelve una lista vacía
+        }
+
+        return lista;
+    }
 }
+
 

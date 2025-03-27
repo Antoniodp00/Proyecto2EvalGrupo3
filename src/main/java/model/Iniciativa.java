@@ -3,7 +3,6 @@ package model;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @XmlRootElement(name = "iniciativa")
 @XmlAccessorType(XmlAccessType.FIELD)

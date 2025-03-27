@@ -6,33 +6,17 @@ import view.VistaConsola;
 import view.VistaConsolaIniciativa;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class CreadorController {
 
-    public static Set<Iniciativa> CargarIniciativas() {
-        Set<Iniciativa> iniciativasAux = new HashSet<>();
-        File file = new File("iniciativas.xml");
 
-        if (file.exists() && file.length() > 0) {
-            ListaIniciativas iniciativas = XMLManager.readXML(new ListaIniciativas(), "iniciativas.xml");
-            if (iniciativas != null) {
-                iniciativasAux = iniciativas.getIniciativas();
-            }
-        }
-        return iniciativasAux;
-    }
+    public static ListaIniciativas cargarIniciativasPorUsuario(String nombreUsuario) {
+        ListaIniciativas todasLasIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
+        ListaIniciativas iniciativasUsuario = new ListaIniciativas();
 
-    public static Set<Iniciativa> cargarIniciativasPorUsuario(String nombreUsuario) {
-        Set<Iniciativa> todasLasIniciativas = CargarIniciativas();
-        Set<Iniciativa> iniciativasUsuario = new HashSet<>();
-
-        for (Iniciativa iniciativa : todasLasIniciativas) {
+        for (Iniciativa iniciativa : todasLasIniciativas.getIniciativas()) {
             if (iniciativa.getCreador().equals(nombreUsuario)) { // Filtrar por creador
-                iniciativasUsuario.add(iniciativa);
+                iniciativasUsuario.agregar(iniciativa);
             }
         }
         return iniciativasUsuario;
@@ -45,7 +29,7 @@ public class CreadorController {
         File xmlFile = new File("iniciativas.xml");
         if (xmlFile.exists() && xmlFile.length() > 0) {
             try {
-                iniciativas = XMLManager.readXML(new ListaIniciativas(), "iniciativas.xml");
+                iniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
             } catch (Exception e) {
                 VistaConsola.mostrarMensaje("Error al leer el archivo de iniciativas: " + e.getMessage());
                 return;
@@ -64,13 +48,13 @@ public class CreadorController {
     }
 
     public static void mostrarIniciativas(UsuarioCreador usuario) {
-        Set<Iniciativa> iniciativas = usuario.getIniciativas();
+       ListaIniciativas iniciativas = usuario.getIniciativas();
 
-        if (iniciativas.isEmpty()) {
+        if (iniciativas.getIniciativas().isEmpty()) {
             VistaConsola.mostrarMensaje("No tienes iniciativas registradas.");
         } else {
             VistaConsola.mostrarMensaje("Tus iniciativas:");
-            for (Iniciativa ini : iniciativas) {
+            for (Iniciativa ini : iniciativas.getIniciativas()) {
                 System.out.println("- " + ini.getNombre() + ": " + ini.getDescripcion());
             }
         }

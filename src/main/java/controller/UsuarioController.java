@@ -8,52 +8,27 @@ import view.VistaConsola;
 import view.VistaConsolaLogin;
 import view.VistaConsolaRegistro;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 
 public class UsuarioController {
 
     public static boolean registrarUsuario() {
-        boolean registrado = false;
         int tipo = Menus.menuSelectTipoUsuarioRegistro();
         Usuario usuario = VistaConsolaRegistro.solicitarDatosRegistro(tipo);
         String archivo = determinarArchivoXML(usuario);
 
-        // Cargar usuarios desde el archivo XML
-        ListaUsuarios listado = XMLManager.readXML(new ListaUsuarios(),archivo);
+        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
 
-        if (listado == null) {  // Si el archivo no existe o está vacío, crear nuevo listado
-            listado = new ListaUsuarios();
-        }
-
-        // Verificar si el usuario ya existe
-        if (!listado.getUsuarios().contains(usuario)) {
-            listado.agregar(usuario); // Agregar usuario al Set
-            XMLManager.writeXML(listado, archivo); // Guardar en XML
-            VistaConsola.mostrarMensaje("Registro guardado con éxito en " + archivo);
-            registrado = true;
+        // Verificar si ya existe el usuario
+        if (listaUsuarios.buscar(usuario.getNombreUsuario()) == null) {
+            listaUsuarios.agregar(usuario);
+            listaUsuarios.guardarXML(archivo);
+            VistaConsola.mostrarMensaje("Registro guardado en " + archivo);
+            return true;
         } else {
             VistaConsola.mostrarMensaje("El usuario ya existe en " + archivo);
+            return false;
         }
-
-        return registrado;
-    }
-
-    private static Set<Usuario> cargarUsuarios(String archivo) {
-        Set<Usuario> usuarios = new HashSet<>();
-        File file = new File(archivo);
-
-        if (file.exists() && file.length() > 0) {
-            ListaUsuarios wrapper = XMLManager.readXML(new ListaUsuarios(),archivo);
-            if (wrapper != null) {
-                usuarios = wrapper.getUsuarios();
-            }
-        }
-
-        return usuarios;
     }
 
     private static String determinarArchivoXML(Usuario usuario) {
@@ -71,21 +46,20 @@ public class UsuarioController {
     }
 
     public static Usuario iniciarSesion() {
-        Usuario usuarioLogueado = null;
-
         if (Sesion.haySesionActiva()) {
             VistaConsola.mostrarMensaje("Ya hay una sesión activa. Cierra sesión primero.");
-        } else {
-            int tipo = Menus.menuIniciarSesion();
-            HashMap<String, String> datosLogin = VistaConsolaLogin.solicitarDatosLogin();
-            usuarioLogueado = buscarUsuarioPorRol(datosLogin, tipo);
+            return null;
+        }
 
-            if (usuarioLogueado != null) {
-                Sesion.iniciarSesion(usuarioLogueado);
-                VistaConsolaLogin.mostrarMensajeBienvenida(usuarioLogueado);
-            } else {
-                VistaConsola.mostrarMensaje("Usuario no encontrado.");
-            }
+        int tipo = Menus.menuIniciarSesion();
+        HashMap<String, String> datosLogin = VistaConsolaLogin.solicitarDatosLogin();
+        Usuario usuarioLogueado = buscarUsuarioPorRol(datosLogin, tipo);
+
+        if (usuarioLogueado != null) {
+            Sesion.iniciarSesion(usuarioLogueado);
+            VistaConsolaLogin.mostrarMensajeBienvenida(usuarioLogueado);
+        } else {
+            VistaConsola.mostrarMensaje("Usuario no encontrado.");
         }
 
         return usuarioLogueado;
@@ -112,17 +86,13 @@ public class UsuarioController {
     }
 
     private static Usuario buscarEnArchivo(HashMap<String, String> datosLogin, String archivo) {
-        Usuario usuarioEncontrado = null;
-        Set<Usuario> usuarios = cargarUsuarios(archivo);
+        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
+        Usuario usuario = listaUsuarios.buscar(datosLogin.get("usuario"));
 
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNombreUsuario().equals(datosLogin.get("usuario")) &&
-                    HashUtil.verificarPassword(datosLogin.get("password"), usuario.getPassword())) {
-                usuarioEncontrado = usuario;  // Si coincide, el usuario es encontrado
-            }
+        if (usuario != null && HashUtil.verificarPassword(datosLogin.get("password"), usuario.getPassword())) {
+            return usuario;
         }
 
-        return usuarioEncontrado;
-
+        return null;
     }
 }

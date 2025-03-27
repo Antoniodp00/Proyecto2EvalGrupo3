@@ -1,12 +1,12 @@
 package model;
 
 import utilidades.SCRUD;
+import utilidades.XMLManager;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,12 +46,39 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
     }
 
     @Override
-    public Iniciativa buscar(Iniciativa elemento) {
-        Iniciativa aux = null;
-        if (iniciativas.contains(elemento)) {
-            aux = elemento;
+    public Iniciativa buscar(String nombreIniciativa) {
+        Iniciativa iniciativa = null;
+        for (Iniciativa i : iniciativas) {
+            if (i.getNombre().equals(nombreIniciativa)) {
+                iniciativa = i;
+            }
         }
-        return aux;
+        return iniciativa;
+    }
+
+    public boolean existeIniciativa(String nombreActividad) {
+        boolean existe = false;
+        for (Iniciativa i : iniciativas) {
+            if (i.getNombre().equals(nombreActividad)) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    public boolean guardarXML(String archivo) {
+        return XMLManager.writeXML(this, archivo);
+    }
+
+
+    public static ListaIniciativas cargarDesdeXML(String archivo) {
+        ListaIniciativas lista = XMLManager.readXML(new ListaIniciativas(), archivo);
+
+        if (lista == null) {
+            lista = new ListaIniciativas(); // Si no hay datos, devuelve una lista vacía
+        }
+
+        return lista;
     }
 
 }
