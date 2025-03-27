@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>123@gm.com</email>
+        <nombre>Juan</nombre>
+        <nombreUsuario>juanca</nombreUsuario>
+        <password>$2a$12$aYfx70glV4ndBbwwHp4wz.09fvSxTYE5T2tnUTnrHYwd8A4Uxx.Ce</password>
+        <ONG>Unicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>antonio@gmail.com</email>
         <nombre>Antoni</nombre>
         <nombreUsuario>antoniodp</nombreUsuario>

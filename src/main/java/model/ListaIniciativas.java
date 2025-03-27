@@ -1,55 +1,84 @@
 package model;
 
 import utilidades.SCRUD;
+import utilidades.XMLManager;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class ListaIniciativas {public class ListaUsuarios implements SCRUD<Iniciativa> {
+@XmlRootElement(name = "Iniciativas")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ListaIniciativas implements SCRUD<Iniciativa> {
+
+    @XmlElement(name = "iniciativa",type = Iniciativa.class)
     private Set<Iniciativa> iniciativas = new HashSet<>();
 
+    public ListaIniciativas() {}
 
     public Set<Iniciativa> getIniciativas() {
         return iniciativas;
     }
-
-    public void setIniciativas(Set<Iniciativa> iniciativa ) {
-        this.iniciativas = iniciativas;
+    public void setIniciativas(Set<Iniciativa> personas) {
+        this.iniciativas = personas;
     }
 
-    public boolean agregariniciativa(Iniciativa iniciativa) {
-        return iniciativas.add(iniciativa); //Retorna `false` si el usuario ya existe
+    public boolean addPersona(Iniciativa persona) {
+        return iniciativas.add(persona);
     }
 
-    public boolean estaVacio(Iniciativa iniciativa) {return iniciativas.isEmpty();
-    }
-
-    @Override
-    public boolean agregar(Iniciativa iniciativa) {
-        return iniciativas.add(iniciativa);
+    public String toString() {
+        return iniciativas.toString();
     }
 
     @Override
-    public boolean eliminar(Iniciativa iniciativa) {
-        return iniciativas.remove(iniciativa);
+    public boolean agregar(Iniciativa elemento) {
+        return iniciativas.add(elemento);
     }
 
     @Override
-    public Iniciativa buscar(Iniciativa iniciativa) {
-        Iniciativa iniciativaAux = null;
-        if (iniciativas.contains(iniciativa)) {
-            iniciativaAux = iniciativa;
+    public boolean eliminar(Iniciativa elemento) {
+
+        return iniciativas.remove(elemento);
+    }
+
+    @Override
+    public Iniciativa buscar(String nombreIniciativa) {
+        Iniciativa iniciativa = null;
+        for (Iniciativa i : iniciativas) {
+            if (i.getNombre().equals(nombreIniciativa)) {
+                iniciativa = i;
+            }
         }
-        return iniciativaAux;
+        return iniciativa;
     }
 
-    @Override
-    public Set<Iniciativa> listar() {
-        return new HashSet<>(iniciativas);
+    public boolean existeIniciativa(String nombreActividad) {
+        boolean existe = false;
+        for (Iniciativa i : iniciativas) {
+            if (i.getNombre().equals(nombreActividad)) {
+                existe = true;
+            }
+        }
+        return existe;
     }
-}
+
+    public boolean guardarXML(String archivo) {
+        return XMLManager.writeXML(this, archivo);
+    }
+
+
+    public static ListaIniciativas cargarDesdeXML(String archivo) {
+        ListaIniciativas lista = XMLManager.readXML(new ListaIniciativas(), archivo);
+
+        if (lista == null) {
+            lista = new ListaIniciativas(); // Si no hay datos, devuelve una lista vacía
+        }
+
+        return lista;
+    }
+
 }
