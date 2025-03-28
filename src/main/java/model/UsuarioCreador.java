@@ -1,5 +1,6 @@
 package model;
 
+import controller.ActiviadesController;
 import utilidades.SCRUD;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -66,6 +67,18 @@ public class UsuarioCreador extends Usuario implements SCRUD<Iniciativa> {
     public Set<Iniciativa> listar() {
         return new HashSet<>(iniciativas);
     }
+
+
+    public void asignarVoluntario(UsuarioVoluntario voluntario, Actividad actividad) {
+        if (ActiviadesController.asignarVoluntario(this ,voluntario, actividad)) {
+            System.out.println("El usuario creador " + getNombre() +
+                    " asignó al voluntario " + voluntario.getNombre() +
+                    " a la actividad " + actividad.getNombre());
+        } else {
+            System.out.println("No se pudo asignar al voluntario.");
+        }
+    }
+
 
 }
 
