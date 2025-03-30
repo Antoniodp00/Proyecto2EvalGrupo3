@@ -11,7 +11,7 @@ import java.util.List;
 public class UsuarioCreador extends Usuario{
 
     private String ONG;  // Propiedad adicional para el tipo UsuarioCreador
-    private ListaIniciativas iniciativas = CreadorController.cargarIniciativasPorUsuario(nombreUsuario);
+    private ListaIniciativas iniciativas;
 
     public UsuarioCreador() {
     }
@@ -19,7 +19,7 @@ public class UsuarioCreador extends Usuario{
     public UsuarioCreador(String nombre, String nombreUsuario, String email, String password, String ONG) {
         super(nombre, nombreUsuario, email, password);
         this.ONG = ONG;
-        this.iniciativas = iniciativas;
+        this.iniciativas = new ListaIniciativas();
     }
 
     @XmlElement(name = "ONG")
@@ -36,7 +36,7 @@ public class UsuarioCreador extends Usuario{
         return iniciativas;
     }
 
-    public void setIniciativas(List<Iniciativa> iniciativa) {
+    public void setIniciativas(ListaIniciativas iniciativa) {
         this.iniciativas = iniciativas;
     }
 

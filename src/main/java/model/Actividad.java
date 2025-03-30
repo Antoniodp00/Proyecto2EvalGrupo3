@@ -26,12 +26,24 @@ public class Actividad {
     @XmlElement(name = "fechaFin")
     private LocalDate fechaFin;
 
-    public Actividad() {} // Constructor vacío para JAXB
+    /**
+     * Constructor vacío necesario para JAXB.
+     */
+    public Actividad() {}
 
+    /**
+     * Constructor con parámetros para inicializar una actividad.
+     *
+     * @param nombre            Nombre de la actividad.
+     * @param descripcion       Descripción de la actividad.
+     * @param responsable       Responsable de la actividad.
+     * @param iniciativaAsociada Nombre de la iniciativa asociada.
+     * @param fechaInicio       Fecha de inicio de la actividad.
+     * @param fechaFin          Fecha de finalización de la actividad.
+     * @throws IllegalArgumentException Si la fecha de inicio es posterior a la fecha de fin.
+     */
     public Actividad(String nombre, String descripcion, String responsable, String iniciativaAsociada, LocalDate fechaInicio, LocalDate fechaFin) {
-        if (fechaInicio.isAfter(fechaFin)) {
-            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin.");
-        }
+        validarFechas(fechaInicio, fechaFin);
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.responsable = responsable;
@@ -55,18 +67,27 @@ public class Actividad {
 
     public LocalDate getFechaInicio() { return fechaInicio; }
     public void setFechaInicio(LocalDate fechaInicio) {
-        if (fechaInicio.isAfter(this.fechaFin)) {
-            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin.");
-        }
+        validarFechas(fechaInicio, this.fechaFin);
         this.fechaInicio = fechaInicio;
     }
 
     public LocalDate getFechaFin() { return fechaFin; }
     public void setFechaFin(LocalDate fechaFin) {
-        if (this.fechaInicio != null && fechaFin.isBefore(this.fechaInicio)) {
-            throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio.");
-        }
+        validarFechas(this.fechaInicio, fechaFin);
         this.fechaFin = fechaFin;
+    }
+
+    /**
+     * Método para validar que la fecha de inicio no sea posterior a la fecha de fin.
+     *
+     * @param inicio Fecha de inicio.
+     * @param fin    Fecha de fin.
+     * @throws IllegalArgumentException Si la fecha de inicio es posterior a la de fin.
+     */
+    private void validarFechas(LocalDate inicio, LocalDate fin) {
+        if (inicio != null && fin != null && inicio.isAfter(fin)) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin.");
+        }
     }
 
     @Override

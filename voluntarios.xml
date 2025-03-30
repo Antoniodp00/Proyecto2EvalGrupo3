@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarioVoluntario>
-    <email>juan@gmai.com</email>
-    <nombre>juan</nombre>
+    <email>juanp@gmail.com</email>
+    <nombre>Juan</nombre>
     <nombreUsuario>juanp</nombreUsuario>
-    <password>123</password>
-    <puntos>111850</puntos>
+    <password>123456</password>
+    <puntos>110500</puntos>
 </usuarioVoluntario>
