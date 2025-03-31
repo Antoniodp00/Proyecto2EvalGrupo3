@@ -26,47 +26,91 @@ public class Actividad {
     @XmlElement(name = "fechaFin")
     private LocalDate fechaFin;
 
-    public Actividad() {} // Constructor vacío para JAXB
+    @XmlElement(name = "estado")
+    private Estado estado;  // Campo para el estado de la actividad
 
-    public Actividad(String nombre, String descripcion, String responsable, String iniciativaAsociada, LocalDate fechaInicio, LocalDate fechaFin) {
-        if (fechaInicio.isAfter(fechaFin)) {
-            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin.");
-        }
+    private String comentario;  // Nuevo campo para el comentario
+
+
+    public Actividad() {} // Constructor vacío para JAXB
+    // Constructor que solo recibe nombre, descripcion e iniciativa
+    public Actividad(String nombre, String descripcion, String iniciativaAsociada) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.responsable = responsable;
         this.iniciativaAsociada = iniciativaAsociada;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+
+        // Valores predeterminados
+        this.responsable = "";  // Puede ser asignado más tarde
+        this.fechaInicio = LocalDate.now();  // Puede ser asignado más tarde
+        this.fechaFin = LocalDate.now().plusDays(1); // Puede ser asignado más tarde
+        this.estado = Estado.NO_INICIADA;  // Valor por defecto
+        this.comentario = "";  // Inicialmente sin comentario
     }
 
     // Getters y Setters
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public String getResponsable() { return responsable; }
-    public void setResponsable(String responsable) { this.responsable = responsable; }
+    public String getIniciativaAsociada() {
+        return iniciativaAsociada;
+    }
 
-    public String getIniciativaAsociada() { return iniciativaAsociada; }
-    public void setIniciativaAsociada(String iniciativaAsociada) { this.iniciativaAsociada = iniciativaAsociada; }
+    public String getResponsable() {
+        return responsable;
+    }
 
-    public LocalDate getFechaInicio() { return fechaInicio; }
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    // Métodos setters para establecer los valores más tarde
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
+    }
+
     public void setFechaInicio(LocalDate fechaInicio) {
-        if (fechaInicio.isAfter(this.fechaFin)) {
-            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin.");
-        }
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() { return fechaFin; }
     public void setFechaFin(LocalDate fechaFin) {
-        if (this.fechaInicio != null && fechaFin.isBefore(this.fechaInicio)) {
-            throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio.");
-        }
         this.fechaFin = fechaFin;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+
+    // Método para cambiar el estado y agregar un comentario
+    public void cambiarEstado(UsuarioVoluntario voluntario, Estado nuevoEstado, String comentario) {
+        if (voluntario != null && voluntario.getNombre().equals(this.responsable)) {
+            // Si el voluntario es el responsable de la actividad, se puede cambiar el estado
+            this.estado = nuevoEstado;
+            this.comentario = comentario;  // Guardamos el comentario asociado al cambio de estado
+        } else {
+            throw new IllegalArgumentException("El voluntario no está autorizado para cambiar el estado de esta actividad.");
+        }
     }
 
     @Override
