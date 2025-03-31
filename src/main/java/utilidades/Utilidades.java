@@ -24,4 +24,21 @@ public class Utilidades {
         }
         return numero;
     }
+    public static String leeString (String mensaje) {
+        Scanner scanner = new Scanner(System.in);
+        String string = "";
+        boolean valido = false;
+
+        while (!valido) {
+            try {
+                System.out.print(mensaje);
+                string = scanner.nextLine();
+                valido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingresa un número entero válido.");
+                scanner.nextLine();
+            }
+        }
+        return string;
+    }
 }
