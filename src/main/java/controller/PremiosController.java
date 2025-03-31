@@ -4,10 +4,12 @@ import model.Premio;
 import model.ListaPremios;
 import model.Usuario;
 import model.UsuarioVoluntario;
+import utilidades.Utilidades;
 import utilidades.XMLManager;
 import view.VistaPremios;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 public class PremiosController {
@@ -60,6 +62,19 @@ public class PremiosController {
         System.out.println("🎁 Premios disponibles:");
         for (Premio premio : premios) {
             System.out.println("- " + premio.getNombre() + " (" + premio.getCosto() + " puntos)");
+        }
+    }
+    // Método para eliminar un premio
+    public static void eliminarPremio() {
+        Scanner scanner = new Scanner(System.in);
+        String nombrePremio = Utilidades.leeString("Introduce el nombre del premio a eliminar:");
+        Premio premio = PremiosController.buscarPremio(nombrePremio);
+
+        if (premio != null) {
+            PremiosController.eliminarPremio(premio);
+            System.out.println("Premio eliminado exitosamente.");
+        } else {
+            System.out.println("Premio no encontrado.");
         }
     }
 }

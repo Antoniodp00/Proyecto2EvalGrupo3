@@ -2,13 +2,14 @@ package controller;
 
 import model.*;
 import utilidades.HashUtil;
-import utilidades.XMLManager;
+import utilidades.Utilidades;
 import view.Menus;
 import view.VistaConsola;
 import view.VistaConsolaLogin;
 import view.VistaConsolaRegistro;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class UsuarioController {
 
@@ -19,7 +20,6 @@ public class UsuarioController {
 
         ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
 
-        // Verificar si ya existe el usuario
         if (listaUsuarios.buscar(usuario.getNombreUsuario()) == null) {
             listaUsuarios.agregar(usuario);
             listaUsuarios.guardarXML(archivo);
@@ -94,5 +94,33 @@ public class UsuarioController {
         }
 
         return null;
+    }
+    public static void eliminarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a eliminar:");
+        Usuario usuario = UsuarioController.buscarEnArchivo(nombreUsuario);
+
+        if (usuario != null) {
+            UsuarioController.eliminarUsuario();
+            System.out.println("Usuario eliminado exitosamente.");
+        } else {
+            System.out.println("Usuario no encontrado.");
+        }
+    }
+    public static void actualizarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a actualizar:");
+        Usuario usuario = UsuarioController.buscarEnArchivo(nombreUsuario);
+
+        if (usuario != null) {
+            String nuevoNombre = Utilidades.leeString("Introduce el nuevo nombre del usuario:");
+            String nuevaContraseña = Utilidades.leeString("Introduce la nueva contraseña:");
+            usuario.setNombre(nuevoNombre);
+            usuario.setContraseña(nuevaContraseña);
+            UsuarioController.guardarUsuarios();
+            System.out.println("Usuario actualizado exitosamente.");
+        } else {
+            System.out.println("Usuario no encontrado.");
+        }
     }
 }
