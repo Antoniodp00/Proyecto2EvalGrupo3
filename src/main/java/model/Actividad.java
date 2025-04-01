@@ -1,6 +1,9 @@
 package model;
 
+import utilidades.LocalDateAdapter;
+
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,15 +23,15 @@ public class Actividad {
     @XmlElement(name = "iniciativa")
     private String iniciativaAsociada;
 
-    @XmlElement(name = "fechaInicio")
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaInicio;
 
-    @XmlElement(name = "fechaFin")
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fechaFin;
 
     @XmlElement(name = "estado")
     private Estado estado;  // Campo para el estado de la actividad
-
+    @XmlElement(name = "comentario")
     private String comentario;  // Nuevo campo para el comentario
 
 
@@ -47,54 +50,65 @@ public class Actividad {
         this.comentario = "";  // Inicialmente sin comentario
     }
 
-    // Getters y Setters
+
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public String getIniciativaAsociada() {
-        return iniciativaAsociada;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getResponsable() {
         return responsable;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public LocalDate getFechaFin() {
-        return fechaFin;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    // Métodos setters para establecer los valores más tarde
     public void setResponsable(String responsable) {
         this.responsable = responsable;
+    }
+
+    public String getIniciativaAsociada() {
+        return iniciativaAsociada;
+    }
+
+    public void setIniciativaAsociada(String iniciativaAsociada) {
+        this.iniciativaAsociada = iniciativaAsociada;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public String getComentario() {
+        return comentario;
     }
 
     public void setComentario(String comentario) {
@@ -102,16 +116,6 @@ public class Actividad {
     }
 
 
-    // Método para cambiar el estado y agregar un comentario
-    public void cambiarEstado(UsuarioVoluntario voluntario, Estado nuevoEstado, String comentario) {
-        if (voluntario != null && voluntario.getNombre().equals(this.responsable)) {
-            // Si el voluntario es el responsable de la actividad, se puede cambiar el estado
-            this.estado = nuevoEstado;
-            this.comentario = comentario;  // Guardamos el comentario asociado al cambio de estado
-        } else {
-            throw new IllegalArgumentException("El voluntario no está autorizado para cambiar el estado de esta actividad.");
-        }
-    }
 
     @Override
     public boolean equals(Object obj) {

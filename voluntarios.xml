@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<usuarioVoluntario>
-    <email>juan@gmai.com</email>
-    <nombre>juan</nombre>
-    <nombreUsuario>juanp</nombreUsuario>
-    <password>123</password>
-    <puntos>111850</puntos>
-</usuarioVoluntario>
+<usuarios>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+        <email>antonio@prueba.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antoniodp</nombreUsuario>
+        <password>$2a$12$k.mqQryfkm1C7/sETZu6vefDpYUf.fUHFU.asvY57QVY4NPMkFU0.</password>
+        <puntos>112000</puntos>
+    </usuario>
+</usuarios>

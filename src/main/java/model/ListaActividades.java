@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -73,6 +75,20 @@ public class ListaActividades implements SCRUD<Actividad> {
         }
         return existe;
     }
+
+
+    public List<Actividad> obtenerActividadesPorVoluntario(UsuarioVoluntario voluntario,ListaActividades actividades) {
+        List<Actividad> actividadesVoluntario = new ArrayList<>();
+
+        for (Actividad actividad : actividades.getActividades()) {
+            if (actividad.getResponsable().contains(voluntario.getNombreUsuario())) {
+                actividadesVoluntario.add(actividad);
+            }
+        }
+
+        return actividadesVoluntario;
+    }
+
 
     public boolean guardarXML(String archivo) {
         return XMLManager.writeXML(this, archivo);

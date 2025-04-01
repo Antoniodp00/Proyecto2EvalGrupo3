@@ -12,13 +12,22 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class UsuarioController {
+    private ListaUsuarios listaUsuarios;
 
-    public static boolean registrarUsuario() {
+    public UsuarioController() {
+        this.listaUsuarios = new ListaUsuarios();
+    }
+
+    /**
+     * Registra un nuevo usuario en el sistema
+     * @return true si el registro fue exitoso, false si el usuario ya existe
+     */
+    public boolean registrarUsuario() {
         int tipo = Menus.menuSelectTipoUsuarioRegistro();
         Usuario usuario = VistaConsolaRegistro.solicitarDatosRegistro(tipo);
         String archivo = determinarArchivoXML(usuario);
 
-        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
+        listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
 
         if (listaUsuarios.buscar(usuario.getNombreUsuario()) == null) {
             listaUsuarios.agregar(usuario);
@@ -31,7 +40,12 @@ public class UsuarioController {
         }
     }
 
-    private static String determinarArchivoXML(Usuario usuario) {
+    /**
+     * Determina el archivo XML correspondiente según el tipo de usuario
+     * @param usuario el usuario a registrar
+     * @return el nombre del archivo XML donde se almacenará el usuario
+     */
+    private String determinarArchivoXML(Usuario usuario) {
         String archivo = "";
         if (usuario instanceof UsuarioVoluntario) {
             archivo = "voluntarios.xml";
@@ -45,7 +59,11 @@ public class UsuarioController {
         return archivo;
     }
 
-    public static Usuario iniciarSesion() {
+    /**
+     * Inicia sesión con un usuario existente
+     * @return el usuario logueado si la autenticación es exitosa, null si falla
+     */
+    public Usuario iniciarSesion() {
         if (Sesion.haySesionActiva()) {
             VistaConsola.mostrarMensaje("Ya hay una sesión activa. Cierra sesión primero.");
             return null;
@@ -65,7 +83,13 @@ public class UsuarioController {
         return usuarioLogueado;
     }
 
-    private static Usuario buscarUsuarioPorRol(HashMap<String, String> datosLogin, int opcion) {
+    /**
+     * Busca un usuario en el archivo correspondiente según su rol
+     * @param datosLogin HashMap con el nombre de usuario y la contraseña
+     * @param opcion opción del menú que indica el tipo de usuario
+     * @return el usuario si se encuentra, null en caso contrario
+     */
+    private Usuario buscarUsuarioPorRol(HashMap<String, String> datosLogin, int opcion) {
         Usuario usuario = null;
 
         switch (opcion) {
@@ -79,14 +103,20 @@ public class UsuarioController {
                 usuario = buscarEnArchivo(datosLogin, "administradores.xml");
                 break;
             default:
-                VistaConsola.mostrarMensaje("Opcion incorrecta");
+                VistaConsola.mostrarMensaje("Opción incorrecta");
                 break;
         }
         return usuario;
     }
 
-    private static Usuario buscarEnArchivo(HashMap<String, String> datosLogin, String archivo) {
-        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
+    /**
+     * Busca un usuario en un archivo específico
+     * @param datosLogin HashMap con el nombre de usuario y la contraseña
+     * @param archivo nombre del archivo XML donde buscar
+     * @return el usuario encontrado o null si no existe o la contraseña es incorrecta
+     */
+    private Usuario buscarEnArchivo(HashMap<String, String> datosLogin, String archivo) {
+        listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
         Usuario usuario = listaUsuarios.buscar(datosLogin.get("usuario"));
 
         if (usuario != null && HashUtil.verificarPassword(datosLogin.get("password"), usuario.getPassword())) {
@@ -95,29 +125,36 @@ public class UsuarioController {
 
         return null;
     }
-    public static void eliminarUsuario() {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Elimina un usuario del sistema
+     */
+    public void eliminarUsuario() {
         String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a eliminar:");
-        Usuario usuario = UsuarioController.buscarEnArchivo(nombreUsuario);
+        Usuario usuario = listaUsuarios.buscar(nombreUsuario);
 
         if (usuario != null) {
-            UsuarioController.eliminarUsuario();
+            listaUsuarios.eliminar(usuario);
+            listaUsuarios.guardarXML(determinarArchivoXML(usuario));
             System.out.println("Usuario eliminado exitosamente.");
         } else {
             System.out.println("Usuario no encontrado.");
         }
     }
-    public static void actualizarUsuario() {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Actualiza los datos de un usuario existente
+     */
+    public void actualizarUsuario() {
         String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a actualizar:");
-        Usuario usuario = UsuarioController.buscarEnArchivo(nombreUsuario);
+        Usuario usuario = listaUsuarios.buscar(nombreUsuario);
 
         if (usuario != null) {
             String nuevoNombre = Utilidades.leeString("Introduce el nuevo nombre del usuario:");
             String nuevaContraseña = Utilidades.leeString("Introduce la nueva contraseña:");
             usuario.setNombre(nuevoNombre);
-            usuario.setContraseña(nuevaContraseña);
-            UsuarioController.guardarUsuarios();
+            usuario.setPassword(nuevaContraseña);
+            listaUsuarios.guardarXML(determinarArchivoXML(usuario));
             System.out.println("Usuario actualizado exitosamente.");
         } else {
             System.out.println("Usuario no encontrado.");

@@ -4,10 +4,10 @@ import utilidades.Utilidades;
 
 public class Menus {
     public static int Sesion() {
-        System.out.println("===== BIENVENIDOS =====");
-        System.out.println("1. Iniciar sesion ");
-        System.out.println("2. Registrar sesion ");
-        System.out.println("3. Salir ");
+        System.out.println("👋 Bienvenido al sistema. Selecciona una opción:");
+        System.out.println("1. Iniciar sesión");
+        System.out.println("2. Registrarse");
+        System.out.println("3. Salir");
         int opcion = Utilidades.leeEntero("Elige Opcion: ");
         return opcion;
 
@@ -42,10 +42,12 @@ public class Menus {
         System.out.println("===== MENÚ PRINCIPAL =====");
         System.out.println("1. Listado de Actividades");
         System.out.println("2. Listado de Mis Actividades");
-        System.out.println("4. Consultar Mis Puntos");
-        System.out.println("5. Listar Premios");
-        System.out.println("6. Canjear Puntos");
-        System.out.println("7. Cerrar sesión");
+        System.out.println("3. Apuntarse a una actividad");
+        System.out.println("4. Finalizar una actividad");
+        System.out.println("5. Consultar Mis Puntos");
+        System.out.println("6. Listar Premios");
+        System.out.println("7. Canjear Puntos");
+        System.out.println("8. Cerrar sesión");
         int opcion = Utilidades.leeEntero("Elige Opcion: ");
         return opcion;
     }
@@ -81,13 +83,14 @@ public class Menus {
         return opcion;
 
     }
-    public static void MenuUsuario() {
-        System.out.println("===== MENÚ DE USUARIOS =====");
-        System.out.println("1. Crear Usuario");
-        System.out.println("2. Leer Usuarios");
-        System.out.println("3. Actualizar Usuario");
-        System.out.println("4. Eliminar Usuario");
-        System.out.println("5. Volver al menú principal");
+    public static int MenuUsuarios() {
+        System.out.println("===== MENÚ DE ACTIVIDADES =====");
+        System.out.println("1. Actualizar Usuario");
+        System.out.println("2. Eliminar Usuario");
+        System.out.println("3. Volver al menú principal");
+        int opcion = Utilidades.leeEntero("Elige Opcion: ");
+        return opcion;
 
     }
+
 }
