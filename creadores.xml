@@ -7,4 +7,11 @@
         <password>$2a$12$1tzfdDF8ZkV81B69UUSt6eFhP24/DFWsA2/5DV8lTUoJZbdUYORLK</password>
         <ONG>Unicef</ONG>
     </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>paco@gmail.com</email>
+        <nombre>Paco</nombre>
+        <nombreUsuario>paco</nombreUsuario>
+        <password>$2a$12$fynfWgKzDCeMePJ3/06k7uSCoLTaqAP9Vv0bbXhTVz.h5h2Cf1Bj.</password>
+        <ONG>Unicef</ONG>
+    </usuario>
 </usuarios>

@@ -55,7 +55,9 @@ public class CreadorController {
         } else {
             VistaConsola.mostrarMensaje("📌 Tus iniciativas:");
             for (Iniciativa ini : listaIniciativas.getIniciativas()) {
-                VistaConsola.mostrarMensaje("- " + ini.getNombre() + ": " + ini.getDescripcion());
+                if (ini.getCreador().equals(usuario.getNombreUsuario())) {
+                    VistaConsola.mostrarMensaje("- " + ini.getNombre() + ": " + ini.getDescripcion());
+                }
             }
         }
     }
@@ -72,9 +74,8 @@ public class CreadorController {
 
         // Buscar la iniciativa en la lista
         for (Iniciativa ini : listaIniciativas.getIniciativas()) {
-            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)) {
+            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)&&ini.getCreador().equals(creador.getNombreUsuario())) {
                 iniciativa = ini;
-                break;
             }
         }
 
@@ -100,7 +101,7 @@ public class CreadorController {
 
         // Buscar la iniciativa en la lista
         for (Iniciativa ini : listaIniciativas.getIniciativas()) {
-            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)) {
+            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)&&ini.getCreador().equals(creador.getNombreUsuario())) {
                 iniciativa = ini;
                 break;
             }

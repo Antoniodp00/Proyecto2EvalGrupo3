@@ -123,7 +123,7 @@ public class SesionController {
                     actividadesController.registrarActividad();
                     break;
                 case 2:
-                    actividadesController.listarActividades();
+                    actividadesController.listarActividades(creador);
                     break;
                 case 3:
                     actividadesController.actualizarActividad(creador);
@@ -153,21 +153,24 @@ public class SesionController {
             opcion = Menus.MenuVoluntario();
             switch (opcion) {
                 case 1:
-                    actividadesController.listarActividades();
+                    actividadesController.listarActividadesDisponibles();
                     break;
                 case 2:
-                   actividadesController.asignarseActividad(voluntario);
+                    actividadesController.listarMisActividades(voluntario);
                     break;
                 case 3:
-                    actividadesController.cambiarEstadoActividad(voluntario);
+                   actividadesController.asignarseActividad(voluntario);
                     break;
                 case 4:
-                    VistaConsola.mostrarMensaje("Tienes "+voluntario.getPuntos()+" puntos");
+                    actividadesController.cambiarEstadoActividad(voluntario);
                     break;
                 case 5:
-                    premiosController.listarPremios();
+                    VistaConsola.mostrarMensaje("Tienes "+voluntario.getPuntos()+" puntos");
                     break;
                 case 6:
+                    premiosController.listarPremios();
+                    break;
+                case 7:
                     String nombrePremio = Utilidades.leeString("Ingrese el nombre del premio a canjear: ");
                     try {
                         boolean exito = premiosController.canjearPremio(voluntario, nombrePremio);
@@ -175,13 +178,13 @@ public class SesionController {
                         VistaConsola.mostrarMensaje(e.getMessage());
                     }
                     break;
-                case 7:
+                case 8:
                     cerrarSesion();
                     break;
                 default:
                     VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
 
     /**

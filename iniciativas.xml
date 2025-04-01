@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Iniciativas>
     <iniciativa>
+        <nombre>CiudadLimpia</nombre>
+        <descripcion>Mejora la contaminacion de la ciudad</descripcion>
+        <creador>paco</creador>
+    </iniciativa>
+    <iniciativa>
         <nombre>Playa</nombre>
         <descripcion>playa</descripcion>
         <creador>antoniodp</creador>
