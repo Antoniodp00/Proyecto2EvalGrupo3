@@ -7,6 +7,7 @@ import view.VistaConsola;
 import view.VistaConsolaActividad;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -162,7 +163,15 @@ public class ActividadesController {
      */
     public void actualizarActividad(UsuarioCreador creador) {
         String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a actualizar:");
-        Actividad actividad = listaActividades.buscar(nombreActividad);
+        Actividad actividad = null;
+
+
+        // Buscar la actividad en la lista
+        for (Actividad act : listaActividades.getActividades()) {
+            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
+                actividad = act;
+            }
+        }
 
         if (actividad != null) {
             actividad.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la actividad:"));
@@ -181,7 +190,15 @@ public class ActividadesController {
      */
     public void eliminarActividad(UsuarioCreador creador) {
         String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a eliminar:");
-        Actividad actividad = listaActividades.buscar(nombreActividad);
+        Actividad actividad = null;
+
+
+        // Buscar la actividad en la lista
+        for (Actividad act : listaActividades.getActividades()) {
+            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
+                actividad = act;
+            }
+        }
 
         if (actividad != null) {
             listaActividades.getActividades().remove(actividad);
@@ -192,10 +209,46 @@ public class ActividadesController {
         }
     }
 
+
     /**
-     * Método para listar todos los premios disponibles.
+     * Método para listar todos las actividades disponibles.
      */
-    public void listarActividades() {
+    /**
+     * Método para listar las actividades disponibles que pertenecen a las iniciativas
+     * del usuario creador que lo llama.
+     */
+    public void listarActividades(UsuarioCreador creador) {
+        ListaIniciativas listaIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
+        Set<Actividad> actividades = listaActividades.getActividades();
+         // Asumimos que usuarioLogueado tiene un método para obtener el nombre
+
+        // Filtrar las actividades que pertenecen a las iniciativas creadas por el usuario.
+        Set<Actividad> actividadesFiltradas = new HashSet<>();
+
+        for (Actividad actividad : actividades) {
+            String nombreIniciativa = actividad.getIniciativaAsociada(); // Asumimos que devuelve el nombre de la iniciativa
+            Iniciativa iniciativa = listaIniciativas.buscar(nombreIniciativa); // Método para obtener iniciativa por nombre
+
+            if (iniciativa != null && iniciativa.getCreador().equals(creador.getNombreUsuario())) {
+                actividadesFiltradas.add(actividad);
+            }
+        }
+
+        if (actividadesFiltradas.isEmpty()) {
+            VistaConsola.mostrarMensaje("❌ No hay actividades disponibles en tus iniciativas.");
+        }
+
+        VistaConsola.mostrarMensaje("Actividades disponibles en tus iniciativas:");
+        for (Actividad actividad : actividadesFiltradas) {
+            VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
+        }
+    }
+
+
+    /**
+     * Método para listar todos las actividades disponibles.
+     */
+    public void listarActividadesDisponibles() {
         Set<Actividad> actividades = listaActividades.getActividades();
 
         if (actividades.isEmpty()) {
@@ -205,7 +258,29 @@ public class ActividadesController {
 
         VistaConsola.mostrarMensaje("Actividades disponibles:");
         for (Actividad actividad : actividades) {
-            VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: "+actividad.getResponsable());
+            if (actividad.getResponsable().isEmpty()) {
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
+            }
+        }
+    }
+
+    /**
+     * Método para listar todos las actividades disponibles.
+     */
+    public void listarMisActividades(UsuarioVoluntario voluntario) {
+        Set<Actividad> actividades = listaActividades.getActividades();
+
+        if (actividades.isEmpty()) {
+            VistaConsola.mostrarMensaje("❌ No hay Activiadess disponibles.");
+            return;
+        }
+
+        VistaConsola.mostrarMensaje("Actividades disponibles:");
+        for (Actividad actividad : actividades) {
+            if (actividad.getResponsable().equals(voluntario.getNombreUsuario())) {
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
+
+            }
         }
     }
 }

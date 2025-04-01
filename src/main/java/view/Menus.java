@@ -72,7 +72,8 @@ public class Menus {
      */
     public static int MenuVoluntario() {
         System.out.println(CYAN + "\n💙 ===== MENÚ DEL VOLUNTARIO =====" + RESET);
-        System.out.println("1. 📜 Listado de Actividades");
+        System.out.println("1. 📜 Listado de Actividades Disponibles");
+        System.out.println("1. 📜 Listado de mis Actividades");
         System.out.println("2. ✍️ Apuntarse a una actividad");
         System.out.println("3. ✅ Finalizar una actividad");
         System.out.println("4. 🎖️ Consultar Mis Puntos");

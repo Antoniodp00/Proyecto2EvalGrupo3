@@ -46,4 +46,6 @@ public class Iniciativa {
     public void setActividades(List<Actividad> actividades) {
         this.misactividades = actividades;
     }
+
+
 }
