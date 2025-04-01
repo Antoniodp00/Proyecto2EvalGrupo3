@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<usuarios>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioAdministrador">
-        <email>antonio@prueba.com</email>
-        <nombre>Antonio</nombre>
-        <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$Z47pYLRnztiEbbykgq1MzOXJo402HyuJFWJaSw45xq2/w5AZAOqf.</password>
-    </usuario>
-</usuarios>

@@ -87,16 +87,5 @@ public class CreadorController {
         }
     }
 
-    public void asignarVoluntario(UsuarioVoluntario voluntario, Actividad actividad) {
-        if (ActiviadesController.asignarVoluntario(this ,voluntario, actividad)) {
-            System.out.println("El usuario creador " + getNombre() +
-                    " asignó al voluntario " + voluntario.getNombre() +
-                    " a la actividad " + actividad.getNombre());
-        } else {
-            System.out.println("No se pudo asignar al voluntario.");
-        }
-    }
 
-
-}
 }
