@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Premios>
+    <premio>
+        <nombre>Balon</nombre>
+        <descripcion>Balon futbol</descripcion>
+        <costo>13000</costo>
+    </premio>
+</Premios>

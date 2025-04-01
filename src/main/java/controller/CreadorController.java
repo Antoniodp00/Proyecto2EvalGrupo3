@@ -1,95 +1,117 @@
 package controller;
 
-import model.*;
+import model.Iniciativa;
+import model.ListaIniciativas;
+import model.UsuarioCreador;
 import utilidades.Utilidades;
 import utilidades.XMLManager;
 import view.VistaConsola;
 import view.VistaConsolaIniciativa;
 
 import java.io.File;
-import java.util.Scanner;
 
 public class CreadorController {
+    private static final String ARCHIVO_INICIATIVAS = "iniciativas.xml";
+    private ListaIniciativas listaIniciativas;
 
-
-    public static ListaIniciativas cargarIniciativasPorUsuario(String nombreUsuario) {
-        ListaIniciativas todasLasIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
-        ListaIniciativas iniciativasUsuario = new ListaIniciativas();
-
-        for (Iniciativa iniciativa : todasLasIniciativas.getIniciativas()) {
-            if (iniciativa.getCreador().equals(nombreUsuario)) { // Filtrar por creador
-                iniciativasUsuario.agregar(iniciativa);
-            }
+    /**
+     * Constructor: Carga las iniciativas desde el archivo XML al iniciar la clase.
+     * Si el archivo no existe o está vacío, inicializa una nueva lista de iniciativas.
+     */
+    public CreadorController() {
+        File archivo = new File(ARCHIVO_INICIATIVAS);
+        if (archivo.exists() && archivo.length() > 0) {
+            this.listaIniciativas = ListaIniciativas.cargarDesdeXML(ARCHIVO_INICIATIVAS);
+        } else {
+            this.listaIniciativas = new ListaIniciativas();
         }
-        return iniciativasUsuario;
     }
 
-
-    public static void crearIniciativa(UsuarioCreador creador) {
-        ListaIniciativas iniciativas;
-
-        File xmlFile = new File("iniciativas.xml");
-        if (xmlFile.exists() && xmlFile.length() > 0) {
-            try {
-                iniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
-            } catch (Exception e) {
-                VistaConsola.mostrarMensaje("Error al leer el archivo de iniciativas: " + e.getMessage());
-                return;
-            }
-        } else {
-            iniciativas = new ListaIniciativas();
-        }
-
+    /**
+     * Método para que un usuario creador agregue una nueva iniciativa.
+     * La iniciativa se almacena en la lista y se guarda en el archivo XML.
+     *
+     * @param creador Usuario que crea la iniciativa.
+     */
+    public void crearIniciativa(UsuarioCreador creador) {
         Iniciativa nuevaIniciativa = VistaConsolaIniciativa.pideIniciativa(creador);
-        if (iniciativas.agregar(nuevaIniciativa)) {
-            XMLManager.writeXML(iniciativas, "iniciativas.xml");
-            VistaConsola.mostrarMensaje("Iniciativa creada y guardada con éxito.");
+        if (listaIniciativas.agregar(nuevaIniciativa)) {
+            XMLManager.writeXML(listaIniciativas, ARCHIVO_INICIATIVAS);
+            VistaConsola.mostrarMensaje("✅ Iniciativa creada y guardada con éxito.");
         } else {
-            VistaConsola.mostrarMensaje("La iniciativa ya existe.");
+            VistaConsola.mostrarMensaje("❌ La iniciativa ya existe.");
         }
     }
 
-    public static void mostrarIniciativas(UsuarioCreador usuario) {
-        ListaIniciativas iniciativas = usuario.getIniciativas();
-
-        if (iniciativas.getIniciativas().isEmpty()) {
-            VistaConsola.mostrarMensaje("No tienes iniciativas registradas.");
+    /**
+     * Muestra todas las iniciativas creadas por un usuario específico.
+     * Si no tiene iniciativas registradas, se informa al usuario.
+     *
+     * @param usuario Usuario creador de las iniciativas.
+     */
+    public void mostrarIniciativas(UsuarioCreador usuario) {
+        if (listaIniciativas.getIniciativas().isEmpty()) {
+            VistaConsola.mostrarMensaje("❌ No tienes iniciativas registradas.");
         } else {
-            VistaConsola.mostrarMensaje("Tus iniciativas:");
-            for (Iniciativa ini : iniciativas.getIniciativas()) {
-                System.out.println("- " + ini.getNombre() + ": " + ini.getDescripcion());
+            VistaConsola.mostrarMensaje("📌 Tus iniciativas:");
+            for (Iniciativa ini : listaIniciativas.getIniciativas()) {
+                VistaConsola.mostrarMensaje("- " + ini.getNombre() + ": " + ini.getDescripcion());
             }
         }
     }
-    // Método para actualizar una iniciativa
-    public static void actualizarIniciativa(UsuarioCreador creador) {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Permite actualizar el nombre y la descripción de una iniciativa existente.
+     * La iniciativa debe existir en la lista para poder modificarla.
+     *
+     * @param creador Usuario creador que desea actualizar su iniciativa.
+     */
+    public void actualizarIniciativa(UsuarioCreador creador) {
         String nombreIniciativa = Utilidades.leeString("Introduce el nombre de la iniciativa a actualizar:");
-        Iniciativa iniciativa = CreadorController.buscarIniciativa(creador, nombreIniciativa);
+        Iniciativa iniciativa = null;
+
+        // Buscar la iniciativa en la lista
+        for (Iniciativa ini : listaIniciativas.getIniciativas()) {
+            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)) {
+                iniciativa = ini;
+                break;
+            }
+        }
 
         if (iniciativa != null) {
-            String nuevoNombre = Utilidades.leeString("Introduce el nuevo nombre de la iniciativa:");
-            String nuevaDescripcion = Utilidades.leeString("Introduce la nueva descripción:");
-            iniciativa.setNombre(nuevoNombre);
-            iniciativa.setDescripcion(nuevaDescripcion);
-            CreadorController.guardarIniciativas(creador);
-            System.out.println("Iniciativa actualizada exitosamente.");
+            iniciativa.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la iniciativa:"));
+            iniciativa.setDescripcion(Utilidades.leeString("Introduce la nueva descripción:"));
+            XMLManager.writeXML(listaIniciativas, ARCHIVO_INICIATIVAS);
+            VistaConsola.mostrarMensaje("✅ Iniciativa actualizada exitosamente.");
         } else {
-            System.out.println("Iniciativa no encontrada.");
+            VistaConsola.mostrarMensaje("❌ Iniciativa no encontrada.");
         }
     }
-    // Método para eliminar una iniciativa
-    public static void eliminarIniciativa(UsuarioCreador creador) {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Elimina una iniciativa de la lista si existe.
+     * Se guarda la lista actualizada en el archivo XML.
+     *
+     * @param creador Usuario creador que desea eliminar una iniciativa.
+     */
+    public void eliminarIniciativa(UsuarioCreador creador) {
         String nombreIniciativa = Utilidades.leeString("Introduce el nombre de la iniciativa a eliminar:");
-        Iniciativa iniciativa = CreadorController.buscarIniciativa(creador, nombreIniciativa);
+        Iniciativa iniciativa = null;
+
+        // Buscar la iniciativa en la lista
+        for (Iniciativa ini : listaIniciativas.getIniciativas()) {
+            if (ini.getNombre().equalsIgnoreCase(nombreIniciativa)) {
+                iniciativa = ini;
+                break;
+            }
+        }
 
         if (iniciativa != null) {
-            CreadorController.eliminarIniciativa(creador, iniciativa);
-            System.out.println("Iniciativa eliminada exitosamente.");
+            listaIniciativas.getIniciativas().remove(iniciativa);
+            XMLManager.writeXML(listaIniciativas, ARCHIVO_INICIATIVAS);
+            VistaConsola.mostrarMensaje("✅ Iniciativa eliminada exitosamente.");
         } else {
-            System.out.println("Iniciativa no encontrada.");
+            VistaConsola.mostrarMensaje("❌ Iniciativa no encontrada.");
         }
     }
-
 }

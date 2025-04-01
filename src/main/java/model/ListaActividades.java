@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -61,6 +63,11 @@ public class ListaActividades implements SCRUD<Actividad> {
             }
         }
         return actividad;
+    }
+
+    @Override
+    public Set<Actividad> listar() {
+        return new HashSet<>(actividades); // Devuelve una copia del conjunto
     }
 
 

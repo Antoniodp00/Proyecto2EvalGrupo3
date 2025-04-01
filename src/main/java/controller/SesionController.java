@@ -1,14 +1,53 @@
 package controller;
 
+import exceptions.PuntosInsuficientesException;
+import exceptions.UsuarioYaExisteException;
 import model.*;
 import utilidades.Utilidades;
 import view.Menus;
+import view.VistaConsola;
 import java.util.Scanner;
 
 public class SesionController {
-    private UsuarioController controladorUsuario;
+    private UsuarioController controladorUsuario = new UsuarioController();
 
-    // Método principal para manejar la sesión
+    /**
+     * Método principal para iniciar el sistema, mostrando un mensaje de bienvenida
+     * y ofreciendo las opciones de iniciar sesión, registrarse o salir.
+     */
+    public void iniciar() {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        do {
+            opcion = Menus.Sesion();
+
+            switch (opcion) {
+                case 1:
+                    manejarSesion();
+                    break;
+                case 2:
+                    try {
+                        boolean registrado = controladorUsuario.registrarUsuario();
+                        if (registrado) {
+                            System.out.println("Usuario registrado exitosamente.");
+                        }
+                    } catch (UsuarioYaExisteException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 3:
+                    VistaConsola.mostrarMensaje("👋 ¡Hasta luego!");
+                    break;
+                default:
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
+            }
+        } while (opcion != 3);
+    }
+
+    /**
+     * Maneja el inicio de sesión del usuario y lo redirige al menú correspondiente
+     * según el tipo de usuario que haya iniciado sesión.
+     */
     public void manejarSesion() {
         Usuario usuarioActivo = controladorUsuario.iniciarSesion();
         if (usuarioActivo instanceof UsuarioCreador) {
@@ -20,9 +59,10 @@ public class SesionController {
         }
     }
 
-    // Menú para el Creador
+    /**
+     * Muestra el menú principal para usuarios creadores.
+     */
     private void mostrarMenuCreador(UsuarioCreador creador) {
-        Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
             opcion = Menus.MenuCreador();
@@ -37,168 +77,170 @@ public class SesionController {
                     cerrarSesion();
                     break;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
         } while (opcion != 3);
     }
 
-    // Menú de opciones de instancias (crear, listar, actualizar, eliminar)
+    /**
+     * Muestra el menú para gestionar instancias (iniciativas) del usuario creador.
+     */
     private void mostrarMenuInstancias(UsuarioCreador creador) {
-        Scanner scanner = new Scanner(System.in);
         int opcion;
-        boolean salir = false;
         do {
-            opcion = Menus.MenuInstancias();  // Menú de opciones de instancias
+            opcion = Menus.MenuInstancias();
             switch (opcion) {
-                case 1:  // Opción para crear una nueva iniciativa
-                    CreadorController.crearIniciativa(creador);
+                case 1:
+                    new CreadorController().crearIniciativa(creador);
                     break;
                 case 2:
-                    CreadorController.mostrarIniciativas(creador);
+                    new CreadorController().mostrarIniciativas(creador);
                     break;
                 case 3:
-                    CreadorController.actualizarIniciativa(creador);  // Lógica para actualizar la iniciativa
+                    new CreadorController().actualizarIniciativa(creador);
                     break;
                 case 4:
-                    CreadorController.eliminarIniciativa(creador);  // Lógica para eliminar la iniciativa
+                    new CreadorController().eliminarIniciativa(creador);
                     break;
                 case 5:
-                    mostrarMenuCreador(creador);
-                    break;
+                    return;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
         } while (opcion != 5);
     }
 
-
-    // Menú de opciones de actividades (registrar, leer, actualizar, eliminar, agregar voluntarios)
+    /**
+     * Muestra el menú para gestionar actividades del usuario creador.
+     */
     private void mostrarMenuActividades(UsuarioCreador creador) {
-        Scanner scanner = new Scanner(System.in);
+        ActividadesController actividadesController = new ActividadesController();
         int opcion;
         do {
             opcion = Menus.MenuActividades();
             switch (opcion) {
                 case 1:
-                    ActividadesController.registrarActividad();
+                    actividadesController.registrarActividad();
                     break;
                 case 2:
-                    ActividadesController.listarActividades(creador);  // Leer actividades
+                    actividadesController.listarActividades();
                     break;
                 case 3:
-                    ActividadesController.actualizarActividad(creador);  // Lógica para actualizar una actividad
+                    actividadesController.actualizarActividad(creador);
                     break;
                 case 4:
-                    ActividadesController.eliminarActividad(creador);  // Lógica para eliminar una actividad
+                    actividadesController.eliminarActividad(creador);
                     break;
                 case 5:
-                    ActividadesController.agregarVoluntarioActividad(creador);
+                    actividadesController.asignarVoluntario(creador);
                     break;
                 case 6:
-                    mostrarMenuCreador(creador);
-                    break;
+                    return;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
         } while (opcion != 6);
     }
 
-
-
-
-    // Menú para el Voluntario
+    /**
+     * Muestra el menú principal para voluntarios.
+     */
     private void mostrarMenuVoluntario(UsuarioVoluntario voluntario) {
-        Scanner scanner = new Scanner(System.in);
+        ActividadesController actividadesController = new ActividadesController();
+        PremiosController premiosController = new PremiosController();
         int opcion;
         do {
             opcion = Menus.MenuVoluntario();
             switch (opcion) {
                 case 1:
-                    ActividadesController.listarActividades();  // Listar actividades disponibles para el voluntario
+                    actividadesController.listarActividades();
                     break;
                 case 2:
-                    ActividadesController.listarMisActividades(voluntario);  // Listar las actividades del voluntario
+                   actividadesController.asignarseActividad(voluntario);
                     break;
                 case 3:
-                    // Actualizar alguna actividad asignada (a implementar según sea necesario)
+                    actividadesController.cambiarEstadoActividad(voluntario);
                     break;
                 case 4:
-                    // Eliminar alguna actividad asignada (a implementar según sea necesario)
+                    VistaConsola.mostrarMensaje("Tienes "+voluntario.getPuntos()+" puntos");
                     break;
                 case 5:
-                    PremiosController.listarPremios();
+                    premiosController.listarPremios();
                     break;
                 case 6:
-                    String premio = Utilidades.leeString("Introduce el nombre del premio que quieres canjear: ");
-                    PremiosController.canjearPremio(voluntario, premio);
+                    String nombrePremio = Utilidades.leeString("Ingrese el nombre del premio a canjear: ");
+                    try {
+                        boolean exito = premiosController.canjearPremio(voluntario, nombrePremio);
+                    } catch (PuntosInsuficientesException e) {
+                        VistaConsola.mostrarMensaje(e.getMessage());
+                    }
                     break;
                 case 7:
                     cerrarSesion();
                     break;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
         } while (opcion != 7);
     }
 
-    // Menú para el Administrador
+    /**
+     * Muestra el menú principal para administradores.
+     */
     private void mostrarMenuAdministrador(UsuarioAdministrador administrador) {
-        Scanner scanner = new Scanner(System.in);
+        PremiosController premiosController = new PremiosController();
         int opcion;
         do {
             opcion = Menus.MenuAdministrador();
             switch (opcion) {
                 case 1:
-                    mostrarMenuUsuarios();
+                    mostrarMenuUsuarios(administrador);
                     break;
                 case 2:
-                    PremiosController.agregarPremio();
+                    premiosController.agregarPremio();
                     break;
                 case 3:
-                    PremiosController.eliminarPremio();  // Eliminar premio
+                    premiosController.eliminarPremio();
                     break;
                 case 4:
                     cerrarSesion();
                     break;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
         } while (opcion != 4);
     }
 
-    // Menú para administrar usuarios (registrar, listar, actualizar, eliminar)
-    private void mostrarMenuUsuarios() {
-        Scanner scanner = new Scanner(System.in);
+    /**
+     * Muestra el menú de usuarios para administradores.
+     */
+    private void mostrarMenuUsuarios(UsuarioAdministrador administrador) {
+        UsuarioController usuarioController = new UsuarioController();
         int opcion;
         do {
-            opcion = Menus.MenuAdministrador();
+            opcion = Menus.MenuUsuarios();
             switch (opcion) {
                 case 1:
-                    UsuarioController.registrarUsuario();  // Registrar un nuevo usuario
+                    usuarioController.actualizarUsuario();
                     break;
                 case 2:
-                    UsuarioController.listarUsuarios();  // Listar todos los usuarios
+                    usuarioController.eliminarUsuario();
                     break;
                 case 3:
-                    UsuarioController.actualizarUsuario();  // Lógica para actualizar un usuario
-                    break;
-                case 4:
-                    UsuarioController.eliminarUsuario();  // Eliminar usuario
-                    break;
-                case 5:
-                    cerrarSesion();  // Cerrar sesión
+                    VistaConsola.mostrarMensaje("Volviendo al menú principal...");
                     break;
                 default:
-                    System.out.println("Opción inválida, intenta de nuevo.");
+                    VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 
 
-
-
-    // Método para cerrar sesión
-    public static void cerrarSesion() {
-        Sesion.cerrarSesion();  // Llamamos al método estático para cerrar la sesión
+    /**
+     * Cierra la sesión del usuario activo.
+     */
+    public void cerrarSesion() {
+        Sesion.cerrarSesion();
+        VistaConsola.mostrarMensaje("👋 Sesión cerrada con éxito.");
     }
 }

@@ -1,11 +1,9 @@
 package controller;
 
-import model.Premio;
-import model.ListaPremios;
-import model.Usuario;
-import model.UsuarioVoluntario;
+import exceptions.PuntosInsuficientesException;
+import model.*;
 import utilidades.Utilidades;
-import utilidades.XMLManager;
+import view.VistaConsola;
 import view.VistaPremios;
 
 import java.util.List;
@@ -13,68 +11,82 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class PremiosController {
-    private static final String ARCHIVO_PREMIOS = "premios.xml";
+    private final String ARCHIVO_PREMIOS = "premios.xml";
+    private ListaPremios listaPremios;
 
-    // Método para que un administrador agregue un premio
-    public static void agregarPremio() {
-        ListaPremios listaPremios = ListaPremios.cargarDesdeXML(ARCHIVO_PREMIOS);
-
-        Premio nuevoPremio = VistaPremios.pidePremio();
-        listaPremios.agregar(nuevoPremio);
-
-        listaPremios.guardarXML(ARCHIVO_PREMIOS);
-        System.out.println("✅ Premio agregado correctamente.");
+    // Constructor que carga los premios desde el archivo XML
+    public PremiosController() {
+        this.listaPremios = ListaPremios.cargarDesdeXML(ARCHIVO_PREMIOS);
     }
 
-    // Método para que un usuario voluntario canjee un premio
-    public static boolean canjearPremio(UsuarioVoluntario usuario, String nombrePremio) {
-        ListaPremios listaPremios = ListaPremios.cargarDesdeXML(ARCHIVO_PREMIOS);
-        Premio premio = listaPremios.buscar(nombrePremio);
+    /**
+     * Método para que un administrador agregue un premio.
+     */
+    public void agregarPremio() {
+        Premio nuevoPremio = VistaPremios.pidePremio();
+        listaPremios.agregar(nuevoPremio);
+        listaPremios.guardarXML(ARCHIVO_PREMIOS);
+        VistaConsola.mostrarMensaje("✅ Premio agregado correctamente.");
+    }
 
+    /**
+     * Método para que un usuario voluntario canjee un premio.
+     *
+     * @param usuario      Usuario voluntario que quiere canjear un premio.
+     * @param nombrePremio Nombre del premio a canjear.
+     * @return true si el canje fue exitoso, false en caso contrario.
+     */
+    public boolean canjearPremio(UsuarioVoluntario usuario, String nombrePremio) {
+        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML("voluntarios.xml");
+        Premio premio = listaPremios.buscar(nombrePremio);
+        boolean canjeado = false;
         if (premio == null) {
-            System.out.println("❌ Premio no encontrado.");
-            return false;
+            VistaConsola.mostrarMensaje("❌ Premio no encontrado.");
         }
 
         if (usuario.getPuntos() < premio.getCosto()) {
-            System.out.println("❌ No tienes suficientes puntos para canjear este premio.");
-            return false;
+            throw new PuntosInsuficientesException("❌ No tienes suficientes puntos para canjear este premio.");
         }
 
         // Restar los puntos al usuario y confirmar el canje
         usuario.restarPuntos(premio.getCosto());
-        usuario.guardarEnXML();  // Guardar cambios del usuario
-        System.out.println("🎉 Canje exitoso: " + premio.getNombre());
-
-        return true;
+        listaUsuarios.agregar(usuario);
+        listaUsuarios.guardarXML("voluntarios.xml");  // Guardar cambios del usuario
+        VistaConsola.mostrarMensaje("🎉 Canje exitoso: " + premio.getNombre());
+        return canjeado;
     }
 
-    // Método para listar premios disponibles
-    public static void listarPremios() {
-        ListaPremios listaPremios = ListaPremios.cargarDesdeXML(ARCHIVO_PREMIOS);
+
+    /**
+     * Método para listar todos los premios disponibles.
+     */
+    public void listarPremios() {
         Set<Premio> premios = listaPremios.getPremios();
 
         if (premios.isEmpty()) {
-            System.out.println("❌ No hay premios disponibles.");
+            VistaConsola.mostrarMensaje("❌ No hay premios disponibles.");
             return;
         }
 
-        System.out.println("🎁 Premios disponibles:");
+        VistaConsola.mostrarMensaje("🎁 Premios disponibles:");
         for (Premio premio : premios) {
-            System.out.println("- " + premio.getNombre() + " (" + premio.getCosto() + " puntos)");
+            VistaConsola.mostrarMensaje("- " + premio.getNombre() + " (" + premio.getCosto() + " puntos)");
         }
     }
-    // Método para eliminar un premio
-    public static void eliminarPremio() {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Método para eliminar un premio por su nombre.
+     */
+    public void eliminarPremio() {
         String nombrePremio = Utilidades.leeString("Introduce el nombre del premio a eliminar:");
-        Premio premio = PremiosController.buscarPremio(nombrePremio);
+        Premio premio = listaPremios.buscar(nombrePremio);
 
         if (premio != null) {
-            PremiosController.eliminarPremio(premio);
-            System.out.println("Premio eliminado exitosamente.");
+            listaPremios.eliminar(premio);
+            listaPremios.guardarXML(ARCHIVO_PREMIOS);
+            VistaConsola.mostrarMensaje("✅ Premio eliminado exitosamente.");
         } else {
-            System.out.println("Premio no encontrado.");
+            VistaConsola.mostrarMensaje("❌ Premio no encontrado.");
         }
     }
 }
