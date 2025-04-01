@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.PuntosInsuficientesException;
 import exceptions.UsuarioYaExisteException;
 import model.*;
 import utilidades.Utilidades;
@@ -155,25 +156,26 @@ public class SesionController {
                     actividadesController.listarActividades();
                     break;
                 case 2:
-                    actividadesController.listarMisActividades(voluntario);
-                    break;
-                case 3:
                    actividadesController.asignarseActividad(voluntario);
                     break;
-                case 4:
+                case 3:
                     actividadesController.cambiarEstadoActividad(voluntario);
                     break;
-                case 5:
+                case 4:
                     VistaConsola.mostrarMensaje("Tienes "+voluntario.getPuntos()+" puntos");
                     break;
-                case 6:
+                case 5:
                     premiosController.listarPremios();
                     break;
-                case 7:
+                case 6:
                     String nombrePremio = Utilidades.leeString("Ingrese el nombre del premio a canjear: ");
-                    premiosController.canjearPremio(voluntario,nombrePremio);
+                    try {
+                        boolean exito = premiosController.canjearPremio(voluntario, nombrePremio);
+                    } catch (PuntosInsuficientesException e) {
+                        VistaConsola.mostrarMensaje(e.getMessage());
+                    }
                     break;
-                case 8:
+                case 7:
                     cerrarSesion();
                     break;
                 default:
@@ -219,10 +221,10 @@ public class SesionController {
             opcion = Menus.MenuUsuarios();
             switch (opcion) {
                 case 1:
-                    usuarioController.actualizarUsuario(); // Método para actualizar usuarios
+                    usuarioController.actualizarUsuario();
                     break;
                 case 2:
-                    usuarioController.eliminarUsuario(); // Método para eliminar usuarios
+                    usuarioController.eliminarUsuario();
                     break;
                 case 3:
                     VistaConsola.mostrarMensaje("Volviendo al menú principal...");

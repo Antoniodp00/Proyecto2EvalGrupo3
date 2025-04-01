@@ -2,14 +2,35 @@ package utilidades;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ * Utilidad para el manejo de hash de contraseñas usando BCrypt.
+ */
 public class HashUtil {
-    // 🔹 Generar hash con BCrypt
+
+    private static final int COSTO_HASH = 12; // Nivel de seguridad vs rendimiento
+
+    /**
+     * Genera un hash seguro para la contraseña proporcionada.
+     *
+     * @param password La contraseña en texto plano.
+     * @return Un string con el hash generado.
+     */
     public static String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt(12)); // 12 es el costo (seguridad vs rendimiento)
+        return BCrypt.hashpw(password, BCrypt.gensalt(COSTO_HASH));
     }
 
-    // 🔹 Verificar contraseña ingresada contra el hash guardado
+    /**
+     * Verifica si la contraseña ingresada coincide con el hash almacenado.
+     *
+     * @param password La contraseña en texto plano.
+     * @param hash El hash almacenado.
+     * @return true si la contraseña coincide, false en caso contrario.
+     */
     public static boolean verificarPassword(String password, String hash) {
-        return BCrypt.checkpw(password, hash);
+        boolean coincide = false;
+        if (password != null && hash != null) {
+            coincide = BCrypt.checkpw(password, hash);
+        }
+        return coincide;
     }
 }

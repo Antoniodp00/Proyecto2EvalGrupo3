@@ -2,9 +2,16 @@
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
         <email>antonio@prueba.com</email>
-        <nombre>Antonio</nombre>
+        <nombre>antonio</nombre>
         <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$k.mqQryfkm1C7/sETZu6vefDpYUf.fUHFU.asvY57QVY4NPMkFU0.</password>
+        <password>$2a$12$DQLG/b.5GvKpw1Zp9VULr.pOCE0At7fhVe8eS3EsCgEE0jaR7L.by</password>
         <puntos>112000</puntos>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+        <email>Juan@gmail.com</email>
+        <nombre>Juan</nombre>
+        <nombreUsuario>juanp</nombreUsuario>
+        <password>$2a$12$pzsC9h3sqvtPLP5Hl.6mNeUgynlAT9Xfa9Va2xWRf3HVULZ2dcA4K</password>
+        <puntos>0</puntos>
     </usuario>
 </usuarios>

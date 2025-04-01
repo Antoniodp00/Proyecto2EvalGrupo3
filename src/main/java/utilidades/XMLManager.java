@@ -8,6 +8,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class XMLManager {
+    /**
+     * Escribe un objeto en un archivo XML.
+     *
+     * @param objeto   El objeto a serializar en XML.
+     * @param fileName El nombre del archivo XML donde se guardará el objeto.
+     * @param <T>      Tipo del objeto a serializar.
+     * @return true si la escritura fue exitosa, false en caso contrario.
+     */
     public static <T> boolean writeXML(T objeto, String fileName) {
         boolean result = false;
         try {
@@ -28,6 +36,14 @@ public class XMLManager {
         return result;
     }
 
+    /**
+     * Lee un objeto desde un archivo XML.
+     *
+     * @param objeto   Un objeto de referencia para obtener su clase.
+     * @param fileName El nombre del archivo XML a leer.
+     * @param <T>      Tipo del objeto a deserializar.
+     * @return El objeto deserializado desde el XML.
+     */
     public static <T> T readXML(T objeto, String fileName) {
         File file = new File(fileName);
 

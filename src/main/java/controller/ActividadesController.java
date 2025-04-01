@@ -124,9 +124,11 @@ public class ActividadesController {
 
     /**
      * Cambia el estado de una actividad a COMPLETADA y solicita la actividad dentro del método.
+     *
      * @param voluntario El voluntario que intenta cambiar el estado.
      */
     public void cambiarEstadoActividad(UsuarioVoluntario voluntario) {
+        ListaUsuarios listaVoluntarios = ListaUsuarios.cargarDesdeXML("voluntairos.xml");
         Scanner sc = new Scanner(System.in);
         ListaActividades listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
 
@@ -147,6 +149,9 @@ public class ActividadesController {
             VistaConsola.mostrarMensaje("Estado de la actividad actualizado a: COMPLETADA");
             listaActividades.agregar(actividad);
             XMLManager.writeXML(listaActividades, ARCHIVO_XML);
+            voluntario.setPuntos(50);
+            listaVoluntarios.agregar(voluntario);
+            listaVoluntarios.guardarXML("voluntarios.xml");
         }
     }
 
@@ -200,23 +205,7 @@ public class ActividadesController {
 
         VistaConsola.mostrarMensaje("Actividades disponibles:");
         for (Actividad actividad : actividades) {
-            VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada()+" )");
-        }
-    }
-
-
-    /**
-     * Lista las actividades en las que está inscrito un voluntario.
-     * @param voluntario El usuario voluntario.
-     */
-    public void listarMisActividades(UsuarioVoluntario voluntario) {
-        List<Actividad> misActividades = listaActividades.obtenerActividadesPorVoluntario(voluntario,listaActividades);
-        if (misActividades.isEmpty()) {
-            VistaConsola.mostrarMensaje("No tienes actividades asignadas.");
-        } else {
-            for (Actividad actividad : misActividades) {
-                VistaConsola.mostrarMensaje("Actividad: " + actividad.getNombre() + " - Estado: " + actividad.getEstado());
-            }
+            VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: "+actividad.getResponsable());
         }
     }
 }

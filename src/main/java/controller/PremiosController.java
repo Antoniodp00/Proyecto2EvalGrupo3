@@ -1,9 +1,7 @@
 package controller;
 
-import model.Premio;
-import model.ListaPremios;
-import model.Usuario;
-import model.UsuarioVoluntario;
+import exceptions.PuntosInsuficientesException;
+import model.*;
 import utilidades.Utilidades;
 import view.VistaConsola;
 import view.VistaPremios;
@@ -33,29 +31,31 @@ public class PremiosController {
 
     /**
      * Método para que un usuario voluntario canjee un premio.
-     * @param usuario Usuario voluntario que quiere canjear un premio.
+     *
+     * @param usuario      Usuario voluntario que quiere canjear un premio.
      * @param nombrePremio Nombre del premio a canjear.
      * @return true si el canje fue exitoso, false en caso contrario.
      */
     public boolean canjearPremio(UsuarioVoluntario usuario, String nombrePremio) {
+        ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML("voluntarios.xml");
         Premio premio = listaPremios.buscar(nombrePremio);
-
+        boolean canjeado = false;
         if (premio == null) {
             VistaConsola.mostrarMensaje("❌ Premio no encontrado.");
-            return false;
         }
 
         if (usuario.getPuntos() < premio.getCosto()) {
-            VistaConsola.mostrarMensaje("❌ No tienes suficientes puntos para canjear este premio.");
-            return false;
+            throw new PuntosInsuficientesException("❌ No tienes suficientes puntos para canjear este premio.");
         }
 
         // Restar los puntos al usuario y confirmar el canje
         usuario.restarPuntos(premio.getCosto());
-        usuario.guardarEnXML();  // Guardar cambios del usuario
+        listaUsuarios.agregar(usuario);
+        listaUsuarios.guardarXML("voluntarios.xml");  // Guardar cambios del usuario
         VistaConsola.mostrarMensaje("🎉 Canje exitoso: " + premio.getNombre());
-        return true;
+        return canjeado;
     }
+
 
     /**
      * Método para listar todos los premios disponibles.

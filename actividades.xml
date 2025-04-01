@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<actividades>
+    <actividad>
+        <nombre>Patata</nombre>
+        <descripcion>recogida</descripcion>
+        <responsable>juanp</responsable>
+        <iniciativa>Playa</iniciativa>
+        <fechaInicio>2025-04-01</fechaInicio>
+        <fechaFin>2025-04-01</fechaFin>
+        <estado>COMPLETADA</estado>
+        <comentario>Me gusto</comentario>
+    </actividad>
+    <actividad>
+        <nombre>p</nombre>
+        <descripcion>p</descripcion>
+        <responsable>Antonio</responsable>
+        <iniciativa>Playa</iniciativa>
+        <fechaInicio>2025-04-01</fechaInicio>
+        <fechaFin>2025-04-02</fechaFin>
+        <estado>EN_PROGRESO</estado>
+        <comentario></comentario>
+    </actividad>
+</actividades>

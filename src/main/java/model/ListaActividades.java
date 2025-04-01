@@ -65,6 +65,11 @@ public class ListaActividades implements SCRUD<Actividad> {
         return actividad;
     }
 
+    @Override
+    public Set<Actividad> listar() {
+        return new HashSet<>(actividades); // Devuelve una copia del conjunto
+    }
+
 
     public boolean existeActividad(String nombreActividad, String iniciativa) {
        boolean existe = false;
@@ -75,20 +80,6 @@ public class ListaActividades implements SCRUD<Actividad> {
         }
         return existe;
     }
-
-
-    public List<Actividad> obtenerActividadesPorVoluntario(UsuarioVoluntario voluntario,ListaActividades actividades) {
-        List<Actividad> actividadesVoluntario = new ArrayList<>();
-
-        for (Actividad actividad : actividades.getActividades()) {
-            if (actividad.getResponsable().contains(voluntario.getNombreUsuario())) {
-                actividadesVoluntario.add(actividad);
-            }
-        }
-
-        return actividadesVoluntario;
-    }
-
 
     public boolean guardarXML(String archivo) {
         return XMLManager.writeXML(this, archivo);
