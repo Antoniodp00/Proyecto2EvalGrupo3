@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.UsuarioYaExisteException;
 import model.*;
 import utilidades.Utilidades;
 import view.Menus;
@@ -24,7 +25,14 @@ public class SesionController {
                     manejarSesion();
                     break;
                 case 2:
-                    controladorUsuario.registrarUsuario();
+                    try {
+                        boolean registrado = controladorUsuario.registrarUsuario();
+                        if (registrado) {
+                            System.out.println("Usuario registrado exitosamente.");
+                        }
+                    } catch (UsuarioYaExisteException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                     break;
                 case 3:
                     VistaConsola.mostrarMensaje("👋 ¡Hasta luego!");

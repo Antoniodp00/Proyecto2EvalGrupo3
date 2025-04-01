@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.UsuarioYaExisteException;
 import model.*;
 import utilidades.HashUtil;
 import utilidades.Utilidades;
@@ -19,8 +20,9 @@ public class UsuarioController {
     }
 
     /**
-     * Registra un nuevo usuario en el sistema
-     * @return true si el registro fue exitoso, false si el usuario ya existe
+     * Registra un nuevo usuario en el sistema.
+     * @return true si el registro fue exitoso, false si el usuario ya existe.
+     * @throws UsuarioYaExisteException si el usuario ya está registrado.
      */
     public boolean registrarUsuario() {
         int tipo = Menus.menuSelectTipoUsuarioRegistro();
@@ -29,15 +31,14 @@ public class UsuarioController {
 
         listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
 
-        if (listaUsuarios.buscar(usuario.getNombreUsuario()) == null) {
-            listaUsuarios.agregar(usuario);
-            listaUsuarios.guardarXML(archivo);
-            VistaConsola.mostrarMensaje("Registro guardado en " + archivo);
-            return true;
-        } else {
-            VistaConsola.mostrarMensaje("El usuario ya existe en " + archivo);
-            return false;
+        if (listaUsuarios.buscar(usuario.getNombreUsuario()) != null) {
+            throw new UsuarioYaExisteException("El usuario " + usuario.getNombreUsuario() + " ya existe en " + archivo);
         }
+
+        listaUsuarios.agregar(usuario);
+        listaUsuarios.guardarXML(archivo);
+        VistaConsola.mostrarMensaje("Registro guardado en " + archivo);
+        return true;
     }
 
     /**
