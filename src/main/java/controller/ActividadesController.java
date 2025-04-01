@@ -194,7 +194,7 @@ public class ActividadesController {
         Set<Actividad> actividades = listaActividades.getActividades();
 
         if (actividades.isEmpty()) {
-            VistaConsola.mostrarMensaje("❌ No hay Activiades disponibles.");
+            VistaConsola.mostrarMensaje("❌ No hay Activiadess disponibles.");
             return;
         }
 
