@@ -82,4 +82,14 @@ public class ActividadesController {
             VistaConsola.mostrarMensaje("Error: Datos ingresados no válidos.");
         }
     }
+
+    public static boolean asignarVoluntario(UsuarioCreador creador, UsuarioVoluntario voluntario, Actividad actividad) {
+        if (voluntario.estaEnActividad(actividad)) {
+            System.out.println("El voluntario ya está asignado a esta actividad.");
+            return false;
+        }
+        voluntario.agregarActividad(actividad);
+        creador.asignarVoluntario(voluntario, actividad);
+        return true;
+    }
 }
