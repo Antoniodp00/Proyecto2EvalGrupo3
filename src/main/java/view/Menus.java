@@ -102,7 +102,7 @@ public class Menus {
      *
      * @return La opción seleccionada por el usuario.
      */
-    public static int MenuInstancias() {
+    public static int MenuIniciativas() {
         System.out.println(BLUE + "\n🏗️ ===== MENÚ DE INICIATIVAS =====" + RESET);
         System.out.println("1. 🏗️ Crear Iniciativa");
         System.out.println("2. 📜 Mostrar todas las Iniciativas");

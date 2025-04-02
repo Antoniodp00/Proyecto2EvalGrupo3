@@ -36,7 +36,6 @@ public class ActividadesController {
     public void registrarActividad() {
         ListaIniciativas listaIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
         Actividad actividad = VistaConsolaActividad.pideActividad(); // Solicita los datos de la actividad
-
         // Validar que la iniciativa asociada existe
         if (!listaIniciativas.existeIniciativa(actividad.getIniciativaAsociada())) {
             VistaConsola.mostrarMensaje("❌ Error: La iniciativa especificada no existe.");

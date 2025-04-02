@@ -68,7 +68,7 @@ public class SesionController {
             opcion = Menus.MenuCreador();
             switch (opcion) {
                 case 1:
-                    mostrarMenuInstancias(creador);
+                    mostrarMenuIniciativas(creador);
                     break;
                 case 2:
                     mostrarMenuActividades(creador);
@@ -85,10 +85,10 @@ public class SesionController {
     /**
      * Muestra el menú para gestionar instancias (iniciativas) del usuario creador.
      */
-    private void mostrarMenuInstancias(UsuarioCreador creador) {
+    private void mostrarMenuIniciativas(UsuarioCreador creador) {
         int opcion;
         do {
-            opcion = Menus.MenuInstancias();
+            opcion = Menus.MenuIniciativas();
             switch (opcion) {
                 case 1:
                     new CreadorController().crearIniciativa(creador);

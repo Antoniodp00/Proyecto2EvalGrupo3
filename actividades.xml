@@ -75,4 +75,14 @@
         <estado>EN_PROGRESO</estado>
         <comentario></comentario>
     </actividad>
+    <actividad>
+        <nombre>Recogida plasticos</nombre>
+        <descripcion>recogida</descripcion>
+        <responsable></responsable>
+        <iniciativa>CiudadPLus</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
 </actividades>

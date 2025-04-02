@@ -49,4 +49,11 @@
         <password>$2a$12$gR0899UGq69nB82HGbsApOCPFIVKMF/3jAmwSr4s2iVLG2ZCu0C6O</password>
         <ONG>Unicef</ONG>
     </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>fran@gmail.com</email>
+        <nombre>Fran</nombre>
+        <nombreUsuario>fransi</nombreUsuario>
+        <password>$2a$12$6TzgFYsbPkgvI6xPcoIJg.kynassdsIeSp3kFCpwxwgMDbXDJ4dPy</password>
+        <ONG>Unicef</ONG>
+    </usuario>
 </usuarios>

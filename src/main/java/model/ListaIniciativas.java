@@ -116,12 +116,13 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
      * @return `true` si la iniciativa existe, `false` en caso contrario.
      */
     public boolean existeIniciativa(String nombreActividad) {
+        boolean existe = false;
         for (Iniciativa i : iniciativas) {
             if (i.getNombre().equals(nombreActividad)) {
-                return true;
+               existe = true;
             }
         }
-        return false;
+return existe;
     }
 
     /**
