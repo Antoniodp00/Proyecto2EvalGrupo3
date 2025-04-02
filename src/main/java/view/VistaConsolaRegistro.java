@@ -65,8 +65,6 @@ public class VistaConsolaRegistro {
                 System.out.println(RED + "⚠️ Opción no válida. Inténtelo de nuevo." + RESET);
                 break;
         }
-
-        System.out.println(GREEN + "\n✅ Registro completado con éxito!" + RESET);
         return usuario;
     }
 

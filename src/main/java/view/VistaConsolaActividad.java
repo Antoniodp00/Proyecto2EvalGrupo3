@@ -51,7 +51,6 @@ public class VistaConsolaActividad {
             actividad.setFechaFin(pedirFecha("Ingrese la fecha de fin (YYYY-MM-DD): "));
         }
 
-        System.out.println(CYAN + "\n✅ Actividad creada con éxito." + RESET);
         return actividad;
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Iniciativas>
     <iniciativa>
-        <nombre>CiudadLimpia</nombre>
-        <descripcion>Mejoremos nuestra ciudad</descripcion>
-        <creador>antoniodp</creador>
+        <nombre>AlimentemosEsperanza</nombre>
+        <descripcion>Recolección de alimentos para personas necesitadas</descripcion>
+        <creador>maria89</creador>
     </iniciativa>
     <iniciativa>
         <nombre>Reforestemos</nombre>
@@ -11,14 +11,29 @@
         <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
+        <nombre>BibliotecaLibre</nombre>
+        <descripcion>Intercambio de libros en espacios públicos</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>CiudadLimpia</nombre>
+        <descripcion>Mejoremos nuestra ciudad</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>Campo</nombre>
+        <descripcion>Mejoremos el campo</descripcion>
+        <creador>juanp</creador>
+    </iniciativa>
+    <iniciativa>
         <nombre>ReciclajeComunitario</nombre>
         <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
         <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>AlimentemosEsperanza</nombre>
-        <descripcion>Recolección de alimentos para personas necesitadas</descripcion>
-        <creador>maria89</creador>
+        <nombre>OceanoLimpio</nombre>
+        <descripcion>Limpieza de playas y mares</descripcion>
+        <creador>carlitoss</creador>
     </iniciativa>
     <iniciativa>
         <nombre>ParqueSeguro</nombre>
@@ -29,15 +44,5 @@
         <nombre>SaludParaTodos</nombre>
         <descripcion>Campañas médicas gratuitas</descripcion>
         <creador>laurita</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>OceanoLimpio</nombre>
-        <descripcion>Limpieza de playas y mares</descripcion>
-        <creador>carlitoss</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>BibliotecaLibre</nombre>
-        <descripcion>Intercambio de libros en espacios públicos</descripcion>
-        <creador>antoniodp</creador>
     </iniciativa>
 </Iniciativas>
