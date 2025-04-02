@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Iniciativas>
     <iniciativa>
-        <nombre>ParqueSeguro</nombre>
-        <descripcion>Mejorando la seguridad en los parques</descripcion>
-        <creador>juanito23</creador>
+        <nombre>SaludParaTodos</nombre>
+        <descripcion>Campañas médicas gratuitas</descripcion>
+        <creador>laurita</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>CiudadLimpia</nombre>
+        <descripcion>Mejoremos nuestra ciudad</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>PLayaGreen</nombre>
+        <descripcion>mejoremos las playas</descripcion>
+        <creador>ana1</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>CiudadPLus</nombre>
+        <descripcion>Mejoremos la ciudad</descripcion>
+        <creador>fransi</creador>
     </iniciativa>
     <iniciativa>
         <nombre>Campo</nombre>
@@ -11,14 +26,14 @@
         <creador>juanp</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>BibliotecaLibre</nombre>
-        <descripcion>Intercambio de libros en espacios públicos</descripcion>
-        <creador>antoniodp</creador>
+        <nombre>Luzverde</nombre>
+        <descripcion>Mejoremos la ciudad</descripcion>
+        <creador>manu</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>CiudadPLus</nombre>
-        <descripcion>Mejoremos la ciudad</descripcion>
-        <creador>fransi</creador>
+        <nombre>ReciclajeComunitario</nombre>
+        <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
+        <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
         <nombre>AlimentemosEsperanza</nombre>
@@ -31,9 +46,14 @@
         <creador>carlitoss</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>SaludParaTodos</nombre>
-        <descripcion>Campañas médicas gratuitas</descripcion>
-        <creador>laurita</creador>
+        <nombre>ParqueSeguro</nombre>
+        <descripcion>Mejorando la seguridad en los parques</descripcion>
+        <creador>juanito23</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>BibliotecaLibre</nombre>
+        <descripcion>Intercambio de libros en espacios públicos</descripcion>
+        <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
         <nombre>Reforestemos</nombre>
@@ -41,13 +61,8 @@
         <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>CiudadLimpia</nombre>
-        <descripcion>Mejoremos nuestra ciudad</descripcion>
-        <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>ReciclajeComunitario</nombre>
-        <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
-        <creador>antoniodp</creador>
+        <nombre>TuPueblo</nombre>
+        <descripcion>Mejoremos nuestros pueblos</descripcion>
+        <creador>antonio07</creador>
     </iniciativa>
 </Iniciativas>

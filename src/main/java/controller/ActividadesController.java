@@ -64,15 +64,8 @@ public class ActividadesController {
      */
     public void actualizarActividad(UsuarioCreador creador) {
         String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a actualizar:");
-        Actividad actividad = null;
-
-
-        // Buscar la actividad en la lista
-        for (Actividad act : listaActividades.getActividades()) {
-            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
-                actividad = act;
-            }
-        }
+        Actividad actividad = listaActividades.buscar(nombreActividad);
+        ;
 
         if (actividad != null) {
             actividad.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la actividad:"));
@@ -91,18 +84,10 @@ public class ActividadesController {
      */
     public void eliminarActividad(UsuarioCreador creador) {
         String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a eliminar:");
-        Actividad actividad = null;
-
-
-        // Buscar la actividad en la lista
-        for (Actividad act : listaActividades.getActividades()) {
-            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
-                actividad = act;
-            }
-        }
+        Actividad actividad = listaActividades.buscar(nombreActividad);
 
         if (actividad != null) {
-            listaActividades.getActividades().remove(actividad);
+            listaActividades.eliminar(actividad);
             listaActividades.guardarXML(ARCHIVO_XML);
             VistaConsola.mostrarMensaje("✅ Actividad eliminada exitosamente.");
         } else {
@@ -130,7 +115,7 @@ public class ActividadesController {
 
         if (voluntario != null && actividad != null) {
             Iniciativa iniciativa = listaIniciativas.buscar(actividad.getIniciativaAsociada());
-            if (iniciativa != null && iniciativa.getCreador().equals(creador.getNombre())) {
+            if (iniciativa != null && iniciativa.getCreador().equals(creador.getNombreUsuario())) {
                 if (actividad.getResponsable() == null || actividad.getResponsable().isEmpty()) {
                     actividad.setResponsable(voluntario.getNombre());
                     actividad.setEstado(Estado.EN_PROGRESO);
@@ -188,7 +173,7 @@ public class ActividadesController {
 
         if (actividad == null) {
             VistaConsola.mostrarMensaje("❌ Error: Actividad no encontrada.");
-        } else if(actividad.getEstado().equals(Estado.EN_PROGRESO)) {
+        } else if (actividad.getEstado().equals(Estado.EN_PROGRESO)) {
             VistaConsola.mostrarMensaje("¿Quieres añadir un comentario sobre la actividad? (Deja en blanco para omitir)");
             String comentario = sc.nextLine();
             actividad.setComentario(comentario);
@@ -199,7 +184,7 @@ public class ActividadesController {
             voluntario.sumarPuntos();
             listaVoluntarios.actualizar(voluntario);
             listaVoluntarios.guardarXML("voluntarios.xml");
-        }else {
+        } else {
             VistaConsola.mostrarMensaje("❌ Error: Actividad completada.");
         }
     }
@@ -223,7 +208,7 @@ public class ActividadesController {
         } else {
             VistaConsola.mostrarMensaje("Actividades disponibles en tus iniciativas:");
             for (Actividad actividad : actividadesFiltradas) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")- "+actividad.getResponsable()+" - "+actividad.getEstado());
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")- " + actividad.getResponsable() + " - " + actividad.getEstado());
             }
         }
     }
@@ -248,7 +233,7 @@ public class ActividadesController {
         listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
         for (Actividad actividad : listaActividades.getActividades()) {
             if (actividad.getResponsable().equals(voluntario.getNombreUsuario())) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") -"+actividad.getEstado());
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") -" + actividad.getEstado());
             }
         }
     }

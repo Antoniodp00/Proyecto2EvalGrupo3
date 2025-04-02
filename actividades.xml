@@ -49,6 +49,26 @@
         <comentario></comentario>
     </actividad>
     <actividad>
+        <nombre>Regogida residuos</nombre>
+        <descripcion>recolectemos residuos</descripcion>
+        <responsable></responsable>
+        <iniciativa>PLayaGreen</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Limpieza del parque</nombre>
+        <descripcion>Limpiar el parque de los patos</descripcion>
+        <responsable></responsable>
+        <iniciativa>TuPueblo</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
         <nombre>Limpieza de playas</nombre>
         <descripcion>Recoger residuos en la costa y concienciar sobre la contaminación.</descripcion>
         <responsable></responsable>

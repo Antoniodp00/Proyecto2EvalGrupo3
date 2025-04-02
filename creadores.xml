@@ -29,6 +29,27 @@
         <ONG>WWF</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>antonio@gmail.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antonio07</nombreUsuario>
+        <password>$2a$12$7Bc7dlmsMYnEom1VKeZJwOXHsRidl0fydsGrvpqLEcU5WRqPADguS</password>
+        <ONG>Unicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>ana@gmail.com</email>
+        <nombre>Ana</nombre>
+        <nombreUsuario>ana1</nombreUsuario>
+        <password>$2a$12$diSGydLMNScgOn/rMYcgLuDP8TTnOk/jfEiIN1rKMiuWrWY9u11p2</password>
+        <ONG>Caritas</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>manuel@gmail.com</email>
+        <nombre>Manuel</nombre>
+        <nombreUsuario>manu</nombreUsuario>
+        <password>$2a$12$pDr.L6z8zue.tZb8TfSzlOvJOHTXiFKUwJOWK7z5iesn6yru/Jf6.</password>
+        <ONG>Caritas</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>laura@gmail.com</email>
         <nombre>Laura</nombre>
         <nombreUsuario>laurita</nombreUsuario>
