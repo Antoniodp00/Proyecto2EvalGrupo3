@@ -73,13 +73,13 @@ public class Menus {
     public static int MenuVoluntario() {
         System.out.println(CYAN + "\n💙 ===== MENÚ DEL VOLUNTARIO =====" + RESET);
         System.out.println("1. 📜 Listado de Actividades Disponibles");
-        System.out.println("1. 📜 Listado de mis Actividades");
-        System.out.println("2. ✍️ Apuntarse a una actividad");
-        System.out.println("3. ✅ Finalizar una actividad");
-        System.out.println("4. 🎖️ Consultar Mis Puntos");
-        System.out.println("5. 🎁 Listar Premios");
-        System.out.println("6. 🔄 Canjear Puntos");
-        System.out.println("7. 🚪 Cerrar sesión");
+        System.out.println("2. 📜 Listado de mis Actividades");
+        System.out.println("3. ✍️ Apuntarse a una actividad");
+        System.out.println("4. ✅ Finalizar una actividad");
+        System.out.println("5. 🎖️ Consultar Mis Puntos");
+        System.out.println("6. 🎁 Listar Premios");
+        System.out.println("7. 🔄 Canjear Puntos");
+        System.out.println("8. 🚪 Cerrar sesión");
         return Utilidades.leeEntero(YELLOW + "Elige una opción: " + RESET);
     }
 
