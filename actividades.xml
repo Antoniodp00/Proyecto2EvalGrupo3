@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<actividades>
+    <actividad>
+        <nombre>Recogida de plásticos</nombre>
+        <descripcion>Recolección de plásticos en parques y calles para reciclaje.</descripcion>
+        <responsable>juanito23</responsable>
+        <iniciativa>ReciclajeComunitario</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <estado>EN_PROGRESO</estado>
+        <comentario>Se han recogido 50kg de plásticos hasta ahora.</comentario>
+    </actividad>
+    <actividad>
+        <nombre>Recolección de alimentos</nombre>
+        <descripcion>Organización de una colecta de alimentos para personas necesitadas.</descripcion>
+        <responsable>laurita</responsable>
+        <iniciativa>AlimentemosEsperanza</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-05</fechaFin>
+        <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Jornada médica gratuita</nombre>
+        <descripcion>Consulta médica y chequeos gratuitos para la comunidad.</descripcion>
+        <responsable>antoniodp</responsable>
+        <iniciativa>SaludParaTodos</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-02</fechaFin>
+        <estado>COMPLETADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Plantación de árboles</nombre>
+        <descripcion>Reforestación de zonas urbanas con árboles autóctonos.</descripcion>
+        <responsable>maria89</responsable>
+        <iniciativa>Reforestemos</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <estado>EN_PROGRESO</estado>
+        <comentario>Hemos comenzado con la primera fase de plantación.</comentario>
+    </actividad>
+    <actividad>
+        <nombre>Limpieza de parques</nombre>
+        <descripcion>Limpiemos los parques para que los niños puedan jugar sin problemas.</descripcion>
+        <responsable>antoniodp</responsable>
+        <iniciativa>CiudadLimpia</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-02</fechaFin>
+        <estado>COMPLETADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Limpieza de playas</nombre>
+        <descripcion>Recoger residuos en la costa y concienciar sobre la contaminación.</descripcion>
+        <responsable></responsable>
+        <iniciativa>OceanoLimpio</iniciativa>
+        <estado>NO_INICIADA</estado>
+        <comentario>Se buscan voluntarios.</comentario>
+    </actividad>
+    <actividad>
+        <nombre>Instalación de iluminación en parques</nombre>
+        <descripcion>Colocación de nuevas luces LED en zonas recreativas.</descripcion>
+        <responsable>carlitoss</responsable>
+        <iniciativa>ParqueSeguro</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <estado>EN_PROGRESO</estado>
+        <comentario>Se ha instalado el 30% de las luces previstas.</comentario>
+    </actividad>
+    <actividad>
+        <nombre>Intercambio de libros</nombre>
+        <descripcion>Evento para fomentar la lectura y el intercambio de libros.</descripcion>
+        <responsable>maria89</responsable>
+        <iniciativa>BibliotecaLibre</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-04</fechaFin>
+        <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+</actividades>
