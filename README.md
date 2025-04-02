@@ -38,7 +38,7 @@ El sistema sigue un modelo relacional donde las entidades principales son:
 ---
 
 ### 🔹 Diagrama Entidad-Relación (ER)  
-<img width="543" alt="image" src="https://github.com/user-attachments/assets/8e8d9506-b717-46a3-9a66-aed4560c06de" />
+![img.png](img.png)
 
 
 ### 🔹 Diagrama de Clases  
