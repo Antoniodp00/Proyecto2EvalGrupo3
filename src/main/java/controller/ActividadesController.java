@@ -189,7 +189,7 @@ public class ActividadesController {
 
         if (actividad == null) {
             VistaConsola.mostrarMensaje("❌ Error: Actividad no encontrada.");
-        } else {
+        } else if(actividad.getEstado().equals(Estado.EN_PROGRESO)) {
             VistaConsola.mostrarMensaje("¿Quieres añadir un comentario sobre la actividad? (Deja en blanco para omitir)");
             String comentario = sc.nextLine();
             actividad.setComentario(comentario);
@@ -197,9 +197,11 @@ public class ActividadesController {
             actividad.setEstado(Estado.COMPLETADA);
             VistaConsola.mostrarMensaje("Estado de la actividad actualizado a: COMPLETADA");
             listaActividades.guardarXML(ARCHIVO_XML);
-            voluntario.sumarPuntos(50);
+            voluntario.sumarPuntos();
             listaVoluntarios.actualizar(voluntario);
             listaVoluntarios.guardarXML("voluntarios.xml");
+        }else {
+            VistaConsola.mostrarMensaje("❌ Error: Actividad completada.");
         }
     }
 

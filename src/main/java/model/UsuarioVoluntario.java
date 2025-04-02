@@ -15,6 +15,7 @@ public class UsuarioVoluntario extends Usuario {
     private static final String ARCHIVO_XML = "voluntarios.xml"; // Nombre del archivo XML
 
     private int puntos;
+    private static final int PUNTOSPORACTIVIDAD = 100;
 
     /**
      * Constructor con parámetros para inicializar un usuario voluntario.
@@ -47,16 +48,12 @@ public class UsuarioVoluntario extends Usuario {
     /**
      * Suma una cantidad de puntos al usuario.
      *
-     * @param cantidad Cantidad de puntos a sumar.
+     *
      */
-    public void sumarPuntos(int cantidad) {
-        if (cantidad >0) {
-            this.puntos += cantidad;
-            setPuntos(this.puntos);
-            VistaConsola.mostrarMensaje("✅ Se han añadido " + cantidad + " puntos. Total: " + this.puntos);
-        } else {
-            VistaConsola.mostrarMensaje("⚠ La cantidad de puntos a sumar debe ser mayor que 0.");
-        }
+    public void sumarPuntos() {
+        this.puntos += PUNTOSPORACTIVIDAD;
+        setPuntos(this.puntos);
+        VistaConsola.mostrarMensaje("✅ Se han añadido " + PUNTOSPORACTIVIDAD + " puntos. Total: " + this.puntos);
     }
 
     /**
