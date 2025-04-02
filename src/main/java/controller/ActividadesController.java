@@ -117,9 +117,11 @@ public class ActividadesController {
             Iniciativa iniciativa = listaIniciativas.buscar(actividad.getIniciativaAsociada());
             if (iniciativa != null && iniciativa.getCreador().equals(creador.getNombreUsuario())) {
                 if (actividad.getResponsable() == null || actividad.getResponsable().isEmpty()) {
-                    actividad.setResponsable(voluntario.getNombre());
+                    actividad.setResponsable(voluntario.getNombreUsuario());
                     actividad.setEstado(Estado.EN_PROGRESO);
                     actividad.setFechaInicio(java.time.LocalDate.now());
+                    listaActividades.actualizar(actividad);
+                    listaActividades.guardarXML(ARCHIVO_XML);
                     VistaConsola.mostrarMensaje("Voluntario " + voluntario.getNombre() + " asignado a la actividad: " + actividad.getNombre());
                 } else {
                     VistaConsola.mostrarMensaje("La actividad ya tiene un responsable asignado.");

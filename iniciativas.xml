@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Iniciativas>
     <iniciativa>
+        <nombre>Reforestemos</nombre>
+        <descripcion>Plantemos árboles para un futuro verde</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
         <nombre>SaludParaTodos</nombre>
         <descripcion>Campañas médicas gratuitas</descripcion>
         <creador>laurita</creador>
@@ -11,44 +16,9 @@
         <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>PLayaGreen</nombre>
-        <descripcion>mejoremos las playas</descripcion>
-        <creador>ana1</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>CiudadPLus</nombre>
-        <descripcion>Mejoremos la ciudad</descripcion>
-        <creador>fransi</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>Campo</nombre>
-        <descripcion>Mejoremos el campo</descripcion>
-        <creador>juanp</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>Luzverde</nombre>
-        <descripcion>Mejoremos la ciudad</descripcion>
-        <creador>manu</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>ReciclajeComunitario</nombre>
-        <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
-        <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
         <nombre>AlimentemosEsperanza</nombre>
         <descripcion>Recolección de alimentos para personas necesitadas</descripcion>
         <creador>maria89</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>OceanoLimpio</nombre>
-        <descripcion>Limpieza de playas y mares</descripcion>
-        <creador>carlitoss</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>ParqueSeguro</nombre>
-        <descripcion>Mejorando la seguridad en los parques</descripcion>
-        <creador>juanito23</creador>
     </iniciativa>
     <iniciativa>
         <nombre>BibliotecaLibre</nombre>
@@ -56,13 +26,18 @@
         <creador>antoniodp</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>Reforestemos</nombre>
-        <descripcion>Plantemos árboles para un futuro verde</descripcion>
-        <creador>antoniodp</creador>
+        <nombre>ParqueSeguro</nombre>
+        <descripcion>Mejorando la seguridad en los parques</descripcion>
+        <creador>juanito23</creador>
     </iniciativa>
     <iniciativa>
-        <nombre>TuPueblo</nombre>
-        <descripcion>Mejoremos nuestros pueblos</descripcion>
-        <creador>antonio07</creador>
+        <nombre>OceanoLimpio</nombre>
+        <descripcion>Limpieza de playas y mares</descripcion>
+        <creador>carlitoss</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>ReciclajeComunitario</nombre>
+        <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
+        <creador>antoniodp</creador>
     </iniciativa>
 </Iniciativas>

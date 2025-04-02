@@ -8,6 +8,13 @@
         <ONG>Caritas</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>miguel@gmail.com</email>
+        <nombre>Miguel</nombre>
+        <nombreUsuario>miguelillo</nombreUsuario>
+        <password>$2a$12$R/mE9CgQLHuEKv5Cng8FFekQy6tTdTcHmwP/zgiJpAgmOnX1yNAP6</password>
+        <ONG>Unicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>maria@gmail.com</email>
         <nombre>Maria</nombre>
         <nombreUsuario>maria89</nombreUsuario>
