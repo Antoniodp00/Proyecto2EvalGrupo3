@@ -67,6 +67,16 @@
         <comentario>Se buscan voluntarios.</comentario>
     </actividad>
     <actividad>
+        <nombre>Limpio</nombre>
+        <descripcion>de</descripcion>
+        <responsable>carlitoss</responsable>
+        <iniciativa>VillaVerde</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>EN_PROGRESO</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
         <nombre>Instalación de iluminación en parques</nombre>
         <descripcion>Colocación de nuevas luces LED en zonas recreativas.</descripcion>
         <responsable>carlitoss</responsable>
@@ -74,6 +84,16 @@
         <fechaInicio>2025-04-02</fechaInicio>
         <estado>EN_PROGRESO</estado>
         <comentario>Se ha instalado el 30% de las luces previstas.</comentario>
+    </actividad>
+    <actividad>
+        <nombre>Mejor playa</nombre>
+        <descripcion>Mejoremos las playas</descripcion>
+        <responsable>carlitoss</responsable>
+        <iniciativa>VillaVerde</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>EN_PROGRESO</estado>
+        <comentario></comentario>
     </actividad>
     <actividad>
         <nombre>Intercambio de libros</nombre>

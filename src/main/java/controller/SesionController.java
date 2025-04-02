@@ -23,7 +23,7 @@ public class SesionController {
 
             switch (opcion) {
                 case 1:
-                    manejarSesion();
+                     manejarSesion();
                     break;
                 case 2:
                     try {

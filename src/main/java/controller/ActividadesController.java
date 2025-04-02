@@ -196,6 +196,7 @@ public class ActividadesController {
      */
     public void listarActividades(UsuarioCreador creador) {
         ListaIniciativas listaIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
+        ListaActividades listaActividades = ListaActividades.cargarDesdeXML(ARCHIVO_XML);
         Set<Actividad> actividadesFiltradas = new HashSet<>();
 
         for (Actividad actividad : listaActividades.getActividades()) {
