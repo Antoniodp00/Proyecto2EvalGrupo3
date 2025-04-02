@@ -222,7 +222,7 @@ public class ActividadesController {
         } else {
             VistaConsola.mostrarMensaje("Actividades disponibles en tus iniciativas:");
             for (Actividad actividad : actividadesFiltradas) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")");
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")- "+actividad.getResponsable()+" - "+actividad.getEstado());
             }
         }
     }
@@ -247,7 +247,7 @@ public class ActividadesController {
         listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
         for (Actividad actividad : listaActividades.getActividades()) {
             if (actividad.getResponsable().equals(voluntario.getNombreUsuario())) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")");
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") -"+actividad.getEstado());
             }
         }
     }

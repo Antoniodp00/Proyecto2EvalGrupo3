@@ -16,7 +16,7 @@
         <iniciativa>AlimentemosEsperanza</iniciativa>
         <fechaInicio>2025-04-02</fechaInicio>
         <fechaFin>2025-04-05</fechaFin>
-        <estado>NO_INICIADA</estado>
+        <estado>EN_PROGRESO</estado>
         <comentario></comentario>
     </actividad>
     <actividad>
@@ -72,7 +72,7 @@
         <iniciativa>BibliotecaLibre</iniciativa>
         <fechaInicio>2025-04-02</fechaInicio>
         <fechaFin>2025-04-04</fechaFin>
-        <estado>NO_INICIADA</estado>
+        <estado>EN_PROGRESO</estado>
         <comentario></comentario>
     </actividad>
 </actividades>
