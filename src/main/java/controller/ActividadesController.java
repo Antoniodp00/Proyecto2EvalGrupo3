@@ -51,21 +51,74 @@ public class ActividadesController {
 
         try {
             listaActividades.agregarActividad(actividad);
-            XMLManager.writeXML(listaActividades, ARCHIVO_XML);
+            listaActividades.guardarXML(ARCHIVO_XML);
             VistaConsola.mostrarMensaje("✅ Actividad registrada exitosamente.");
         } catch (IllegalArgumentException e) {
             VistaConsola.mostrarMensaje("❌ Error al registrar la actividad: " + e.getMessage());
         }
     }
 
+    /**
+     * Actualiza una actividad existente cambiando su nombre y descripción.
+     *
+     * @param creador Usuario creador que desea actualizar la actividad.
+     */
+    public void actualizarActividad(UsuarioCreador creador) {
+        String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a actualizar:");
+        Actividad actividad = null;
+
+
+        // Buscar la actividad en la lista
+        for (Actividad act : listaActividades.getActividades()) {
+            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
+                actividad = act;
+            }
+        }
+
+        if (actividad != null) {
+            actividad.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la actividad:"));
+            actividad.setDescripcion(Utilidades.leeString("Introduce la nueva descripción de la actividad:"));
+            listaActividades.guardarXML(ARCHIVO_XML);
+            VistaConsola.mostrarMensaje("✅ Actividad actualizada exitosamente.");
+        } else {
+            VistaConsola.mostrarMensaje("❌ Actividad no encontrada.");
+        }
+    }
 
     /**
-     * Asigna un voluntario a una actividad si no tiene responsable, verificando que la actividad pertenezca a las iniciativas del creador.
+     * Elimina una actividad de la lista si existe.
+     *
+     * @param creador Usuario creador que desea eliminar una actividad.
+     */
+    public void eliminarActividad(UsuarioCreador creador) {
+        String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a eliminar:");
+        Actividad actividad = null;
+
+
+        // Buscar la actividad en la lista
+        for (Actividad act : listaActividades.getActividades()) {
+            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
+                actividad = act;
+            }
+        }
+
+        if (actividad != null) {
+            listaActividades.getActividades().remove(actividad);
+            listaActividades.guardarXML(ARCHIVO_XML);
+            VistaConsola.mostrarMensaje("✅ Actividad eliminada exitosamente.");
+        } else {
+            VistaConsola.mostrarMensaje("❌ Actividad no encontrada.");
+        }
+    }
+
+    /**
+     * Asigna un voluntario a una actividad si no tiene responsable,
+     * verificando que la actividad pertenezca a una iniciativa creada por el usuario creador.
      */
     public void asignarVoluntario(UsuarioCreador creador) {
         Scanner sc = new Scanner(System.in);
         ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML("voluntarios.xml");
-        ListaActividades listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
+        ListaActividades listaActividades = ListaActividades.cargarDesdeXML(ARCHIVO_XML);
         ListaIniciativas listaIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
 
         VistaConsola.mostrarMensaje("Ingrese el nombre del voluntario:");
@@ -110,28 +163,24 @@ public class ActividadesController {
         if (actividad == null) {
             VistaConsola.mostrarMensaje("❌ Error: Actividad no encontrada.");
         } else if (actividad.getResponsable() == null || actividad.getResponsable().isEmpty()) {
-            actividad.setResponsable(voluntario.getNombre());
+            actividad.setResponsable(voluntario.getNombreUsuario());
             actividad.setEstado(Estado.EN_PROGRESO);
             actividad.setFechaInicio(java.time.LocalDate.now());
             VistaConsola.mostrarMensaje("Te has asignado a la actividad: " + actividad.getNombre());
             listaActividades.agregar(actividad);
-            XMLManager.writeXML(listaActividades, ARCHIVO_XML);
-
+            listaActividades.guardarXML(ARCHIVO_XML);
         } else {
             VistaConsola.mostrarMensaje("La actividad ya tiene un responsable asignado.");
         }
     }
 
-
     /**
-     * Cambia el estado de una actividad a COMPLETADA y solicita la actividad dentro del método.
-     *
-     * @param voluntario El voluntario que intenta cambiar el estado.
+     * Cambia el estado de una actividad a COMPLETADA y permite añadir un comentario.
      */
     public void cambiarEstadoActividad(UsuarioVoluntario voluntario) {
-        ListaUsuarios listaVoluntarios = ListaUsuarios.cargarDesdeXML("voluntairos.xml");
+        ListaUsuarios listaVoluntarios = ListaUsuarios.cargarDesdeXML("voluntarios.xml");
         Scanner sc = new Scanner(System.in);
-        ListaActividades listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
+        ListaActividades listaActividades = ListaActividades.cargarDesdeXML(ARCHIVO_XML);
 
         VistaConsola.mostrarMensaje("Ingrese el nombre de la actividad a completar:");
         String nombreActividad = sc.nextLine();
@@ -141,94 +190,28 @@ public class ActividadesController {
         if (actividad == null) {
             VistaConsola.mostrarMensaje("❌ Error: Actividad no encontrada.");
         } else {
-            Scanner scanner = new Scanner(System.in);
             VistaConsola.mostrarMensaje("¿Quieres añadir un comentario sobre la actividad? (Deja en blanco para omitir)");
-            String comentario = scanner.nextLine();
+            String comentario = sc.nextLine();
             actividad.setComentario(comentario);
             actividad.setFechaFin(java.time.LocalDate.now());
             actividad.setEstado(Estado.COMPLETADA);
             VistaConsola.mostrarMensaje("Estado de la actividad actualizado a: COMPLETADA");
-            listaActividades.agregar(actividad);
-            XMLManager.writeXML(listaActividades, ARCHIVO_XML);
-            voluntario.setPuntos(50);
-            listaVoluntarios.agregar(voluntario);
+            listaActividades.guardarXML(ARCHIVO_XML);
+            voluntario.sumarPuntos(50);
+            listaVoluntarios.actualizar(voluntario);
             listaVoluntarios.guardarXML("voluntarios.xml");
         }
     }
 
     /**
-     * Actualiza una actividad existente cambiando su nombre y descripción.
-     *
-     * @param creador Usuario creador que desea actualizar la actividad.
-     */
-    public void actualizarActividad(UsuarioCreador creador) {
-        String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a actualizar:");
-        Actividad actividad = null;
-
-
-        // Buscar la actividad en la lista
-        for (Actividad act : listaActividades.getActividades()) {
-            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
-                actividad = act;
-            }
-        }
-
-        if (actividad != null) {
-            actividad.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la actividad:"));
-            actividad.setDescripcion(Utilidades.leeString("Introduce la nueva descripción de la actividad:"));
-            XMLManager.writeXML(listaActividades, ARCHIVO_XML);
-            VistaConsola.mostrarMensaje("✅ Actividad actualizada exitosamente.");
-        } else {
-            VistaConsola.mostrarMensaje("❌ Actividad no encontrada.");
-        }
-    }
-
-    /**
-     * Elimina una actividad de la lista si existe.
-     *
-     * @param creador Usuario creador que desea eliminar una actividad.
-     */
-    public void eliminarActividad(UsuarioCreador creador) {
-        String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a eliminar:");
-        Actividad actividad = null;
-
-
-        // Buscar la actividad en la lista
-        for (Actividad act : listaActividades.getActividades()) {
-            if (act.getNombre().equalsIgnoreCase(nombreActividad)&&act.getResponsable().equals(creador.getNombreUsuario())) {
-                actividad = act;
-            }
-        }
-
-        if (actividad != null) {
-            listaActividades.getActividades().remove(actividad);
-            XMLManager.writeXML(listaActividades, ARCHIVO_XML);
-            VistaConsola.mostrarMensaje("✅ Actividad eliminada exitosamente.");
-        } else {
-            VistaConsola.mostrarMensaje("❌ Actividad no encontrada.");
-        }
-    }
-
-
-    /**
-     * Método para listar todos las actividades disponibles.
-     */
-    /**
-     * Método para listar las actividades disponibles que pertenecen a las iniciativas
-     * del usuario creador que lo llama.
+     * Lista todas las actividades que pertenecen a las iniciativas creadas por un usuarioCreador.
      */
     public void listarActividades(UsuarioCreador creador) {
         ListaIniciativas listaIniciativas = ListaIniciativas.cargarDesdeXML("iniciativas.xml");
-        Set<Actividad> actividades = listaActividades.getActividades();
-         // Asumimos que usuarioLogueado tiene un método para obtener el nombre
-
-        // Filtrar las actividades que pertenecen a las iniciativas creadas por el usuario.
         Set<Actividad> actividadesFiltradas = new HashSet<>();
 
-        for (Actividad actividad : actividades) {
-            String nombreIniciativa = actividad.getIniciativaAsociada(); // Asumimos que devuelve el nombre de la iniciativa
-            Iniciativa iniciativa = listaIniciativas.buscar(nombreIniciativa); // Método para obtener iniciativa por nombre
-
+        for (Actividad actividad : listaActividades.getActividades()) {
+            Iniciativa iniciativa = listaIniciativas.buscar(actividad.getIniciativaAsociada());
             if (iniciativa != null && iniciativa.getCreador().equals(creador.getNombreUsuario())) {
                 actividadesFiltradas.add(actividad);
             }
@@ -236,51 +219,37 @@ public class ActividadesController {
 
         if (actividadesFiltradas.isEmpty()) {
             VistaConsola.mostrarMensaje("❌ No hay actividades disponibles en tus iniciativas.");
-        }
-
-        VistaConsola.mostrarMensaje("Actividades disponibles en tus iniciativas:");
-        for (Actividad actividad : actividadesFiltradas) {
-            VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
-        }
-    }
-
-
-    /**
-     * Método para listar todos las actividades disponibles.
-     */
-    public void listarActividadesDisponibles() {
-        Set<Actividad> actividades = listaActividades.getActividades();
-
-        if (actividades.isEmpty()) {
-            VistaConsola.mostrarMensaje("❌ No hay Activiadess disponibles.");
-            return;
-        }
-
-        VistaConsola.mostrarMensaje("Actividades disponibles:");
-        for (Actividad actividad : actividades) {
-            if (actividad.getResponsable().isEmpty()) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
+        } else {
+            VistaConsola.mostrarMensaje("Actividades disponibles en tus iniciativas:");
+            for (Actividad actividad : actividadesFiltradas) {
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")");
             }
         }
     }
 
     /**
-     * Método para listar todos las actividades disponibles.
+     * Lista todas las actividades sin responsable asignado.
+     */
+    public void listarActividadesDisponibles() {
+        VistaConsola.mostrarMensaje("Actividades disponibles:");
+        for (Actividad actividad : listaActividades.getActividades()) {
+            if (actividad.getResponsable().isEmpty()) {
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")");
+            }
+        }
+    }
+
+    /**
+     * Lista las actividades en las que un voluntario está asignado.
      */
     public void listarMisActividades(UsuarioVoluntario voluntario) {
-        Set<Actividad> actividades = listaActividades.getActividades();
-
-        if (actividades.isEmpty()) {
-            VistaConsola.mostrarMensaje("❌ No hay Activiadess disponibles.");
-            return;
-        }
-
-        VistaConsola.mostrarMensaje("Actividades disponibles:");
-        for (Actividad actividad : actividades) {
+        VistaConsola.mostrarMensaje("Tus actividades:");
+        listaActividades = ListaActividades.cargarDesdeXML("actividades.xml");
+        for (Actividad actividad : listaActividades.getActividades()) {
             if (actividad.getResponsable().equals(voluntario.getNombreUsuario())) {
-                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ") encargada a: " + actividad.getResponsable());
-
+                VistaConsola.mostrarMensaje("- " + actividad.getNombre() + " (" + actividad.getIniciativaAsociada() + ")");
             }
         }
     }
 }
+

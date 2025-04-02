@@ -56,6 +56,22 @@ public class ListaUsuarios implements SCRUD<Usuario> {
     }
 
     /**
+     * Actualiza un usuario existente en la lista.
+     * @param usuarioActualizado Usuario con los datos actualizados.
+     * @return `true` si el usuario fue actualizado, `false` si no se encontró.
+     */
+    public boolean actualizar(Usuario usuarioActualizado) {
+        for (Usuario u : usuarios) {
+            if (u.getNombreUsuario().equals(usuarioActualizado.getNombreUsuario())) {
+                usuarios.remove(u);
+                usuarios.add(usuarioActualizado);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Busca un usuario por su nombre de usuario.
      * @param nombreUsuario Nombre de usuario a buscar.
      * @return Usuario encontrado o `null` si no existe.

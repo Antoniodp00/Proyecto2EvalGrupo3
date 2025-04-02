@@ -82,7 +82,7 @@ public class CreadorController {
         if (iniciativa != null) {
             iniciativa.setNombre(Utilidades.leeString("Introduce el nuevo nombre de la iniciativa:"));
             iniciativa.setDescripcion(Utilidades.leeString("Introduce la nueva descripción:"));
-            XMLManager.writeXML(listaIniciativas, ARCHIVO_INICIATIVAS);
+            listaIniciativas.guardarXML(ARCHIVO_INICIATIVAS);
             VistaConsola.mostrarMensaje("✅ Iniciativa actualizada exitosamente.");
         } else {
             VistaConsola.mostrarMensaje("❌ Iniciativa no encontrada.");
@@ -109,7 +109,7 @@ public class CreadorController {
 
         if (iniciativa != null) {
             listaIniciativas.getIniciativas().remove(iniciativa);
-            XMLManager.writeXML(listaIniciativas, ARCHIVO_INICIATIVAS);
+           listaIniciativas.guardarXML(ARCHIVO_INICIATIVAS);
             VistaConsola.mostrarMensaje("✅ Iniciativa eliminada exitosamente.");
         } else {
             VistaConsola.mostrarMensaje("❌ Iniciativa no encontrada.");

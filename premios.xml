@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Premios>
     <premio>
-        <nombre>Balon</nombre>
-        <descripcion>Balon futbol</descripcion>
-        <costo>13000</costo>
+        <nombre>Bono 10 euros Amazon</nombre>
+        <descripcion>Bono para usarlo en Amazon.</descripcion>
+        <costo>50</costo>
+    </premio>
+    <premio>
+        <nombre>Entrada Cine</nombre>
+        <descripcion>Entrada gratuita para una película en cines seleccionados.</descripcion>
+        <costo>30</costo>
+    </premio>
+    <premio>
+        <nombre>Suscripción 1 mes Spotify</nombre>
+        <descripcion>Un mes de suscripción premium en Spotify.</descripcion>
+        <costo>40</costo>
+    </premio>
+    <premio>
+        <nombre>Tarjeta regalo 20 euros</nombre>
+        <descripcion>Tarjeta de regalo para compras en tiendas adheridas.</descripcion>
+        <costo>80</costo>
+    </premio>
+    <premio>
+        <nombre>Mochila ecológica</nombre>
+        <descripcion>Mochila hecha con materiales reciclados.</descripcion>
+        <costo>60</costo>
+    </premio>
+    <premio>
+        <nombre>Descuento en transporte público</nombre>
+        <descripcion>Descuento en la tarjeta de transporte por un mes.</descripcion>
+        <costo>70</costo>
     </premio>
 </Premios>
