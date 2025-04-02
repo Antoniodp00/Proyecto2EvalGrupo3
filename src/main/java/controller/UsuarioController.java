@@ -128,37 +128,69 @@ public class UsuarioController {
     }
 
     /**
-     * Elimina un usuario del sistema
+     * Elimina un usuario del sistema, permitiendo seleccionar el tipo de usuario antes de proceder.
      */
     public void eliminarUsuario() {
+        int tipo = Menus.menuSelectTipoUsuarioRegistro(); // Selecciona el tipo de usuario
         String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a eliminar:");
-        Usuario usuario = listaUsuarios.buscar(nombreUsuario);
+        Usuario usuario = buscarPorTipo(nombreUsuario, tipo);
 
         if (usuario != null) {
             listaUsuarios.eliminar(usuario);
             listaUsuarios.guardarXML(determinarArchivoXML(usuario));
-            System.out.println("Usuario eliminado exitosamente.");
+            System.out.println("✅ Usuario eliminado exitosamente.");
         } else {
-            System.out.println("Usuario no encontrado.");
+            System.out.println("⚠️ Usuario no encontrado.");
         }
     }
+
 
     /**
      * Actualiza los datos de un usuario existente
      */
     public void actualizarUsuario() {
+        int tipo = Menus.menuSelectTipoUsuarioRegistro(); // Selecciona el tipo de usuario
         String nombreUsuario = Utilidades.leeString("Introduce el nombre del usuario a actualizar:");
-        Usuario usuario = listaUsuarios.buscar(nombreUsuario);
+        Usuario usuario = buscarPorTipo(nombreUsuario, tipo);
 
         if (usuario != null) {
             String nuevoNombre = Utilidades.leeString("Introduce el nuevo nombre del usuario:");
             String nuevaContraseña = Utilidades.leeString("Introduce la nueva contraseña:");
-            usuario.setNombre(nuevoNombre);
+            usuario.setNombreUsuario(nuevoNombre);
             usuario.setPassword(nuevaContraseña);
+            listaUsuarios.actualizar(usuario);
             listaUsuarios.guardarXML(determinarArchivoXML(usuario));
             System.out.println("Usuario actualizado exitosamente.");
         } else {
             System.out.println("Usuario no encontrado.");
         }
     }
+
+    /**
+     * Busca un usuario en el archivo correspondiente según su tipo.
+     * @param nombreUsuario Nombre del usuario a buscar.
+     * @param tipo Tipo de usuario (1 = Creador, 2 = Voluntario, 3 = Administrador).
+     * @return El usuario si existe, null si no se encuentra.
+     */
+    private Usuario buscarPorTipo(String nombreUsuario, int tipo) {
+        String archivo = "";
+
+        switch (tipo) {
+            case 1:
+                archivo = "creadores.xml";
+                break;
+            case 2:
+                archivo = "voluntarios.xml";
+                break;
+            case 3:
+                archivo = "administradores.xml";
+                break;
+            default:
+                VistaConsola.mostrarMensaje("⚠️ Tipo de usuario no válido.");
+        }
+
+        listaUsuarios = ListaUsuarios.cargarDesdeXML(archivo);
+        return listaUsuarios.buscar(nombreUsuario);
+    }
+
 }

@@ -22,17 +22,10 @@
         <puntos>20</puntos>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
-        <email>laura@gmail.com</email>
-        <nombre>Laura</nombre>
-        <nombreUsuario>laurita</nombreUsuario>
-        <password>$2a$12$lmnop987654lmnop987654lmnop987654lmnop987654lmnop987654</password>
-        <puntos>15</puntos>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
         <email>carlos@gmail.com</email>
-        <nombre>Carlos</nombre>
+        <nombre>carlos</nombre>
         <nombreUsuario>carlitoss</nombreUsuario>
-        <password>$2a$12$qwerty654321qwerty654321qwerty654321qwerty654321qwerty</password>
+        <password>123</password>
         <puntos>30</puntos>
     </usuario>
 </usuarios>
