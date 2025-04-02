@@ -26,6 +26,13 @@ public interface SCRUD<T> {
     boolean eliminar(T elemento);
 
     /**
+     * Actualiza un elemento existente.
+     *
+     * @param elemento Elemento a actualizar.
+     * @return true si la actualizacion fue exitosa, false si el elemento no existe.
+     */
+    boolean actualizar(T elemento);
+    /**
      * Busca un elemento por su nombre o identificador.
      *
      * @param nombreElemento Nombre o identificador del elemento a buscar.

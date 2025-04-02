@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioAdministrador">
-        <email>antonio@prueba.com</email>
+        <email>antonio@gmail.com</email>
         <nombre>Antonio</nombre>
         <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$65uaK6WZy/pZ41gYQVcDEO/JdNV9iiuwsjZyupw0ow26Dw.5WYDPW</password>
+        <password>$2a$12$VcP8rhtGPGix/c3qnEMCpuKaB9qu8DKra4JP65WIjIWkDcw6iHaMy</password>
     </usuario>
 </usuarios>

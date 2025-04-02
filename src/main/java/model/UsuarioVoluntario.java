@@ -26,7 +26,6 @@ public class UsuarioVoluntario extends Usuario {
      */
     public UsuarioVoluntario(String nombre, String usuario, String email, String password) {
         super(nombre, usuario, email, password);
-        this.puntos = 0; // Inicialización de puntos en 0
     }
 
     /**
@@ -51,8 +50,9 @@ public class UsuarioVoluntario extends Usuario {
      * @param cantidad Cantidad de puntos a sumar.
      */
     public void sumarPuntos(int cantidad) {
-        if (cantidad > 0) {
+        if (cantidad >0) {
             this.puntos += cantidad;
+            setPuntos(this.puntos);
             VistaConsola.mostrarMensaje("✅ Se han añadido " + cantidad + " puntos. Total: " + this.puntos);
         } else {
             VistaConsola.mostrarMensaje("⚠ La cantidad de puntos a sumar debe ser mayor que 0.");

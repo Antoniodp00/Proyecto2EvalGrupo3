@@ -40,22 +40,21 @@ public class PremiosController {
         ListaUsuarios listaUsuarios = ListaUsuarios.cargarDesdeXML("voluntarios.xml");
         Premio premio = listaPremios.buscar(nombrePremio);
         boolean canjeado = false;
-        if (premio == null) {
-            VistaConsola.mostrarMensaje("❌ Premio no encontrado.");
-        }
 
-        if (usuario.getPuntos() < premio.getCosto()) {
+        if (premio != null && usuario.getPuntos() >= premio.getCosto()) {
+            usuario.restarPuntos(premio.getCosto());
+            listaUsuarios.actualizar(usuario);
+            listaUsuarios.guardarXML("voluntarios.xml");
+            VistaConsola.mostrarMensaje("🎉 Canje exitoso: " + premio.getNombre());
+            canjeado = true;
+        } else if (premio == null) {
+            VistaConsola.mostrarMensaje("❌ Premio no encontrado.");
+        } else {
             throw new PuntosInsuficientesException("❌ No tienes suficientes puntos para canjear este premio.");
         }
 
-        // Restar los puntos al usuario y confirmar el canje
-        usuario.restarPuntos(premio.getCosto());
-        listaUsuarios.agregar(usuario);
-        listaUsuarios.guardarXML("voluntarios.xml");  // Guardar cambios del usuario
-        VistaConsola.mostrarMensaje("🎉 Canje exitoso: " + premio.getNombre());
         return canjeado;
     }
-
 
     /**
      * Método para listar todos los premios disponibles.

@@ -65,6 +65,18 @@ public class ListaPremios implements SCRUD<Premio> {
         return premios.remove(elemento);
     }
 
+    @Override
+    public boolean actualizar(Premio elemento) {
+            for (Premio p : premios) {
+                if (p.getNombre().equals(elemento.getNombre())) {
+                    premios.remove(p);
+                    premios.add(p);
+                    return true;
+                }
+            }
+            return false;
+    }
+
     /**
      * Busca un premio por su nombre.
      * @param nombrePremio Nombre del premio a buscar.

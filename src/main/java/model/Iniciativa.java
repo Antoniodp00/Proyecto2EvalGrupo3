@@ -4,48 +4,89 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "iniciativa")
-@XmlAccessorType(XmlAccessType.FIELD)
+/**
+ * Clase que representa una iniciativa dentro del sistema.
+ * Una iniciativa tiene un nombre, una descripción y un creador.
+ */
+@XmlRootElement(name = "iniciativa") // Define el elemento raíz en el XML cuando se serializa.
+@XmlAccessorType(XmlAccessType.FIELD) // Indica que los atributos se mapearán directamente a XML.
 public class Iniciativa {
 
-    @XmlElement(name = "nombre")
+    @XmlElement(name = "nombre") // Define el nombre en el XML.
     private String nombre;
 
-    @XmlElement(name = "descripcion")
+    @XmlElement(name = "descripcion") // Define la descripción en el XML.
     private String descripcion;
 
-    @XmlElement(name = "creador") // Aquí anotamos el creador
+    @XmlElement(name = "creador") // Define el creador de la iniciativa en el XML.
     private String creador;
 
-    @XmlTransient
-    private List<Actividad> misactividades;
+    /**
+     * Constructor vacío requerido por JAXB para la serialización y deserialización XML.
+     */
+    public Iniciativa() {}
 
-    public Iniciativa() {} // JAXB necesita un constructor vacío
-
+    /**
+     * Constructor con parámetros para crear una iniciativa con datos iniciales.
+     * @param nombre Nombre de la iniciativa.
+     * @param descripcion Descripción de la iniciativa.
+     * @param creador Nombre del creador de la iniciativa.
+     */
     public Iniciativa(String nombre, String descripcion, String creador) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.creador = creador;
-        this.misactividades = new ArrayList<>();
+
     }
 
-    // Getters y Setters
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    // Métodos Getters y Setters para acceder y modificar los atributos.
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-
-    public String getCreador() { return creador; }
-    public void setCreador(String creador) { this.creador = creador; }
-
-    public List<Actividad> getActividades() {
-        return misactividades;
+    /**
+     * Obtiene el nombre de la iniciativa.
+     * @return Nombre de la iniciativa.
+     */
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setActividades(List<Actividad> actividades) {
-        this.misactividades = actividades;
+    /**
+     * Establece un nuevo nombre para la iniciativa.
+     * @param nombre Nombre a asignar.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
+    /**
+     * Obtiene la descripción de la iniciativa.
+     * @return Descripción de la iniciativa.
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Establece una nueva descripción para la iniciativa.
+     * @param descripcion Descripción a asignar.
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * Obtiene el nombre del creador de la iniciativa.
+     * @return Nombre del creador.
+     */
+    public String getCreador() {
+        return creador;
+    }
+
+    /**
+     * Establece un nuevo creador para la iniciativa.
+     * @param creador Nombre del creador.
+     */
+    public void setCreador(String creador) {
+        this.creador = creador;
+    }
 
 }

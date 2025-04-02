@@ -103,11 +103,11 @@ public class Menus {
      * @return La opción seleccionada por el usuario.
      */
     public static int MenuInstancias() {
-        System.out.println(BLUE + "\n🏗️ ===== MENÚ DE INSTANCIAS =====" + RESET);
-        System.out.println("1. 🏗️ Crear Instancia");
-        System.out.println("2. 📜 Mostrar todas las Instancias");
-        System.out.println("3. 🔄 Actualizar Instancia");
-        System.out.println("4. ❌ Eliminar Instancia");
+        System.out.println(BLUE + "\n🏗️ ===== MENÚ DE INICIATIVAS =====" + RESET);
+        System.out.println("1. 🏗️ Crear Iniciativa");
+        System.out.println("2. 📜 Mostrar todas las Iniciativas");
+        System.out.println("3. 🔄 Actualizar Iniciativa");
+        System.out.println("4. ❌ Eliminar Iniciativa");
         System.out.println("5. 🔙 Volver al menú principal");
         return Utilidades.leeEntero(YELLOW + "Elige una opción: " + RESET);
     }

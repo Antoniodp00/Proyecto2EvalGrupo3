@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>antonio@prueba.com</email>
+        <email>antonio@gmail.com</email>
         <nombre>Antonio</nombre>
         <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$1tzfdDF8ZkV81B69UUSt6eFhP24/DFWsA2/5DV8lTUoJZbdUYORLK</password>
-        <ONG>Unicef</ONG>
+        <password>$2a$12$JpZlEN3ZAucH/s3U0khOZuvXNIW.hRoDZ57V3KGLXetyAjwA3zQai</password>
+        <ONG>UNnicef</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>paco@gmail.com</email>
-        <nombre>Paco</nombre>
-        <nombreUsuario>paco</nombreUsuario>
-        <password>$2a$12$fynfWgKzDCeMePJ3/06k7uSCoLTaqAP9Vv0bbXhTVz.h5h2Cf1Bj.</password>
-        <ONG>Unicef</ONG>
+        <email>maria@gmail.com</email>
+        <nombre>Maria</nombre>
+        <nombreUsuario>maria89</nombreUsuario>
+        <password>$2a$12$abcdef123456abcdef123456abcdef123456abcdef123456abcdef</password>
+        <ONG>Red Cross</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>juan@gmail.com</email>
+        <nombre>Juan</nombre>
+        <nombreUsuario>juanito23</nombreUsuario>
+        <password>$2a$12$987xyz654321987xyz654321987xyz654321987xyz654321987xyz</password>
+        <ONG>WWF</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>laura@gmail.com</email>
+        <nombre>Laura</nombre>
+        <nombreUsuario>laurita</nombreUsuario>
+        <password>$2a$12$lmnop987654lmnop987654lmnop987654lmnop987654lmnop987654</password>
+        <ONG>Save the Children</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>carlos@gmail.com</email>
+        <nombre>Carlos</nombre>
+        <nombreUsuario>carlitoss</nombreUsuario>
+        <password>$2a$12$qwerty654321qwerty654321qwerty654321qwerty654321qwerty</password>
+        <ONG>Greenpeace</ONG>
     </usuario>
 </usuarios>

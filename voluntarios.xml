@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
-        <email>antonio@prueba.com</email>
-        <nombre>antonio</nombre>
-        <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$DQLG/b.5GvKpw1Zp9VULr.pOCE0At7fhVe8eS3EsCgEE0jaR7L.by</password>
-        <puntos>112000</puntos>
+        <email>maria@gmail.com</email>
+        <nombre>Maria</nombre>
+        <nombreUsuario>maria89</nombreUsuario>
+        <password>$2a$12$abcdef123456abcdef123456abcdef123456abcdef123456abcdef</password>
+        <puntos>10</puntos>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
-        <email>Juan@gmail.com</email>
+        <email>antonio@gmail.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antoniodp</nombreUsuario>
+        <password>$2a$12$7BroygrqROaz/JzpWXaHDOGAiQmXbXYqb0zdlGQYWPzlqrOHp4Op.</password>
+        <puntos>70</puntos>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+        <email>juan@gmail.com</email>
         <nombre>Juan</nombre>
-        <nombreUsuario>juanp</nombreUsuario>
-        <password>$2a$12$pzsC9h3sqvtPLP5Hl.6mNeUgynlAT9Xfa9Va2xWRf3HVULZ2dcA4K</password>
-        <puntos>0</puntos>
+        <nombreUsuario>juanito23</nombreUsuario>
+        <password>$2a$12$987xyz654321987xyz654321987xyz654321987xyz654321987xyz</password>
+        <puntos>20</puntos>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+        <email>laura@gmail.com</email>
+        <nombre>Laura</nombre>
+        <nombreUsuario>laurita</nombreUsuario>
+        <password>$2a$12$lmnop987654lmnop987654lmnop987654lmnop987654lmnop987654</password>
+        <puntos>15</puntos>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
+        <email>carlos@gmail.com</email>
+        <nombre>Carlos</nombre>
+        <nombreUsuario>carlitoss</nombreUsuario>
+        <password>$2a$12$qwerty654321qwerty654321qwerty654321qwerty654321qwerty</password>
+        <puntos>30</puntos>
     </usuario>
 </usuarios>
