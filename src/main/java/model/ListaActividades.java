@@ -85,6 +85,18 @@ public class ListaActividades implements SCRUD<Actividad> {
         return actividades.remove(elemento);
     }
 
+    @Override
+    public boolean actualizar(Actividad elemento) {
+        for (Actividad a : actividades) {
+            if (a.getNombre().equals(elemento.getNombre())) {
+                actividades.remove(a);
+                actividades.add(a);
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Busca una actividad por su nombre.
      * @param nombreActividad Nombre de la actividad a buscar.

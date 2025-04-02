@@ -25,10 +25,12 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
     /**
      * Constructor por defecto que inicializa la lista de iniciativas como un HashSet vacío.
      */
-    public ListaIniciativas() {}
+    public ListaIniciativas() {
+    }
 
     /**
      * Obtiene el conjunto de iniciativas almacenadas.
+     *
      * @return Conjunto de iniciativas.
      */
     public Set<Iniciativa> getIniciativas() {
@@ -37,6 +39,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Establece un nuevo conjunto de iniciativas.
+     *
      * @param iniciativas Conjunto de iniciativas a establecer.
      */
     public void setIniciativas(Set<Iniciativa> iniciativas) {
@@ -45,6 +48,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Agrega una iniciativa a la lista.
+     *
      * @param elemento Iniciativa a agregar.
      * @return `true` si la iniciativa se agregó correctamente, `false` si ya existía.
      */
@@ -55,6 +59,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Elimina una iniciativa de la lista.
+     *
      * @param elemento Iniciativa a eliminar.
      * @return `true` si la iniciativa se eliminó correctamente, `false` si no existía.
      */
@@ -63,8 +68,23 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
         return iniciativas.remove(elemento);
     }
 
+    @Override
+    public boolean actualizar(Iniciativa elemento) {
+        for (Iniciativa i : iniciativas) {
+            if (i.getNombre().equals(elemento.getNombre())) {
+                iniciativas.remove(i);
+                iniciativas.add(i);
+                return true;
+
+            }
+        }
+        return false;
+
+    }
+
     /**
      * Busca una iniciativa por su nombre.
+     *
      * @param nombreIniciativa Nombre de la iniciativa a buscar.
      * @return Iniciativa encontrada o `null` si no existe.
      */
@@ -81,6 +101,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Devuelve todas las iniciativas almacenadas en la lista.
+     *
      * @return Un conjunto con las iniciativas registradas.
      */
     @Override
@@ -90,6 +111,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Verifica si existe una iniciativa con el nombre dado.
+     *
      * @param nombreActividad Nombre de la iniciativa a verificar.
      * @return `true` si la iniciativa existe, `false` en caso contrario.
      */
@@ -104,6 +126,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Guarda la lista de iniciativas en un archivo XML.
+     *
      * @param archivo Nombre del archivo donde se guardará.
      * @return `true` si la operación fue exitosa, `false` en caso contrario.
      */
@@ -113,6 +136,7 @@ public class ListaIniciativas implements SCRUD<Iniciativa> {
 
     /**
      * Carga la lista de iniciativas desde un archivo XML.
+     *
      * @param archivo Nombre del archivo de donde se leerá la información.
      * @return Objeto `ListaIniciativas` con los datos cargados, o una lista vacía si no existe.
      */
