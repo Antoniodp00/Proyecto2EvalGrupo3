@@ -203,9 +203,12 @@ public class SesionController {
                     premiosController.agregarPremio();
                     break;
                 case 3:
-                    premiosController.eliminarPremio();
+                    premiosController.listarPremios();
                     break;
                 case 4:
+                    premiosController.eliminarPremio();
+                    break;
+                case 5:
                     cerrarSesion();
                     break;
                 default:

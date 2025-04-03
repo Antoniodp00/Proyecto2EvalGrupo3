@@ -92,8 +92,9 @@ public class Menus {
         System.out.println(RED + "\n🔧 ===== MENÚ DEL ADMINISTRADOR =====" + RESET);
         System.out.println("1. 👤 Configuración de Usuarios");
         System.out.println("2. 🎁 Agregar Premios");
-        System.out.println("3. 🗑️ Eliminar Premios");
-        System.out.println("4. 🚪 Cerrar sesión");
+        System.out.println("3. 🎁 Listar Premios");
+        System.out.println("4. 🗑️ Eliminar Premios");
+        System.out.println("5. 🚪 Cerrar sesión");
         return Utilidades.leeEntero(YELLOW + "Elige una opción: " + RESET);
     }
 
