@@ -59,7 +59,7 @@ El sistema sigue el **paradigma de programación orientada a objetos (POO)**, co
 
 ## 📌 Instalación y Uso  
 
-### 1️⃣ **Clona este repositorio:**   git clone git@github.com:Antoniodp00/Proyecto2EvalGrupo3.git
+### 1️⃣ **Clona este repositorio:**   git clone [git@github.com:Antoniodp00/Proyecto2EvalGrupo3.git](https://github.com/Antoniodp00/Proyecto2EvalGrupo3.git)
 ### 2️⃣ Compila y ejecuta el proyecto en tu entorno de desarrollo (IntelliJ, VS Code, Eclipse, etc.).  
 ### 3️⃣ Explora y gestiona iniciativas sociales desde la línea de comandos.  
 
