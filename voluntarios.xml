@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
-        <email>maria@gmail.com</email>
-        <nombre>Maria</nombre>
-        <nombreUsuario>maria89</nombreUsuario>
-        <password>$2a$12$abcdef123456abcdef123456abcdef123456abcdef123456abcdef</password>
-        <puntos>10</puntos>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
         <email>antonio@gmail.com</email>
         <nombre>Antonio</nombre>
         <nombreUsuario>antoniodp</nombreUsuario>
         <password>$2a$12$7BroygrqROaz/JzpWXaHDOGAiQmXbXYqb0zdlGQYWPzlqrOHp4Op.</password>
-        <puntos>170</puntos>
+        <puntos>240</puntos>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioVoluntario">
         <email>juan@gmail.com</email>

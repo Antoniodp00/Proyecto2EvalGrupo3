@@ -235,7 +235,7 @@ public class SesionController {
                 default:
                     VistaConsola.mostrarMensaje("❌ Opción inválida, intenta de nuevo.");
             }
-        } while (opcion != 6);
+        } while (opcion != 3);
     }
 
 

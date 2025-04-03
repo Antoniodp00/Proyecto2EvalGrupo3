@@ -59,7 +59,7 @@ public class Menus {
      */
     public static int MenuCreador() {
         System.out.println(BLUE + "\n🔧 ===== MENÚ PRINCIPAL =====" + RESET);
-        System.out.println("1. ⚙️ Configuración de Instancias");
+        System.out.println("1. ⚙️ Configuración de Iniciativas");
         System.out.println("2. 📌 Configuración de Actividades");
         System.out.println("3. 🚪 Cerrar sesión");
         return Utilidades.leeEntero(YELLOW + "Elige una opción: " + RESET);

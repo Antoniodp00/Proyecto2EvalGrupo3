@@ -10,16 +10,6 @@
         <comentario>Se han recogido 50kg de plásticos hasta ahora.</comentario>
     </actividad>
     <actividad>
-        <nombre>Recolección de alimentos</nombre>
-        <descripcion>Organización de una colecta de alimentos para personas necesitadas.</descripcion>
-        <responsable>laurita</responsable>
-        <iniciativa>AlimentemosEsperanza</iniciativa>
-        <fechaInicio>2025-04-02</fechaInicio>
-        <fechaFin>2025-04-05</fechaFin>
-        <estado>EN_PROGRESO</estado>
-        <comentario></comentario>
-    </actividad>
-    <actividad>
         <nombre>Jornada médica gratuita</nombre>
         <descripcion>Consulta médica y chequeos gratuitos para la comunidad.</descripcion>
         <responsable>antoniodp</responsable>
@@ -59,22 +49,24 @@
         <comentario></comentario>
     </actividad>
     <actividad>
-        <nombre>Limpieza de playas</nombre>
-        <descripcion>Recoger residuos en la costa y concienciar sobre la contaminación.</descripcion>
-        <responsable></responsable>
-        <iniciativa>OceanoLimpio</iniciativa>
-        <estado>NO_INICIADA</estado>
-        <comentario>Se buscan voluntarios.</comentario>
-    </actividad>
-    <actividad>
-        <nombre>Limpio</nombre>
-        <descripcion>de</descripcion>
-        <responsable>carlitoss</responsable>
-        <iniciativa>VillaVerde</iniciativa>
-        <fechaInicio>2025-04-02</fechaInicio>
-        <fechaFin>2025-04-03</fechaFin>
+        <nombre>Plantacion de naranjos</nombre>
+        <descripcion>Mejoremos el parque</descripcion>
+        <responsable>maria89</responsable>
+        <iniciativa>Reforestemos</iniciativa>
+        <fechaInicio>2025-04-03</fechaInicio>
+        <fechaFin>2025-04-04</fechaFin>
         <estado>EN_PROGRESO</estado>
         <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Limpieza de playas</nombre>
+        <descripcion>Recoger residuos en la costa y concienciar sobre la contaminación.</descripcion>
+        <responsable>antoniodp</responsable>
+        <iniciativa>OceanoLimpio</iniciativa>
+        <fechaInicio>2025-04-03</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>COMPLETADA</estado>
+        <comentario>Un disfrute</comentario>
     </actividad>
     <actividad>
         <nombre>Instalación de iluminación en parques</nombre>
@@ -96,16 +88,6 @@
         <comentario></comentario>
     </actividad>
     <actividad>
-        <nombre>Intercambio de libros</nombre>
-        <descripcion>Evento para fomentar la lectura y el intercambio de libros.</descripcion>
-        <responsable>maria89</responsable>
-        <iniciativa>BibliotecaLibre</iniciativa>
-        <fechaInicio>2025-04-02</fechaInicio>
-        <fechaFin>2025-04-04</fechaFin>
-        <estado>EN_PROGRESO</estado>
-        <comentario></comentario>
-    </actividad>
-    <actividad>
         <nombre>Recogida plasticos</nombre>
         <descripcion>recogida</descripcion>
         <responsable></responsable>
@@ -113,6 +95,36 @@
         <fechaInicio>2025-04-02</fechaInicio>
         <fechaFin>2025-04-03</fechaFin>
         <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Recolección de alimentos</nombre>
+        <descripcion>Organización de una colecta de alimentos para personas necesitadas.</descripcion>
+        <responsable>laurita</responsable>
+        <iniciativa>AlimentemosEsperanza</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-05</fechaFin>
+        <estado>EN_PROGRESO</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Limpio</nombre>
+        <descripcion>de</descripcion>
+        <responsable>carlitoss</responsable>
+        <iniciativa>VillaVerde</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-03</fechaFin>
+        <estado>EN_PROGRESO</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Intercambio de libros</nombre>
+        <descripcion>Evento para fomentar la lectura y el intercambio de libros.</descripcion>
+        <responsable>maria89</responsable>
+        <iniciativa>BibliotecaLibre</iniciativa>
+        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaFin>2025-04-04</fechaFin>
+        <estado>EN_PROGRESO</estado>
         <comentario></comentario>
     </actividad>
 </actividades>
