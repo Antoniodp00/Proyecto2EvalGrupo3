@@ -41,12 +41,12 @@
     <actividad>
         <nombre>Regogida residuos</nombre>
         <descripcion>recolectemos residuos</descripcion>
-        <responsable></responsable>
+        <responsable>antoniodp</responsable>
         <iniciativa>PLayaGreen</iniciativa>
-        <fechaInicio>2025-04-02</fechaInicio>
+        <fechaInicio>2025-04-03</fechaInicio>
         <fechaFin>2025-04-03</fechaFin>
-        <estado>NO_INICIADA</estado>
-        <comentario></comentario>
+        <estado>COMPLETADA</estado>
+        <comentario>Me lo pase genial </comentario>
     </actividad>
     <actividad>
         <nombre>Plantacion de naranjos</nombre>
@@ -95,6 +95,16 @@
         <fechaInicio>2025-04-02</fechaInicio>
         <fechaFin>2025-04-03</fechaFin>
         <estado>NO_INICIADA</estado>
+        <comentario></comentario>
+    </actividad>
+    <actividad>
+        <nombre>Reducir contaminacion</nombre>
+        <descripcion>Reducir uso de vehiculos</descripcion>
+        <responsable>antoniodp</responsable>
+        <iniciativa>VillaVerde</iniciativa>
+        <fechaInicio>2025-04-03</fechaInicio>
+        <fechaFin>2025-04-04</fechaFin>
+        <estado>EN_PROGRESO</estado>
         <comentario></comentario>
     </actividad>
     <actividad>

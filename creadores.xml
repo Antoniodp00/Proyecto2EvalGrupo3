@@ -1,32 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <usuarios>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>juan@gmail.com</email>
-        <nombre>Juan</nombre>
-        <nombreUsuario>juanp</nombreUsuario>
-        <password>$2a$12$zt4jebkFnTwnEakswGBsCug2CKmEAwwz7YIbkQhDRyZVGt6YBZTfS</password>
-        <ONG>Caritas</ONG>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>miguel@gmail.com</email>
         <nombre>Miguel</nombre>
         <nombreUsuario>miguelillo</nombreUsuario>
         <password>$2a$12$R/mE9CgQLHuEKv5Cng8FFekQy6tTdTcHmwP/zgiJpAgmOnX1yNAP6</password>
         <ONG>Unicef</ONG>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>maria@gmail.com</email>
-        <nombre>Maria</nombre>
-        <nombreUsuario>maria89</nombreUsuario>
-        <password>$2a$12$abcdef123456abcdef123456abcdef123456abcdef123456abcdef</password>
-        <ONG>Red Cross</ONG>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>antonio@gmail.com</email>
-        <nombre>Antonio</nombre>
-        <nombreUsuario>antoniodp</nombreUsuario>
-        <password>$2a$12$JpZlEN3ZAucH/s3U0khOZuvXNIW.hRoDZ57V3KGLXetyAjwA3zQai</password>
-        <ONG>UNnicef</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>juan@gmail.com</email>
@@ -36,10 +15,10 @@
         <ONG>WWF</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>antonio@gmail.com</email>
-        <nombre>Antonio</nombre>
-        <nombreUsuario>antonio07</nombreUsuario>
-        <password>$2a$12$7Bc7dlmsMYnEom1VKeZJwOXHsRidl0fydsGrvpqLEcU5WRqPADguS</password>
+        <email>jesus@gmail.com</email>
+        <nombre>Jesus</nombre>
+        <nombreUsuario>jesus123</nombreUsuario>
+        <password>$2a$12$32Ro8Cna.6UewfEPop9XKeGPRVXHG8taXAEkq1J9Lz5XGJ6JCKdZq</password>
         <ONG>Unicef</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
@@ -50,11 +29,11 @@
         <ONG>Caritas</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>manuel@gmail.com</email>
-        <nombre>Manuel</nombre>
-        <nombreUsuario>manu</nombreUsuario>
-        <password>$2a$12$pDr.L6z8zue.tZb8TfSzlOvJOHTXiFKUwJOWK7z5iesn6yru/Jf6.</password>
-        <ONG>Caritas</ONG>
+        <email>antonio@gmail.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antonio123</nombreUsuario>
+        <password>$2a$12$NbIoHPzLvraSrfPGeUZmfO3uBT5aS2bt0o49lfn31Eb4n1vv62Euy</password>
+        <ONG>Unicef</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>laura@gmail.com</email>
@@ -71,17 +50,52 @@
         <ONG>Greenpeace</ONG>
     </usuario>
     <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
-        <email>lucas@gmail.com</email>
-        <nombre>lucas</nombre>
-        <nombreUsuario>luquitas</nombreUsuario>
-        <password>$2a$12$gR0899UGq69nB82HGbsApOCPFIVKMF/3jAmwSr4s2iVLG2ZCu0C6O</password>
-        <ONG>Unicef</ONG>
-    </usuario>
-    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
         <email>fran@gmail.com</email>
         <nombre>Fran</nombre>
         <nombreUsuario>fransi</nombreUsuario>
         <password>$2a$12$6TzgFYsbPkgvI6xPcoIJg.kynassdsIeSp3kFCpwxwgMDbXDJ4dPy</password>
+        <ONG>Unicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>juan@gmail.com</email>
+        <nombre>Juan</nombre>
+        <nombreUsuario>juanp</nombreUsuario>
+        <password>$2a$12$zt4jebkFnTwnEakswGBsCug2CKmEAwwz7YIbkQhDRyZVGt6YBZTfS</password>
+        <ONG>Caritas</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>maria@gmail.com</email>
+        <nombre>Maria</nombre>
+        <nombreUsuario>maria89</nombreUsuario>
+        <password>$2a$12$abcdef123456abcdef123456abcdef123456abcdef123456abcdef</password>
+        <ONG>Red Cross</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>antonio@gmail.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antoniodp</nombreUsuario>
+        <password>$2a$12$JpZlEN3ZAucH/s3U0khOZuvXNIW.hRoDZ57V3KGLXetyAjwA3zQai</password>
+        <ONG>UNnicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>antonio@gmail.com</email>
+        <nombre>Antonio</nombre>
+        <nombreUsuario>antonio07</nombreUsuario>
+        <password>$2a$12$7Bc7dlmsMYnEom1VKeZJwOXHsRidl0fydsGrvpqLEcU5WRqPADguS</password>
+        <ONG>Unicef</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>manuel@gmail.com</email>
+        <nombre>Manuel</nombre>
+        <nombreUsuario>manu</nombreUsuario>
+        <password>$2a$12$pDr.L6z8zue.tZb8TfSzlOvJOHTXiFKUwJOWK7z5iesn6yru/Jf6.</password>
+        <ONG>Caritas</ONG>
+    </usuario>
+    <usuario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuarioCreador">
+        <email>lucas@gmail.com</email>
+        <nombre>lucas</nombre>
+        <nombreUsuario>luquitas</nombreUsuario>
+        <password>$2a$12$gR0899UGq69nB82HGbsApOCPFIVKMF/3jAmwSr4s2iVLG2ZCu0C6O</password>
         <ONG>Unicef</ONG>
     </usuario>
 </usuarios>

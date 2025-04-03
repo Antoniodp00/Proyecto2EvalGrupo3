@@ -1,39 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Iniciativas>
     <iniciativa>
-        <nombre>OceanoLimpio</nombre>
-        <descripcion>Limpieza de playas y mares</descripcion>
-        <creador>carlitoss</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>Reforestemos</nombre>
-        <descripcion>Plantemos árboles para un futuro verde</descripcion>
-        <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
         <nombre>CiudadLimpia</nombre>
         <descripcion>Mejoremos nuestra ciudad</descripcion>
         <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>VillaVerde</nombre>
-        <descripcion>Mejor</descripcion>
-        <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>SaludParaTodos</nombre>
-        <descripcion>Campañas médicas gratuitas</descripcion>
-        <creador>laurita</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>BibliotecaLibre</nombre>
-        <descripcion>Intercambio de libros en espacios públicos</descripcion>
-        <creador>antoniodp</creador>
-    </iniciativa>
-    <iniciativa>
-        <nombre>ParqueSeguro</nombre>
-        <descripcion>Mejorando la seguridad en los parques</descripcion>
-        <creador>juanito23</creador>
     </iniciativa>
     <iniciativa>
         <nombre>AlimentemosEsperanza</nombre>
@@ -44,5 +14,35 @@
         <nombre>ReciclajeComunitario</nombre>
         <descripcion>Fomentemos el reciclaje en nuestro barrio</descripcion>
         <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>BibliotecaLibre</nombre>
+        <descripcion>Intercambio de libros en espacios públicos</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>Reforestemos</nombre>
+        <descripcion>Plantemos árboles para un futuro verde</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>VillaVerde</nombre>
+        <descripcion>Mejor</descripcion>
+        <creador>antoniodp</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>OceanoLimpio</nombre>
+        <descripcion>Limpieza de playas y mares</descripcion>
+        <creador>carlitoss</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>ParqueSeguro</nombre>
+        <descripcion>Mejorando la seguridad en los parques</descripcion>
+        <creador>juanito23</creador>
+    </iniciativa>
+    <iniciativa>
+        <nombre>SaludParaTodos</nombre>
+        <descripcion>Campañas médicas gratuitas</descripcion>
+        <creador>laurita</creador>
     </iniciativa>
 </Iniciativas>

@@ -83,6 +83,7 @@ public class ActividadesController {
      * @param creador Usuario creador que desea eliminar una actividad.
      */
     public void eliminarActividad(UsuarioCreador creador) {
+        listaActividades=ListaActividades.cargarDesdeXML(ARCHIVO_XML);
         String nombreActividad = Utilidades.leeString("Introduce el nombre de la actividad a eliminar:");
         Actividad actividad = listaActividades.buscar(nombreActividad);
 

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Premios>
     <premio>
-        <nombre>Tarjeta regalo 20 euros</nombre>
-        <descripcion>Tarjeta de regalo para compras en tiendas adheridas.</descripcion>
-        <costo>80</costo>
-    </premio>
-    <premio>
-        <nombre>Descuento en transporte público</nombre>
-        <descripcion>Descuento en la tarjeta de transporte por un mes.</descripcion>
-        <costo>70</costo>
-    </premio>
-    <premio>
         <nombre>Bono 10 euros Amazon</nombre>
         <descripcion>Bono para usarlo en Amazon.</descripcion>
         <costo>50</costo>
@@ -21,18 +11,28 @@
         <costo>40</costo>
     </premio>
     <premio>
+        <nombre>Tarjeta regalo 20 euros</nombre>
+        <descripcion>Tarjeta de regalo para compras en tiendas adheridas.</descripcion>
+        <costo>80</costo>
+    </premio>
+    <premio>
         <nombre>Entrada Cine</nombre>
         <descripcion>Entrada gratuita para una película en cines seleccionados.</descripcion>
         <costo>30</costo>
     </premio>
     <premio>
+        <nombre>Descuento en transporte público</nombre>
+        <descripcion>Descuento en la tarjeta de transporte por un mes.</descripcion>
+        <costo>70</costo>
+    </premio>
+    <premio>
+        <nombre>Pistola de agua</nombre>
+        <descripcion>Pistola de agua para el verano</descripcion>
+        <costo>25</costo>
+    </premio>
+    <premio>
         <nombre>Mochila ecológica</nombre>
         <descripcion>Mochila hecha con materiales reciclados.</descripcion>
         <costo>60</costo>
-    </premio>
-    <premio>
-        <nombre>Balon</nombre>
-        <descripcion>Balon Futbol</descripcion>
-        <costo>50</costo>
     </premio>
 </Premios>

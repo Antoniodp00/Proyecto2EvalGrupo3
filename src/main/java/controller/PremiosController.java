@@ -77,6 +77,7 @@ public class PremiosController {
      * Método para eliminar un premio por su nombre.
      */
     public void eliminarPremio() {
+        listaPremios = ListaPremios.cargarDesdeXML(ARCHIVO_PREMIOS);
         String nombrePremio = Utilidades.leeString("Introduce el nombre del premio a eliminar:");
         Premio premio = listaPremios.buscar(nombrePremio);
 
